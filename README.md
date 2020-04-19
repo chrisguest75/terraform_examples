@@ -25,8 +25,11 @@ brew install terraform_landscape
 * S3 bucket - deb repository
 
 
+## 01_s3_bucket
+Example of creating an S3 Bucket
+[README.md](01_s3_bucket/README.md)
 
 ## 02_asg
-A test repo for experimenting with AWS terraform providers  
+Example of creating an Auto Scaling Group 
 [README.md](02_asg/README.md)
 
