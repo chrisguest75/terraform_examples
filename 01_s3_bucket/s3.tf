@@ -70,3 +70,7 @@ resource "aws_s3_bucket_policy" "deb_bucket_policy" {
 POLICY
 }
 
+output "s3_url" {
+  value       = "http://${aws_s3_bucket.deb_bucket.website_endpoint}"
+  description = "The url of the s3 bucket"
+}
