@@ -9,3 +9,6 @@ variable "tags" {
     "owner"       = "chrisguest"
   }
 }
+
+variable "packages_file" {}
+variable "bucket_name" {}

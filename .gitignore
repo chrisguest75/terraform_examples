@@ -1,3 +1,5 @@
 .terraform
 *.deb
 *.gz
+*.tfstate
+*.tfstate.backup
