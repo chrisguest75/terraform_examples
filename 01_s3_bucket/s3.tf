@@ -7,13 +7,22 @@ resource "aws_s3_bucket" "deb_bucket" {
   tags = "${var.tags}"
 
   website {
-    index_document = "Packages.gz"
+    index_document = "index.html"
   }
+
+  /*cors_rule {
+    allowed_headers = ["*"]
+    allowed_methods = ["PUT", "POST"]
+    allowed_origins = ["https://s3-website-test.hashicorp.com"]
+    expose_headers  = ["ETag"]
+    max_age_seconds = 3000
+  }*/
+
 }
 
 resource "aws_s3_bucket_object" "packages" {
   bucket = "${aws_s3_bucket.deb_bucket.id}"
-  key    = "Packages.gz"
+  key    = "debian/Packages.gz"
   source = "${var.packages_file}"
 
   # The filemd5() function is available in Terraform 0.11.12 and later
@@ -22,14 +31,19 @@ resource "aws_s3_bucket_object" "packages" {
   etag = "${filemd5(var.packages_file)}"
 }
 
+resource "aws_s3_bucket_object" "index" {
+  bucket = "${aws_s3_bucket.deb_bucket.id}"
+  key    = "index.html"
+  source = "./index.html"
+  content_type = "text/html"
+  etag = "${filemd5("./index.html")}"
+}
+
 resource "aws_s3_bucket_object" "package_files" {
   bucket = "${aws_s3_bucket.deb_bucket.id}"
-  key    = "hello-world.deb"
+  key    = "debian/hello-world.deb"
   source = "./test-deb-packages/hello-world.deb"
 
-  # The filemd5() function is available in Terraform 0.11.12 and later
-  # For Terraform 0.11.11 and earlier, use the md5() function and the file() function:
-  # etag = "${md5(file("path/to/file"))}"
   etag = "${filemd5("./test-deb-packages/hello-world.deb")}"
 }
 
