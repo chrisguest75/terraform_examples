@@ -1,6 +1,7 @@
 FROM ubuntu:16.04
 
-RUN echo "deb [trusted=yes] http://test-conde-deb-packages.s3-website-eu-west-1.amazonaws.com/ ./" | tee -a /etc/apt/sources.list > /dev/null 
+ARG REPOSITORY_URL=
+RUN echo "deb [trusted=yes] ${REPOSITORY_URL} ./" | tee -a /etc/apt/sources.list > /dev/null 
 
 RUN apt-get update && apt-get install bash hello-world -y \ 
         && apt-get clean \
