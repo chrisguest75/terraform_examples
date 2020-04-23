@@ -4,6 +4,13 @@ Example of creating an S3 Bucket
 ## NOTES
 * You can update the packages and rerun terraform and it will upload the new packages. 
 
+## TODO:
+* https://github.com/MayaraCloud/apt-transport-s3
+* https://manpages.debian.org/testing/apt-transport-s3/apt-transport-s3.8.en.html
+* https://manpages.debian.org/jessie/apt/sources.list.5.en.html
+* https://s3.eu-west-1.amazonaws.com/test-conde-deb-packages
+* Might need to remove ./ from packages.gz manifest.
+
 ## Prepare 
 ```sh
 aws s3 ls
@@ -38,7 +45,10 @@ curl ${URL}/debian/Packages.gz
 ```
 
 ## Use packages
+```sh
 docker build --build-arg=REPOSITORY_URL=${URL}/debian -t usepackages --no-cache -f ./test-deb-packages/usepackages.Dockerfile . 
+```
+
 ## Cleanup
 ```sh
 terraform destroy
@@ -46,5 +56,11 @@ terraform destroy
 
 ## Troubleshooting 
  ```sh
+ # Turn off package install 
+docker build --build-arg=REPOSITORY_URL=${URL}/debian --build-arg=PREINSTALL=false -t usepackages --no-cache -f ./test-deb-packages/usepackages.Dockerfile .
+
+# 
+docker run -it --entrypoint=/bin/bash usepackages
+
 docker run -it --entrypoint=/bin/bash ubuntu:16.04 
 ```
