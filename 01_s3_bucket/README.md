@@ -38,7 +38,10 @@ curl ${URL}/debian/Packages.gz
 ```
 
 ## Use packages
+```sh
 docker build --build-arg=REPOSITORY_URL=${URL}/debian -t usepackages --no-cache -f ./test-deb-packages/usepackages.Dockerfile . 
+```
+
 ## Cleanup
 ```sh
 terraform destroy

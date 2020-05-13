@@ -11,6 +11,9 @@ brew install terraform_landscape
 ```
 
 ## TODO
+*  lifecycle {
+    ignore_changes = ["*"]
+  }
 * Modules
 * Data
 * Keybase
