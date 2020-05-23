@@ -11,4 +11,6 @@ variable "tags" {
 }
 
 variable "packages_file" {}
+variable "deb_file" {}
+
 variable "bucket_name" {}

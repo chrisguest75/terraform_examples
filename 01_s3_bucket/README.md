@@ -16,17 +16,28 @@ Example of creating an S3 Bucket
 aws s3 ls
 ```
 
-## Build Debian Packages
-
+## Build .deb Examples 
+Build the image to build the packages and index
 ```sh
-docker build -t builddeb -f ./test-deb-packages/builddeb.Dockerfile . 
-docker run -it -e PACKAGE=hello-world -v=$(pwd)/test-deb-packages:/packages builddeb
+cd test-deb-packages 
+docker build -t debianbuilder -f build.Dockerfile . 
 ```
 
+Build the debian package in Docker
 ```sh
-docker build -t buildpackages -f ./test-deb-packages/buildpackages.Dockerfile .
-docker run -it -v=$(pwd)/test-deb-packages:/packages buildpackages
+mkdir packages
+docker run -it -v=$(pwd):/packages debianbuilder --action=build -p=hello-world -o=./packages/   
 ```
+
+## Build Packages.gz
+```sh
+docker run -it -v=$(pwd):/packages debianbuilder --action=package -p=packages
+zmore ./Packages.gz    
+
+# Add --debug to it if you want to check paths in index
+docker run -it -v=$(pwd):/packages debianbuilder --action=package -p=packages --debug
+```
+
 
 ## Start
 ```sh
@@ -38,15 +49,18 @@ terraform apply --auto-approve
 ## Test
 ```sh
 URL=$(terraform output -json | jq ".s3_url.value" --raw-output)
+BUCKET_NAME=$(terraform output -json | jq '.s3_url.value | sub("http://"; "") | split(".")[0]' --raw-output)
 open ${URL}  
 curl ${URL}
-curl ${URL}/debian/hello-world.deb
+curl ${URL}/packages/hello-world_1.0_all.deb
+curl --output - ${URL}/packages/hello-world_1.0_all.deb | xxd
 curl ${URL}/debian/Packages.gz
+aws s3api list-objects --bucket ${BUCKET_NAME}
 ```
 
 ## Use packages
 ```sh
-docker build --build-arg=REPOSITORY_URL=${URL}/debian -t usepackages --no-cache -f ./test-deb-packages/usepackages.Dockerfile . 
+docker build --build-arg=REPOSITORY_URL=${URL} --build-arg=PREINSTALL=true -t usepackages --no-cache -f ./test-deb-packages/usepackages.Dockerfile .
 ```
 
 ## Cleanup

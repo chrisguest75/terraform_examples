@@ -22,7 +22,7 @@ resource "aws_s3_bucket" "deb_bucket" {
 
 resource "aws_s3_bucket_object" "packages" {
   bucket = "${aws_s3_bucket.deb_bucket.id}"
-  key    = "debian/Packages.gz"
+  key    = "dists/debian/Packages/binary-amd64/Packages.gz"
   source = "${var.packages_file}"
 
   # The filemd5() function is available in Terraform 0.11.12 and later
@@ -41,10 +41,10 @@ resource "aws_s3_bucket_object" "index" {
 
 resource "aws_s3_bucket_object" "package_files" {
   bucket = "${aws_s3_bucket.deb_bucket.id}"
-  key    = "debian/hello-world.deb"
-  source = "./test-deb-packages/hello-world.deb"
+  key    = "packages/hello-world_1.0_all.deb"
+  source = "${var.deb_file}"
 
-  etag = "${filemd5("./test-deb-packages/hello-world.deb")}"
+  etag = "${filemd5(var.deb_file)}"
 }
 
 resource "aws_s3_bucket_policy" "deb_bucket_policy" {
