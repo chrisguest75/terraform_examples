@@ -31,3 +31,19 @@ resource "aws_subnet" "tf_registry_subnet" {
         var.repo_tags
     )
 }
+
+
+resource "aws_vpc_peering_connection" "tf_registry_peering" {
+    peer_vpc_id   = aws_vpc.tf_registry_vpc.id
+    vpc_id        = var.default_vpcid
+    auto_accept   = true
+
+    tags = merge(
+        {
+        "tf_resource" = format("%s", "tf_registry_subnet")
+        },
+        var.tags,
+        var.repo_tags
+    )
+}
+
