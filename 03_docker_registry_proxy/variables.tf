@@ -30,5 +30,6 @@ variable "repo_tags" {
 
 variable "bucket_name" {}
 variable "vpc_cidr" {}
+variable "private_cidr" {}
 
 variable "default_vpcid" {}

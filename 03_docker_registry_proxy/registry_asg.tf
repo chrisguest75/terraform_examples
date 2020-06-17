@@ -41,7 +41,7 @@ resource "aws_launch_template" "instances_launch_template" {
     instance_type = "t2.micro"
     instance_initiated_shutdown_behavior = "stop"
     key_name = aws_key_pair.deployer.key_name
-    vpc_security_group_ids = []    
+    vpc_security_group_ids = [aws_security_group.peering_registry_to_default_sg.id]    
     block_device_mappings {
         device_name = "/dev/xvda"
         ebs {
