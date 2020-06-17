@@ -10,6 +10,11 @@ brew install jq
 brew install terraform_landscape 
 ```
 
+## Notes
+
+1. We use allowed_account_ids to restrict the accounts the TF can be applied.
+
+
 ## TODO
 *  lifecycle {
     ignore_changes = ["*"]
@@ -25,8 +30,7 @@ brew install terraform_landscape
 * Env variables
 * TF_LOG 
 * TF_ENV
-* S3 bucket - deb repository
-
+* Kapitan
 
 ## 01_s3_bucket
 Example of creating an S3 Bucket
@@ -36,3 +40,13 @@ Example of creating an S3 Bucket
 Example of creating an Auto Scaling Group 
 [README.md](02_asg/README.md)
 
+## 03_docker_registry_proxy
+Example 
+[README.md](03_docker_registry_proxy/README.md)
+
+## Pre-commit hook (process terraform fmt)
+Install the pre-commit hook.  
+```sh
+# hardlink the script 
+ln ./hooks/pre-commit .git/hooks/pre-commit  
+```
