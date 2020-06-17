@@ -35,7 +35,7 @@ resource "aws_subnet" "tf_registry_subnet" {
 
 resource "aws_vpc_peering_connection" "tf_registry_peering" {
     peer_vpc_id   = aws_vpc.tf_registry_vpc.id
-    vpc_id        = var.default_vpcid
+    vpc_id        = var.default_vpc_id
     auto_accept   = true
 
     tags = merge(
@@ -50,7 +50,7 @@ resource "aws_vpc_peering_connection" "tf_registry_peering" {
 resource "aws_security_group" "peering_default_to_registry_sg" {
   name        = "peering_default_to_registry_sg"
   description = "Allow connection to registry"
-  vpc_id      = var.default_vpcid
+  vpc_id      = var.default_vpc_id
 
   ingress {
     description = "SSH"
@@ -133,6 +133,39 @@ resource "aws_security_group" "peering_registry_to_default_sg" {
     tags = merge(
         {
         "tf_resource" = format("%s", "peering_registry_to_default_sg")
+        },
+        var.tags,
+        var.repo_tags
+    )
+}
+
+resource "aws_route" "route_default_to_registry" {
+  route_table_id              = var.default_vpc_route_table_id
+  destination_cidr_block    = var.vpc_cidr
+  vpc_peering_connection_id =  aws_vpc_peering_connection.tf_registry_peering.id
+}
+
+
+#resource "aws_main_route_table_association" "tf_registry_route_association" {
+#  vpc_id         =  aws_vpc.tf_registry_vpc.id
+#  route_table_id = aws_route_table.tf_registry_vpc_routetable.id
+#}
+
+resource "aws_route_table" "tf_registry_vpc_routetable" {
+  vpc_id         =  aws_vpc.tf_registry_vpc.id
+
+  route {
+    cidr_block = var.default_vpc_cidr
+    vpc_peering_connection_id =  aws_vpc_peering_connection.tf_registry_peering.id
+  }
+
+  route {
+    cidr_block = var.vpc_cidr
+  }
+
+    tags = merge(
+        {
+        "tf_resource" = format("%s", "tf_registry_vpc_routetable")
         },
         var.tags,
         var.repo_tags

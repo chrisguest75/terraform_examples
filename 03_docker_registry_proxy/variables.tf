@@ -32,4 +32,6 @@ variable "bucket_name" {}
 variable "vpc_cidr" {}
 variable "private_cidr" {}
 
-variable "default_vpcid" {}
+variable "default_vpc_id" {}
+variable "default_vpc_cidr" {}
+variable "default_vpc_route_table_id" {}

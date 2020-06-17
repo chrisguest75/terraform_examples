@@ -96,18 +96,5 @@ resource "aws_autoscaling_group" "instances_autoscaling_group" {
         local.tags_asg_format,
         local.repo_tags_asg_format,
     )
-
-
-    # tags = merge(
-    #     {
-    #     "tf_resource" = format("%s", "instances_autoscaling_group")
-    #     },
-    #     var.tags,
-    #     var.repo_tags
-    # )
-#  tags = [list(
-#      map("key", "Name", "value", "AutoScaled", "propagate_at_launch", true),
-#      map("key", "Initialized", "value", "false", "propagate_at_launch", true)
-#    )]
 }
 

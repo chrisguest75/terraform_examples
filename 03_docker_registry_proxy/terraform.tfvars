@@ -12,4 +12,6 @@ availability_zones = {
 
 bucket_name = "experimental-docker-images-store"
 
-default_vpcid = "vpc-"
+default_vpc_id = ""
+default_vpc_cidr = ""
+default_vpc_route_table_id = ""
