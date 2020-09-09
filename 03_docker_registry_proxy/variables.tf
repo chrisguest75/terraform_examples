@@ -24,7 +24,7 @@ variable "repo_tags" {
   type = map
 
   default = {
-    "repo"  = "terraform_examples/03_docker_registry_proxy"
+    "repo" = "terraform_examples/03_docker_registry_proxy"
   }
 }
 

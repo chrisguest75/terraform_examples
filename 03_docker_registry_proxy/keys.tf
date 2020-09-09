@@ -8,5 +8,5 @@ resource "aws_key_pair" "deployer" {
     },
     var.tags,
     var.repo_tags
-  )  
+  )
 }
