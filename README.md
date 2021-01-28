@@ -36,3 +36,7 @@ Example of creating an S3 Bucket
 Example of creating an Auto Scaling Group 
 [README.md](02_asg/README.md)
 
+
+## 07_remote_state
+Example of using remote state
+[README.md](07_remote_state/README.md)

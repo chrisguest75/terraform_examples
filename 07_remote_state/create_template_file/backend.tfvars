@@ -1,0 +1,1 @@
+    path = "state/create_template_file/terraform.tfstate"
