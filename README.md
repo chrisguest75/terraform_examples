@@ -29,10 +29,15 @@ brew install terraform_landscape
 
 
 ## 01_s3_bucket
-Example of creating an S3 Bucket
-[README.md](01_s3_bucket/README.md)
+Example of creating an S3 Bucket  
+[README.md](01_s3_bucket/README.md)  
 
 ## 02_asg
-Example of creating an Auto Scaling Group 
-[README.md](02_asg/README.md)
+Example of creating an Auto Scaling Group  
+[README.md](02_asg/README.md)  
+
+## 06_processing_state_files 
+Example of processing state files for CI/CD pipelines  
+[README.md](06_processing_state_files/README.md)  
+
 
