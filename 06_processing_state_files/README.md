@@ -1,6 +1,11 @@
 # README
 Example of processing state files for CI/CD pipelines 
 
+TODO:
+* Make a decision based on changes. 
+    * No changes
+    * No object destruction
+    * Tags all allowed.
 ## Work through processing example
 
 ```sh
