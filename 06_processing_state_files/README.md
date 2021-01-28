@@ -32,8 +32,12 @@ terraform show plan2.tfplan
 terraform show --json ./plan2.tfplan | jq 
 
 ```
-       
 
+## Compare the plans    
+```sh
+terraform show --json ./plan.tfplan | jq > ./plan.tfplan.json
+terraform show --json ./plan2.tfplan | jq > ./plan2.tfplan.json           
+```
 
 
 terraform plan --out tfplan2.binary 
