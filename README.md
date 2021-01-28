@@ -26,6 +26,10 @@ brew install terraform_landscape
 * TF_LOG 
 * TF_ENV
 * S3 bucket - deb repository
+* linting
+* security checking
+* cost calculation
+* OPA
 
 
 ## 01_s3_bucket
@@ -39,8 +43,6 @@ Example of creating an Auto Scaling Group
 ## 06_processing_state_files 
 Example of processing state files for CI/CD pipelines  
 [README.md](06_processing_state_files/README.md)  
-
-
 
 ## 07_remote_state
 Example of using remote state
