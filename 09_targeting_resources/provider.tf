@@ -1,0 +1,5 @@
+provider "docker" {
+}
+
+provider "null" {
+}
