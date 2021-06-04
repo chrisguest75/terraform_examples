@@ -1,12 +1,15 @@
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| terraform | =0.13.7 |
+| docker | 2.12.1 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| docker | n/a |
+| docker | 2.12.1 |
 
 ## Modules
 
@@ -16,7 +19,7 @@ No Modules.
 
 | Name |
 |------|
-| [docker_container](https://registry.terraform.io/providers/hashicorp/docker/latest/docs/resources/container) |
+| [docker_container](https://registry.terraform.io/providers/kreuzwerker/docker/2.12.1/docs/resources/container) |
 
 ## Inputs
 

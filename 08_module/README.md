@@ -4,7 +4,6 @@ Example of writing and using a module
 ## Create a docker container using a module
 ```sh
 terraform init
-
 terraform plan 
 
 # apply the plan
@@ -12,6 +11,15 @@ terraform apply -auto-approve
 
 # print out the container id
 terraform output
+
+# list the objects
+terraform state
+```
+
+## Format and validate
+```sh
+terraform fmt ./modules/redis 
+terraform validate ./modules/redis 
 ```
 
 ## Create the module documentation
@@ -19,7 +27,6 @@ terraform output
 # create module documentation
 terraform-docs markdown ./modules/redis > ./modules/redis/README.md
 ```
-
 
 # Resources
 * [docker provider](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs)  

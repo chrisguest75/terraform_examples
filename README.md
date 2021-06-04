@@ -27,6 +27,18 @@ brew install terraform-docs
 * security checking
 * cost calculation
 * OPA
+* upgrading
+* importing state
+* workspaces
+* targetting resources 
+* secrets
+* pull data from webservice. 
+* aws provider default tags.
+* drift detection
+* versioned modules
+https://github.com/ContainerSolutions/terraform-examples/tree/main/aws/aws_eks/fargate/spot_and_fargate
+https://github.com/ContainerSolutions/terraform-examples
+* dynamic 
 
 ## 00 - Basic Practices
 Demonstrate some basic practices for Terraform 
