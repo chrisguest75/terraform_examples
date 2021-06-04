@@ -27,9 +27,7 @@ brew install terraform-docs
 * security checking
 * cost calculation
 * OPA
-* upgrading
 * importing state
-* workspaces
 * targetting resources 
 * secrets
 * pull data from webservice. 
@@ -65,6 +63,10 @@ Example of using remote state
 ## 08 - modules
 Example of writing and using a module
 [README.md](08_modules/README.md)
+
+## 10 - workspaces
+Demonstrate how to use workspaces
+[README.md](10_workspaces/README.md)
 
 ## 12 - upgrading between versions
 Demonstrate how to upgrade terraform state to latest version
