@@ -1,5 +1,5 @@
 locals {
-  filepath = "./files/files.txt"
+  filepath = var.path
 }
 
 resource "local_file" "file" {
