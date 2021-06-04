@@ -33,12 +33,14 @@ brew install terraform-docs
 * targetting resources 
 * secrets
 * pull data from webservice. 
+  * data sources
 * aws provider default tags.
 * drift detection
 * versioned modules
 https://github.com/ContainerSolutions/terraform-examples/tree/main/aws/aws_eks/fargate/spot_and_fargate
 https://github.com/ContainerSolutions/terraform-examples
 * dynamic 
+* .13, .14, .15
 
 ## 00 - Basic Practices
 Demonstrate some basic practices for Terraform 
