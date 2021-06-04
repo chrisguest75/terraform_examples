@@ -33,12 +33,14 @@ brew install terraform-docs
 * targetting resources 
 * secrets
 * pull data from webservice. 
+  * data sources
 * aws provider default tags.
 * drift detection
 * versioned modules
 https://github.com/ContainerSolutions/terraform-examples/tree/main/aws/aws_eks/fargate/spot_and_fargate
 https://github.com/ContainerSolutions/terraform-examples
 * dynamic 
+* .13, .14, .15
 
 ## 00 - Basic Practices
 Demonstrate some basic practices for Terraform 
@@ -63,3 +65,7 @@ Example of using remote state
 ## 08 - modules
 Example of writing and using a module
 [README.md](08_modules/README.md)
+
+## 12 - upgrading between versions
+Demonstrate how to upgrade terraform state to latest version
+[README.md](12_upgrading/README.md)
