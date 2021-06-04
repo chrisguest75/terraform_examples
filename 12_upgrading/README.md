@@ -38,5 +38,29 @@ terraform plan
 terraform apply -auto-approve
 ```
 
-tfenv use 0.15.5
+## Create 0.14.x
+```sh
+cd ../14.x
 tfenv use 0.14.11
+code --diff ./main.tf ../13.x/main.tf  
+terraform init
+terraform fmt
+terraform validate
+terraform plan 
+terraform apply -auto-approve
+```
+
+## Create 0.15.x
+```sh
+cd ../15.x
+tfenv use 0.15.5
+code --diff ./main.tf ../14.x/main.tf  
+terraform init
+terraform fmt
+terraform validate
+terraform plan 
+terraform apply -auto-approve
+```
+
+
+

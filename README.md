@@ -65,3 +65,7 @@ Example of using remote state
 ## 08 - modules
 Example of writing and using a module
 [README.md](08_modules/README.md)
+
+## 12 - upgrading between versions
+Demonstrate how to upgrade terraform state to latest version
+[README.md](12_upgrading/README.md)
