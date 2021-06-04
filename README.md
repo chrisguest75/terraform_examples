@@ -27,7 +27,6 @@ brew install terraform-docs
 * security checking
 * cost calculation
 * OPA
-* upgrading
 * importing state
 * workspaces
 * targetting resources 
