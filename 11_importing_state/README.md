@@ -1,9 +1,5 @@
 # README
 Demonstrate how to import existing resources into state 
-
-TODO: 
-* import file and docker container.
-
 ## Create Container
 ```sh
 terraform init
@@ -45,4 +41,4 @@ docker ps --filter "name=nginx1" --no-trunc
 
 # Resources 
 * [kreuzwerker/terraform-provider-docker](https://github.com/kreuzwerker/terraform-provider-docker)  
-* [/kreuzwerker/docker/latest/docs](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs)  
+* [kreuzwerker/docker/latest/docs](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs)  
