@@ -20,9 +20,8 @@ brew install terraform-docs
 * GCP 
 * AWS
 * Landscape
-* Env variables
-* TF_LOG 
-* TF_ENV
+* Env variables - export TF_VAR_
+* TF_LOG, TF_ENV, CORE and PROVIDER logging
 * S3 bucket - deb repository
 * security checking
 * cost calculation
@@ -36,6 +35,11 @@ brew install terraform-docs
 https://github.com/ContainerSolutions/terraform-examples/tree/main/aws/aws_eks/fargate/spot_and_fargate
 https://github.com/ContainerSolutions/terraform-examples
 * dynamic 
+* cdktf - https://learn.hashicorp.com/tutorials/terraform/cdktf-build?in=terraform/cdktf
+
+Examples:
+* Create a resource using for-each.  Migrate state over to a new reource and remove entry from for-each.
+
 
 ## 00 - Basic Practices
 Demonstrate some basic practices for Terraform  
@@ -79,3 +83,6 @@ Demonstrate how to upgrade terraform state to latest version
 
 # Resources
 * [terraform-tuesdays](https://github.com/ned1313/terraform-tuesdays)  
+https://github.com/antonbabenko?tab=repositories
+https://github.com/antonbabenko/awesome-terraform
+https://learn.hashicorp.com/tutorials/terraform
