@@ -30,9 +30,12 @@ terraform destroy --target 'docker_container.container["nginx1"]' -auto-approve
 # rebuild it
 terraform apply -auto-approve
 
+terraform output 
+
 # destroy all
 terraform destroy -auto-approve
 ```
 
 # Resources 
 * [kreuzwerker/terraform-provider-docker](https://github.com/kreuzwerker/terraform-provider-docker)  
+* [hashicorp-terraform-0-12-preview-for-and-for-each](https://www.hashicorp.com/blog/hashicorp-terraform-0-12-preview-for-and-for-each)  
