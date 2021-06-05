@@ -1,26 +1,26 @@
 locals {
   containers = [
     {
-      name:"nginx1"
-      ports: {
-        internal:"80"
-        external:"8080"
-      }      
+      name : "nginx1"
+      ports : {
+        internal : "80"
+        external : "8080"
+      }
     }
     , {
-      name:"nginx2"
-      ports: {
-        internal:"80"
-        external:"8081"
-      }   
-    }, {
-      name:"nginx3"
-      ports: {
-        internal:"80"
-        external:"8082"
-      }         
+      name : "nginx2"
+      ports : {
+        internal : "80"
+        external : "8081"
+      }
+      }, {
+      name : "nginx3"
+      ports : {
+        internal : "80"
+        external : "8082"
+      }
     }
-    ]
+  ]
 }
 
 resource "docker_image" "nginx" {
@@ -31,7 +31,7 @@ resource "docker_image" "nginx" {
 resource "docker_container" "container" {
   # strange logic seems to be so resource has a name
   for_each = { for container in local.containers : container.name => container }
-  name    = each.value.name
+  name     = each.value.name
 
   ports {
     internal = each.value.ports.internal
