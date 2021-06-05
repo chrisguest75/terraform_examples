@@ -27,8 +27,6 @@ brew install terraform-docs
 * security checking
 * cost calculation
 * OPA
-* importing state
-* targetting resources 
 * secrets
 * pull data from webservice. 
   * data sources
@@ -38,13 +36,12 @@ brew install terraform-docs
 https://github.com/ContainerSolutions/terraform-examples/tree/main/aws/aws_eks/fargate/spot_and_fargate
 https://github.com/ContainerSolutions/terraform-examples
 * dynamic 
-* .13, .14, .15
 
 ## 00 - Basic Practices
 Demonstrate some basic practices for Terraform  
 [README.md](00_basic_practices/README.md)  
 
-## 01 - s3_bucket
+## 01 - S3 bucket
 Example of creating an S3 Bucket  
 [README.md](01_s3_bucket/README.md)  
 
@@ -52,7 +49,7 @@ Example of creating an S3 Bucket
 Example of creating an Auto Scaling Group  
 [README.md](02_asg/README.md)  
 
-## 06 - processing_state_files 
+## 06 - processing state files 
 Example of processing state files for CI/CD pipelines  
 [README.md](06_processing_state_files/README.md)  
 
@@ -71,6 +68,10 @@ Demonstrate how to control plan and apply using targets
 ## 10 - workspaces
 Demonstrate how to use workspaces
 [README.md](10_workspaces/README.md)
+
+## 11 - importing state
+Demonstrate how to import existing resources into state  
+[README.md](11_importing_state/README.md)
 
 ## 12 - upgrading between versions
 Demonstrate how to upgrade terraform state to latest version
