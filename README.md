@@ -41,7 +41,7 @@ https://github.com/ContainerSolutions/terraform-examples
 * .13, .14, .15
 
 ## 00 - Basic Practices
-Demonstrate some basic practices for Terraform 
+Demonstrate some basic practices for Terraform  
 [README.md](00_basic_practices/README.md)  
 
 ## 01 - s3_bucket
@@ -57,12 +57,16 @@ Example of processing state files for CI/CD pipelines
 [README.md](06_processing_state_files/README.md)  
 
 ## 07 - remote_state
-Example of using remote state
+Example of using remote state  
 [README.md](07_remote_state/README.md)
 
 ## 08 - modules
-Example of writing and using a module
+Example of writing and using a module  
 [README.md](08_modules/README.md)
+
+## 09 - targeting resources 
+Demonstrate how to control plan and apply using targets   
+[README.md](09_targeting_resources/README.md)
 
 ## 10 - workspaces
 Demonstrate how to use workspaces
@@ -71,3 +75,6 @@ Demonstrate how to use workspaces
 ## 12 - upgrading between versions
 Demonstrate how to upgrade terraform state to latest version
 [README.md](12_upgrading/README.md)
+
+# Resources
+* [terraform-tuesdays](https://github.com/ned1313/terraform-tuesdays)  

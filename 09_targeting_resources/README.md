@@ -1,22 +1,38 @@
 # README
 Demonstrate how to control plan and apply using targets
-
-## Create
+## Taint and Target
 ```sh
 terraform init
 
-terraform plan 
-
-# apply the plan
 terraform apply -auto-approve
 
-# print out the container id
-terraform output
+curl 0.0.0.0:8080  
+curl 0.0.0.0:8081 
+curl 0.0.0.0:8082 
+
+terraform state list        
+
+# nothing to do
+terraform apply -auto-approve
+
+# rebuild nginx2
+terraform taint 'docker_container.container["nginx2"]'
+terraform apply -auto-approve
+
+# no changes
+terraform taint 'docker_container.container["nginx2"]'
+terraform plan --target 'docker_container.container["nginx1"]'
+terraform apply -auto-approve
+
+
+# destroy one 
+terraform destroy --target 'docker_container.container["nginx1"]' -auto-approve
+# rebuild it
+terraform apply -auto-approve
+
+# destroy all
+terraform destroy -auto-approve
 ```
 
-
-terraform plan --target 'docker_container.container1'
-terraform plan --target 'docker_container.container'
-
-terraform taint.
-
+# Resources 
+* [kreuzwerker/terraform-provider-docker](https://github.com/kreuzwerker/terraform-provider-docker)  
