@@ -25,7 +25,7 @@ variable out_path {
 }
 
 resource "local_file" "file" {
-    content     = templatefile(data.terraform_remote_state.create_remote_state.outputs.filepath, { template_variable = "replace the variable"})
+    content     = templatefile(data.terraform_remote_state.create_remote_state.outputs.filepath, { template_variable = "Imported into 15.x"})
     filename = var.out_path
 }
 

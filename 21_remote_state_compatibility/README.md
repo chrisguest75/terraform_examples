@@ -1,6 +1,9 @@
 # README
 Demonstrate compatibility with remote state versions
 
+0.14.0 apparently introduced a state file format that retains backward compatibility.  This is so we can test this out.
+
+
 ```sh
 tfenv list-remote
 tfenv install 0.15.5

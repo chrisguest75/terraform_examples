@@ -12,7 +12,7 @@ variable out_path {
 }
 
 resource "local_file" "myfile" {
-  content  = "This is my file1 $${template_variable}"
+  content  = "Created using 13.x $${template_variable}"
   filename = var.out_path
 }
 
