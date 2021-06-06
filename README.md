@@ -19,15 +19,12 @@ brew install terraform-docs
 * GCP 
 * AWS
 * Landscape
-* Env variables - export TF_VAR_
 * TF_LOG, TF_ENV, CORE and PROVIDER logging
 * S3 bucket - deb repository
 * security checking
 * cost calculation
 * OPA
 * secrets
-* pull data from webservice. 
-  * data sources
 * aws provider default tags.
 * drift detection
 * versioned modules
@@ -84,6 +81,10 @@ Demonstrate how to upgrade terraform state to latest version
 ## 13 - importing data (json + local_file)
 Demonstrate how to import data from different places  
 [README.md](13_importing_data/README.md)  
+
+## 15 - importing data (json + webservice)
+Demonstrate how to import data from a webservice  
+[README.md](15_importing_webservice/README.md) 
 
 # Resources
 * Github [hashicorp/terraform](https://github.com/hashicorp/terraform)  
