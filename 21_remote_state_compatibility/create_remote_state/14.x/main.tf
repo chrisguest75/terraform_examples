@@ -8,7 +8,7 @@ terraform {
 
 variable out_path {
   type = string
-  default = "../files/14.x/myfile1.txt"
+  default = "../../files/14.x/myfile1.txt"
 }
 
 resource "local_file" "myfile" {
