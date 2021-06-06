@@ -86,6 +86,10 @@ Demonstrate how to import data from different places
 Demonstrate how to import data from a webservice  
 [README.md](15_importing_webservice/README.md) 
 
+## 19 - apprunner
+Demonstrate apprunner service  
+[README.md](15_importing_webservice/README.md) 
+
 # Resources
 * Github [hashicorp/terraform](https://github.com/hashicorp/terraform)  
   * Release notes [tags](https://github.com/hashicorp/terraform/tags)  
@@ -96,4 +100,9 @@ Demonstrate how to import data from a webservice
 
 
 # Providers 
-* [terraform-provider-aws](https://github.com/hashicorp/terraform-provider-aws)  
+* [aws provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)  
+* [github/terraform-provider-aws](https://github.com/hashicorp/terraform-provider-aws)  
+
+# Modules
+* [terraform-aws-modules](https://registry.terraform.io/namespaces/terraform-aws-modules)  
+* [ecs](https://registry.terraform.io/modules/terraform-aws-modules/ecs/aws/latest)  
