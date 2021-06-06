@@ -35,6 +35,7 @@ https://github.com/ContainerSolutions/terraform-examples/tree/main/aws/aws_eks/f
 https://github.com/ContainerSolutions/terraform-examples
 * dynamic 
 * cdktf - https://learn.hashicorp.com/tutorials/terraform/cdktf-build?in=terraform/cdktf
+* testing
 
 Examples:
 * Create a resource using for-each.  Migrate state over to a new reource and remove entry from for-each.
@@ -85,7 +86,13 @@ Demonstrate how to import data from different places
 [README.md](13_importing_data/README.md)  
 
 # Resources
-* [terraform-tuesdays](https://github.com/ned1313/terraform-tuesdays)  
-* [antonbabenko repos](https://github.com/antonbabenko?tab=repositories)  
+* Github [hashicorp/terraform](https://github.com/hashicorp/terraform)  
+  * Release notes [tags](https://github.com/hashicorp/terraform/tags)  
+* Examples [terraform-tuesdays](https://github.com/ned1313/terraform-tuesdays)  
+* Examples [antonbabenko repos](https://github.com/antonbabenko?tab=repositories)  
 * [awesome-terraform](https://github.com/antonbabenko/awesome-terraform)  
-* [tutorials/terraform](https://learn.hashicorp.com/tutorials/terraform)  
+* Offical [tutorials/terraform](https://learn.hashicorp.com/tutorials/terraform)  
+
+
+# Providers 
+* [terraform-provider-aws](https://github.com/hashicorp/terraform-provider-aws)  
