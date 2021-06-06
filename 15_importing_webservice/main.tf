@@ -96,6 +96,16 @@ locals {
         internal : "80"
         external : "8080"
       }
+      volumes : [
+        {
+          container_path : "/etc/nginx/nginx.conf"
+          host_path      : "./nginx/nginx.conf"
+        },
+        {
+          container_path : "/usr/share/nginx/html/index.html"
+          host_path      : ".nginx/index.html"
+        }
+      ]
     }
   ]
 }
@@ -115,13 +125,21 @@ resource "docker_container" "container" {
     external = each.value.ports.external
   }
 
+  /*dynamic "volumes" {
+    for_each = each.value.volumes
+    content {
+      container_path = each.value["container_path"]
+      host_path = each.value["host_path"]
+    }
+  }*/
+
   volumes {
     container_path = "/etc/nginx/nginx.conf"
-    host_path      = "/Users/cguest/Code/scratch/terraform_examples/15_importing_webservice/nginx/nginx.conf"
+    host_path      = abspath("./nginx/nginx.conf")
   }
   volumes {
     container_path = "/usr/share/nginx/html/index.html"
-    host_path      = "/Users/cguest/Code/scratch/terraform_examples/15_importing_webservice/nginx/index.html"
+    host_path      = abspath("./nginx/index.html")
   }
 
   image   = docker_image.nginx.latest

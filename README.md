@@ -19,15 +19,12 @@ brew install terraform-docs
 * GCP 
 * AWS
 * Landscape
-* Env variables - export TF_VAR_
 * TF_LOG, TF_ENV, CORE and PROVIDER logging
 * S3 bucket - deb repository
 * security checking
 * cost calculation
 * OPA
 * secrets
-* pull data from webservice. 
-  * data sources
 * aws provider default tags.
 * drift detection
 * versioned modules
