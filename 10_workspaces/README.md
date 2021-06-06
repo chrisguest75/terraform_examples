@@ -7,10 +7,6 @@ TOOO:
 ```sh
 tfenv list-remote
 tfenv install 0.15.5
-tfenv install 0.14.11
-tfenv install 0.13.7
-tfenv install 0.12.31
-tfenv install 0.11.15
 ```
 
 ## Initialise
