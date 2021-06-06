@@ -88,6 +88,28 @@ cd ../12.x
 tfenv use 0.12.31
 code --diff ./main.tf ../11.x/main.tf  
 terraform init
+
+export TF_VAR_version_import=11.x  
+terraform plan 
+terraform apply -auto-approve
+cat ../files/12.x/rendered_myfile1.txt
+
+export TF_VAR_version_import=12.x  
+terraform plan 
+terraform apply -auto-approve
+cat ../files/12.x/rendered_myfile1.txt
+
+export TF_VAR_version_import=13.x  
+terraform plan 
+terraform apply -auto-approve
+cat ../files/12.x/rendered_myfile1.txt
+
+export TF_VAR_version_import=14.x  
+terraform plan 
+terraform apply -auto-approve
+cat ../files/12.x/rendered_myfile1.txt
+
+export TF_VAR_version_import=15.x  
 terraform plan 
 terraform apply -auto-approve
 cat ../files/12.x/rendered_myfile1.txt
