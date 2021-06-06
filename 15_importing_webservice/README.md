@@ -7,6 +7,8 @@ Demonstrate how to import data from a webservice
 terraform init
 terraform plan
 terraform apply -auto-approve
+
+curl 0.0.0.0:8080           
 ```
 
 # Resources 

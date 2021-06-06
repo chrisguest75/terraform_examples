@@ -105,7 +105,7 @@ resource "docker_container" "container" {
   }
 
   volumes {
-    container_path = "/etc/nginx/conf.d/default.conf"
+    container_path = "/etc/nginx/nginx.conf"
     host_path = "/Users/cguest/Code/scratch/terraform_examples/15_importing_webservice/nginx/nginx.conf"
   }
   volumes {
