@@ -6,6 +6,10 @@ terraform {
   }
 }
 
+#################################################
+## Variables
+#################################################
+
 variable records_file {
   type = string
   default = "./dns/test_records.json"
@@ -15,24 +19,36 @@ variable records_file {
   # }
 }
 
-variable out_file {
+variable out_path {
   type = string
-  default = "./files/dns_records_out.json"
+  default = "./files"
 }
+
+#################################################
+## Locals
+#################################################
 
 locals {
-  # Load all of the data from json
-  all_json_data = jsondecode(file(var.records_file))
+  json_records = jsondecode(file(var.records_file))
+  records_data = local.json_records.records
 
-  # Load the first map indirectly
-  records_data = local.all_json_data.records
+
 }
 
+data "local_file" "headers" {
+    filename = "./dns/header.txt"
+}
+
+#################################################
+## Resources
+#################################################
+
 resource "local_file" "file" {
-    content     = "This is my file $${template_variable}"
-    filename = var.out_file
+    for_each = { for record in local.records_data : format("%s.%s", record.name, record.type) => record }
+    content     = format("%s\n%s\n%s\n%s\n%s\n%s", data.local_file.headers.content, each.value.name, each.value.ttl, each.value.type, each.value.zoneid, join(",", each.value.records))
+    filename = format("%s/%s.%s", var.out_path, each.value.name,each.value.type)
 }
 
 output records_data {
-  value = local.records_data
+    value = local.records_data
 }
