@@ -19,8 +19,8 @@ provider "docker" {}
 ## Variables
 #################################################
 
-variable base_api_url {
-  type = string
+variable "base_api_url" {
+  type    = string
   default = "http://goweather.herokuapp.com/weather/"
 
   #validation {
@@ -29,8 +29,8 @@ variable base_api_url {
   # }
 }
 
-variable location {
-  type = string
+variable "location" {
+  type    = string
   default = "ReadingUK"
 }
 
@@ -39,10 +39,10 @@ variable location {
 #################################################
 
 locals {
-  url = format("%s%s", var.base_api_url, var.location)
-  weather_data = data.http.webservice
+  url               = format("%s%s", var.base_api_url, var.location)
+  weather_data      = data.http.webservice
   weather_data_body = jsondecode(local.weather_data.body)
-  render_html = templatefile("./template_config/template.html", { temperature = local.weather_data_body.temperature, wind = local.weather_data_body.wind, "description" = local.weather_data_body.description })
+  render_html       = templatefile("./template_config/template.html", { temperature = local.weather_data_body.temperature, wind = local.weather_data_body.wind, "description" = local.weather_data_body.description })
 }
 
 data "http" "webservice" {
@@ -59,32 +59,32 @@ data "http" "webservice" {
 #################################################
 
 resource "local_file" "html" {
-    content     = local.render_html
-    filename = "./nginx/index.html"
+  content  = local.render_html
+  filename = "./nginx/index.html"
 
-    #depends_on = [data.http.webservice]
+  #depends_on = [data.http.webservice]
 }
 
 resource "local_file" "conf" {
-    content     = file("./template_config/nginx.conf")
-    #content     = "test"
-    filename = "./nginx/nginx.conf"
+  content = file("./template_config/nginx.conf")
+  #content     = "test"
+  filename = "./nginx/nginx.conf"
 }
 
-output weather_data {
-    value = local.weather_data
+output "weather_data" {
+  value = local.weather_data
 }
 
-output temperature {
-     value = local.weather_data_body.temperature
+output "temperature" {
+  value = local.weather_data_body.temperature
 }
 
-output wind {
-     value = local.weather_data_body.wind
+output "wind" {
+  value = local.weather_data_body.wind
 }
 
-output description {
-     value = local.weather_data_body.description
+output "description" {
+  value = local.weather_data_body.description
 }
 
 
@@ -117,11 +117,11 @@ resource "docker_container" "container" {
 
   volumes {
     container_path = "/etc/nginx/nginx.conf"
-    host_path = "/Users/cguest/Code/scratch/terraform_examples/15_importing_webservice/nginx/nginx.conf"
+    host_path      = "/Users/cguest/Code/scratch/terraform_examples/15_importing_webservice/nginx/nginx.conf"
   }
   volumes {
     container_path = "/usr/share/nginx/html/index.html"
-    host_path = "/Users/cguest/Code/scratch/terraform_examples/15_importing_webservice/nginx/index.html"
+    host_path      = "/Users/cguest/Code/scratch/terraform_examples/15_importing_webservice/nginx/index.html"
   }
 
   image   = docker_image.nginx.latest

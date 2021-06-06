@@ -7,6 +7,10 @@ TOOO:
 ```sh
 tfenv list-remote
 tfenv install 0.15.5
+tfenv install 0.14.11
+tfenv install 0.13.7
+tfenv install 0.12.31
+tfenv install 0.11.15
 ```
 
 ## Initialise
@@ -23,7 +27,7 @@ export WORKSPACE=dev
 terraform workspace new ${WORKSPACE} 
 terraform workspace select ${WORKSPACE}        
 terraform plan --var-file=terraform.${WORKSPACE}.tfvars 
-terraform apply  -auto-approve --var-file=terraform.${WORKSPACE}.tfvars 
+terraform apply -auto-approve --var-file=terraform.${WORKSPACE}.tfvars 
 ```
 
 
@@ -33,7 +37,7 @@ export WORKSPACE=staging
 terraform workspace new ${WORKSPACE} 
 terraform workspace select ${WORKSPACE}        
 terraform plan --var-file=terraform.${WORKSPACE}.tfvars 
-terraform apply  -auto-approve --var-file=terraform.${WORKSPACE}.tfvars 
+terraform apply -auto-approve --var-file=terraform.${WORKSPACE}.tfvars 
 ```
      
 ## Apply Prod 
@@ -42,5 +46,13 @@ export WORKSPACE=prod
 terraform workspace new ${WORKSPACE} 
 terraform workspace select ${WORKSPACE}        
 terraform plan --var-file=terraform.${WORKSPACE}.tfvars 
-terraform apply  -auto-approve --var-file=terraform.${WORKSPACE}.tfvars 
+terraform apply -auto-approve --var-file=terraform.${WORKSPACE}.tfvars 
 ```
+
+## Possible to use TF_WORKSPACE
+```sh
+export TF_WORKSPACE=dev
+```
+
+# Resources
+* [environment-variables](https://www.terraform.io/docs/cli/config/environment-variables.html)  
