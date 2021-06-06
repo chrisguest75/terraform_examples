@@ -85,6 +85,10 @@ Demonstrate how to upgrade terraform state to latest version
 Demonstrate how to import data from different places  
 [README.md](13_importing_data/README.md)  
 
+## 15 - importing data (json + webservice)
+Demonstrate how to import data from a webservice  
+[README.md](15_importing_webservice/README.md) 
+
 # Resources
 * Github [hashicorp/terraform](https://github.com/hashicorp/terraform)  
   * Release notes [tags](https://github.com/hashicorp/terraform/tags)  

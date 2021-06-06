@@ -41,6 +41,8 @@ variable location {
 locals {
   url = format("%s%s", var.base_api_url, var.location)
   weather_data = data.http.webservice
+  weather_data_body = jsondecode(local.weather_data.body)
+  render_html = templatefile("./template_config/template.html", { temperature = local.weather_data_body.temperature, wind = local.weather_data_body.wind, "description" = local.weather_data_body.description })
 }
 
 data "http" "webservice" {
@@ -57,9 +59,10 @@ data "http" "webservice" {
 #################################################
 
 resource "local_file" "html" {
-    content     = templatefile("./template_config/template.html", { template_variable = "replace the variable"})
-    #content     = "test"
+    content     = local.render_html
     filename = "./nginx/index.html"
+
+    #depends_on = [data.http.webservice]
 }
 
 resource "local_file" "conf" {
@@ -68,14 +71,22 @@ resource "local_file" "conf" {
     filename = "./nginx/nginx.conf"
 }
 
-output records_data {
+output weather_data {
     value = local.weather_data
 }
 
-# TODO: List the files
-#output files {
-#    value = local.records_data
-#}
+output temperature {
+     value = local.weather_data_body.temperature
+}
+
+output wind {
+     value = local.weather_data_body.wind
+}
+
+output description {
+     value = local.weather_data_body.description
+}
+
 
 locals {
   containers = [
