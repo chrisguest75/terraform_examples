@@ -79,6 +79,7 @@ tfenv use 0.11.15
 terraform init
 terraform plan 
 terraform apply -auto-approve
+cat ../files/11.x/rendered_myfile1.txt
 ```
 
 ## Create 0.12.x
@@ -89,6 +90,7 @@ code --diff ./main.tf ../11.x/main.tf
 terraform init
 terraform plan 
 terraform apply -auto-approve
+cat ../files/12.x/rendered_myfile1.txt
 ```
 
 
@@ -100,6 +102,7 @@ code --diff ./main.tf ../12.x/main.tf
 terraform init
 terraform plan 
 terraform apply -auto-approve
+cat ../files/13.x/rendered_myfile1.txt
 ```
 
 ## Create 0.14.x
@@ -110,6 +113,7 @@ code --diff ./main.tf ../13.x/main.tf
 terraform init
 terraform plan 
 terraform apply -auto-approve
+cat ../files/14.x/rendered_myfile1.txt
 ```
 
 ## Create 0.15.x
@@ -120,4 +124,5 @@ code --diff ./main.tf ../14.x/main.tf
 terraform init
 terraform plan 
 terraform apply -auto-approve
+cat ../files/15.x/rendered_myfile1.txt
 ```

@@ -25,7 +25,8 @@ variable out_path {
 }
 
 resource "local_file" "file" {
-    content     = templatefile("${data.terraform_remote_state.create_remote_state.outputs.filepath}", { template_variable = "Imported into 11.x"})
+    #content     = "${templatefile(data.terraform_remote_state.create_remote_state.outputs.filepath, tomap({ template_variable = "Imported into 11.x"})) }"
+    content     = "${templatefile("../../files/11.x/myfile1.txt", tomap({ template_variable = "Imported into 11.x"})) }"
     filename = "${var.out_path}"
 }
 
