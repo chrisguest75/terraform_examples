@@ -36,19 +36,8 @@ resource "aws_s3_bucket_object" "website" {
   source = "${var.website_build_folder}/${each.value}"
   content_type = "text/html"
   etag = filemd5("${var.website_build_folder}/${each.value}")
+
 }
-
-# resource "aws_s3_bucket_object" "packages" {
-#   bucket = "${aws_s3_bucket.static_bucket.id}"
-#   key    = "website_v1"
-#   source = "./website_v1"
-
-#   # The filemd5() function is available in Terraform 0.11.12 and later
-#   # For Terraform 0.11.11 and earlier, use the md5() function and the file() function:
-#   # etag = "${md5(file("path/to/file"))}"
-#   etag = "${filemd5(var.packages_file)}"
-# }
-
 
 resource "aws_s3_bucket_policy" "static_bucket_policy" {
   bucket = aws_s3_bucket.static_bucket.id

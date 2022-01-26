@@ -45,3 +45,4 @@ terraform fmt -recursive
 
 ## Resources 
 https://stackoverflow.com/questions/47913041/initial-setup-of-terraform-backend-using-terraform
+https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudfront_distribution
