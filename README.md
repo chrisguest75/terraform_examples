@@ -21,8 +21,6 @@ B -->|Terraform State| F[Backend]
 B -->|Provider Plugins| G[Cloud Provider]
 ```
 
----
-
 ## Prereqs
 
 ```sh
