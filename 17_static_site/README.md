@@ -26,6 +26,11 @@ terraform init -backend-config "bucket=terraform-state-bucket-toys" -backend-con
 terraform init
 terraform plan --var-file=terraform.tfvars 
 terraform apply -auto-approve --var-file=terraform.tfvars 
+
+# this replaces the old one/
+terraform plan --var-file=terraform.tfvars -var website_build_folder="website_v2" 
+terraform apply -auto-approve --var-file=terraform.tfvars -var website_build_folder="website_v2" 
+
 ```
 
 

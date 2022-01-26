@@ -10,6 +10,8 @@ variable "tags" {
 
 variable "bucket_name" {}
 
+variable "website_build_folder" {}
+
 variable "state_bucket_name" {}
 
 variable "state_table_name" {}

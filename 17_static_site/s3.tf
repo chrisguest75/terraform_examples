@@ -28,6 +28,16 @@ resource "aws_s3_bucket_object" "root" {
   etag         = filemd5("./index.html")
 }
 
+resource "aws_s3_bucket_object" "website" {
+  for_each = fileset(var.website_build_folder, "*")
+  bucket = aws_s3_bucket.static_bucket.id
+  key = "${var.website_build_folder}/${each.value}"
+
+  source = "${var.website_build_folder}/${each.value}"
+  content_type = "text/html"
+  etag = filemd5("${var.website_build_folder}/${each.value}")
+}
+
 # resource "aws_s3_bucket_object" "packages" {
 #   bucket = "${aws_s3_bucket.static_bucket.id}"
 #   key    = "website_v1"
