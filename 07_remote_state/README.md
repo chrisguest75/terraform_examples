@@ -19,6 +19,10 @@ terraform init -backend-config=backend.tfvars
 
 terraform plan --var-file=terraform.tfvars      
 # apply the plan
-terraform apply 
+terraform apply -auto-approve
 ```
 
+## Cleanup
+```sh
+terraform destroy 
+```
