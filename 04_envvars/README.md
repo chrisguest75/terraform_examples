@@ -1,7 +1,9 @@
 # README
-Demonstrate how to use different environment variables.
+
+Demonstrate how to use different environment variables.  
 
 ## Demonstrate overrides
+
 ```sh
 terraform init
 terraform plan
@@ -17,7 +19,6 @@ export TF_VAR_out_filename="myfile200.txt"
 terraform apply -auto-approve
 ```
 
+## Resources
 
-# Resources 
 * Documentation [environment-variables](https://www.terraform.io/docs/cli/config/environment-variables.html)  
-
