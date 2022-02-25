@@ -1,9 +1,34 @@
 # README
+
 Demonstrate how to troubleshoot problems
 
-NOTE: Check you have no unexpected TF_VAR variables set that are overriding values. 
+NOTE: Check you have no unexpected TF_VAR variables set that are overriding values.  
 
-## Create 
+## Logging
+
+```sh
+terraform init
+
+# all logs at debug
+export TF_LOG=debug  
+terraform plan
+unset TF_LOG
+
+# core logs only at debug
+export TF_LOG_CORE=debug  
+terraform plan
+unset TF_LOG_CORE
+
+# provider logs only at debug
+export TF_LOG_PROVIDER=debug
+terraform plan
+unset TF_LOG_PROVIDER
+
+terraform apply -auto-approve
+```
+
+## Create
+
 TF_LOG_CORE and TF_LOG_PROVIDER
 TF_LOG
 
@@ -23,5 +48,7 @@ terraform apply -auto-approve
 
 
 
-# Resources 
+## Resources
+
 * Documentation [environment-variables](https://www.terraform.io/docs/cli/config/environment-variables.html)  
+
