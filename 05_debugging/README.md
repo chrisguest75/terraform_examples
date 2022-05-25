@@ -2,9 +2,15 @@
 
 Demonstrate how to troubleshoot problems with Terraform  
 
-NOTE: Check you have no unexpected TF_VAR variables set that are overriding values.  
+NOTES:
+
+* Check you have no unexpected TF_VAR variables set that are overriding values.  
+* If need to upgrade change `.terraform-version` and `required_version = "=1.x.x"`  
 
 ## Logging
+
+TF_LOG_CORE and TF_LOG_PROVIDER
+TF_LOG  
 
 ```sh
 terraform init
@@ -27,26 +33,36 @@ unset TF_LOG_PROVIDER
 terraform apply -auto-approve
 ```
 
-## Create
-
-TF_LOG_CORE and TF_LOG_PROVIDER
-TF_LOG
-
-terraform console
-terraform graph
+## Graph
 
 ```sh
-terraform init
-terraform plan
-
-export TF_LOG_PROVIDER=debug     
-terraform apply -auto-approve
+# show the graph of the state
+terraform graph
 ```
 
-* TF_LOG, TF_ENV, CORE and PROVIDER logging
+## Console
 
+```sh
+terraform console
+```
 
+## Providers
 
+```sh
+terraform providers
+```
+
+## Outputs
+
+```sh
+terraform outputs
+```
+
+## Show state
+
+```sh
+terraform state list
+```
 
 ## Resources
 
