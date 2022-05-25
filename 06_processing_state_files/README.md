@@ -16,7 +16,7 @@ TODO:
 mkdir -p ./plans
 
 # init the .terraform directory
-terraform init        
+terraform init
 ```
 
 ## Initial create
@@ -90,7 +90,19 @@ terraform show --json ./plans/plan_destroy.tfplan | jq > ./plans/plan_destroy.tf
 ## Decisions
 
 ```sh
-jq '.resource_changes[].change.actions' ./plans/plan_create.tfplan.json
-jq '.resource_changes[].change.actions' ./plans/plan_more_resources.tfplan.json
+for filename in ./plans/*.tfplan.json; 
+do
+  echo "$filename"
+  jq -r '.resource_changes[].change.actions[]' "$filename"
+done
 ```
 
+```sh
+for filename in ./plans/*.tfplan.json; 
+do
+  jq --arg filename "$filename" -r '. | [ .resource_changes[].change.actions[] ] | group_by(.) | map({"operation":.[0], "count":length}) ' "$filename"
+done
+
+
+
+```
