@@ -42,6 +42,7 @@ https://github.com/ContainerSolutions/terraform-examples
 * dynamic
 * cdktf - https://learn.hashicorp.com/tutorials/terraform/cdktf-build?in=terraform/cdktf
 * testing
+* terraspace example
 
 Examples:
 
