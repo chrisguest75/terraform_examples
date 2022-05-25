@@ -6,10 +6,17 @@ A repo for Terraform examples
 ## Prereqs
 
 ```sh
+# handling versions of terraform
 brew install tfenv
+
+# useful for processing outputs
 brew install jq
-brew install terraform_landscape 
+
+# docs is useful for generating documentation and checking  descriptions have been added
 brew install terraform-docs
+
+# not really required so much after recent version improvements  
+brew install terraform_landscape 
 ```
 
 ## TODO
@@ -59,6 +66,11 @@ Example of creating an Auto Scaling Group
 
 Demonstrate how to use different environment variables.  
 [README.md](04_envvars/README.md)  
+
+## 05 - debugging
+
+Demonstrate how to troubleshoot problems with Terraform  
+[README.md](05_debuggign/README.md)  
 
 ## 06 - processing state files
 

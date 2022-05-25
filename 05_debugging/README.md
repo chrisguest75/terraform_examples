@@ -1,6 +1,6 @@
 # README
 
-Demonstrate how to troubleshoot problems
+Demonstrate how to troubleshoot problems with Terraform  
 
 NOTE: Check you have no unexpected TF_VAR variables set that are overriding values.  
 

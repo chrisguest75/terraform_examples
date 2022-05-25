@@ -1,7 +1,22 @@
 # README
-Demonstrate some basic practices for Terraform 
 
-## Linting 
+Demonstrate some basic practices for Terraform  
+
+## Versions
+
+Installing different versions of Terraform
+
+```sh
+# list all remote versions
+tfenv list-remote
+
+# install a specific versions
+tfenv install 0.11.15
+tfenv use 0.11.15
+```
+
+## Linting
+
 ```sh
 # format the code
 terraform fmt -recursive  
@@ -9,7 +24,8 @@ terraform fmt -recursive
 terraform validate ./modules/redis 
 ```
 
-## Generate documentation 
+## Generate documentation
+
 ```sh
 # install terraform docs
 brew install terraform-docs
@@ -19,7 +35,9 @@ terraform-docs markdown ./modules/redis > ./modules/redis/README.md
 ```
 
 ## Guards on variables
-In version 13.x of Terraform we can put guards/validations on variables. 
+
+In version 13.x of Terraform we can put guards/validations on variables.  
+
 ```hcl
 variable image {
   type    = string
@@ -33,6 +51,7 @@ variable image {
 ```
 
 ## Modules to have guards
+
 As demonstrated in [redis.tf](../08_module/modules/redis/redis.tf) we should put requirements on the modules. 
 
 ```hcl
