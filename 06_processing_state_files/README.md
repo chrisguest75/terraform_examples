@@ -1,11 +1,14 @@
 # README
-Example of processing state files for CI/CD pipelines 
+
+Example of processing state files for CI/CD pipelines  
 
 TODO:
-* Make a decision based on changes. 
-    * No changes
-    * No object destruction
-    * Tags all allowed.
+
+* Make a decision based on changes.  
+  * No changes
+  * No object destruction
+  * Tags all allowed.
+
 ## Work through processing example
 
 ```sh
@@ -26,6 +29,7 @@ terraform apply plan.tfplan
 ```
 
 Now with empty plans
+
 ```sh
 # should be nothing to plan
 terraform plan --out plan2.tfplan
@@ -35,17 +39,12 @@ terraform show plan2.tfplan
 
 # convert empty plan to json
 terraform show --json ./plan2.tfplan | jq 
-
 ```
 
-## Compare the plans    
+## Compare the plans
+
 ```sh
+# save plans as json
 terraform show --json ./plan.tfplan | jq > ./plan.tfplan.json
 terraform show --json ./plan2.tfplan | jq > ./plan2.tfplan.json           
 ```
-
-
-terraform plan --out tfplan2.binary 
-terraform show tfplan2.binary   
-terraform show --json ./tfplan2.binary | jq 
-
