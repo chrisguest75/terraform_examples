@@ -72,10 +72,10 @@ Demonstrate how to use different environment variables.
 Demonstrate how to troubleshoot problems with Terraform  
 [README.md](05_debuggign/README.md)  
 
-## 06 - processing state files
+## 06 - processing plan files
 
-Example of processing state files for CI/CD pipelines  
-[README.md](06_processing_state_files/README.md)  
+Example of processing plan files for CI/CD pipelines  
+[README.md](06_processing_plan_files/README.md)  
 
 ## 07 - remote_state
 

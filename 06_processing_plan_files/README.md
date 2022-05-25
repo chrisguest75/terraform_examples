@@ -1,10 +1,9 @@
 # README
 
-Example of processing state files for CI/CD pipelines  
+Example of processing plan files for CI/CD pipelines  
 
 TODO:
 
-* Create more resources (control with tfvars and add a script)
 * Make a decision based on changes.  
   * No changes
   * No object destruction
