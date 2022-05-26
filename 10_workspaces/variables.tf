@@ -1,4 +1,4 @@
-variable path {
-    type = string
-    default = "./files/files.txt"
+variable "path" {
+  type    = string
+  default = "./files/files.txt"
 }
