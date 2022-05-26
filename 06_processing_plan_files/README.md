@@ -2,12 +2,14 @@
 
 Example of processing plan files for CI/CD pipelines  
 
-TODO:
+Make a decisions based on changes.  
 
-* Make a decision based on changes.  
-  * No changes
-  * No object destruction
-  * Tags all allowed.
+* No changes
+* No object destruction
+
+TODO:  
+
+* Some actions are compound `"actions": ["delete","create"],` check the conditional file.  
 
 ## Initialise
 
@@ -89,6 +91,7 @@ terraform show --json ./plans/plan_destroy.tfplan | jq > ./plans/plan_destroy.tf
 ## Decisions
 
 ```sh
+# Show the list of actions
 for filename in ./plans/*.tfplan.json; 
 do
   echo "$filename"
@@ -97,11 +100,41 @@ done
 ```
 
 ```sh
+# aggregate the actions in the plan
 for filename in ./plans/*.tfplan.json; 
 do
-  jq --arg filename "$filename" -r '. | [ .resource_changes[].change.actions[] ] | group_by(.) | map({"operation":.[0], "count":length}) ' "$filename"
+  jq --arg filename "${filename}" -r '. | [ .resource_changes[].change.actions[] ] | group_by(.) | map({(.[0]):length}) | reduce .[] as $x (null; . + $x) | . + {file:$filename }' "$filename"
 done
-
-
-
 ```
+
+Example output of the aggregated data  
+
+```json
+{
+  "create": 8,
+  "delete": 2,
+  "no-op": 3,
+  "file": "./plans/plan_more_resources.tfplan.json"
+}
+```
+
+```sh
+# add a condition for plans containing deletes
+for filename in ./plans/*.tfplan.json; 
+do
+  jq --arg filename "${filename}" -e -r '. | [ .resource_changes[].change.actions[] ] | group_by(.) | map({(.[0]):length}) | reduce .[] as $x (null; . + $x) | . + {file:$filename } | select(.delete > 0)' "$filename"
+  exitcode=$?
+  if [[ $exitcode != 0 ]];then
+    # if don't find delete jq will error
+    echo "Allow '${filename}' without manual verification"
+  else
+    echo "'${filename}' requires manual verification (delete found)"
+  fi
+done
+```
+
+## Resources
+
+* My `jq` examples [here](https://github.com/chrisguest75/shell_examples/tree/master/32_jq)  
+
+
