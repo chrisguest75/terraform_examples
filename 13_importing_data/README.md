@@ -61,3 +61,4 @@ terraform apply -auto-approve -var records_file="./dns/test_records_reorder.json
 ## Resources
 
 * 2021-01-25-ForLoops from terraform tuedays [here]](https://github.com/ned1313/terraform-tuesdays/tree/main/2021-01-25-ForLoops)  
+* when-to-use-for_each-instead-of-count [here](https://www.terraform.io/language/meta-arguments/count#when-to-use-for_each-instead-of-count)  
