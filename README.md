@@ -27,8 +27,6 @@ brew install terraform_landscape
 * Keybase
 * GCP
 * AWS
-* Landscape
-* TF_LOG, TF_ENV, CORE and PROVIDER logging
 * S3 bucket - deb repository
 * security checking
 * cost calculation

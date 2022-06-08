@@ -2,6 +2,10 @@
 
 Demonstrate some basic practices for Terraform  
 
+## Checklist
+
+Check for reordering behaviour with lists before committing.
+
 ## Versions
 
 Installing different versions of Terraform
