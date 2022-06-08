@@ -1,5 +1,7 @@
 # README
 
+[![Repository](https://skillicons.dev/icons?i=aws,docker)](https://skillicons.dev)
+
 A repo for Terraform examples  
 [Terraform Docs](https://www.terraform.io/)  
 
@@ -69,7 +71,7 @@ Demonstrate how to use different environment variables.
 ## 05 - debugging
 
 Demonstrate how to troubleshoot problems with Terraform  
-[README.md](05_debuggign/README.md)  
+[README.md](05_debugging/README.md)  
 
 ## 06 - processing plan files
 
@@ -84,7 +86,7 @@ Example of using remote state
 ## 08 - modules
 
 Example of writing and using a module  
-[README.md](08_modules/README.md)  
+[README.md](08_module/README.md)  
 
 ## 09 - targeting resources  
 
@@ -101,10 +103,15 @@ Demonstrate how to use workspaces
 Demonstrate how to import existing resources into state  
 [README.md](11_importing_state/README.md)  
 
+## 12 - upgrading providers
+
+Demonstrate how to upgrade terraform providers to newer versions  
+[README.md](12_upgrading_providers/README.md)  
+
 ## 12 - upgrading between versions
 
 Demonstrate how to upgrade terraform state to latest version  
-[README.md](12_upgrading/README.md)  
+[README.md](12_upgrading_terraform/README.md)  
 
 ## 13 - importing data (json + local_file)
 
