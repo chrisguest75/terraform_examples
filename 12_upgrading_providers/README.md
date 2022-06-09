@@ -2,7 +2,14 @@
 
 Demonstrate how to upgrade terraform providers to newer versions  
 
-## Create initial state
+ℹ️ NOTES:
+
+* Use a controlled version of the providers.  
+* Have a separate pipeline that works like `dependabot` to check for available upgrades.  
+* The separate pipeline can perform a provider upgrade and plan.  
+* If no plan differences exist a MR/PR can be created with the new `lock.hcl` file.  
+
+## 🏠 Create initial state
 
 ```sh
 # init the providers
@@ -13,7 +20,7 @@ terraform plan
 terraform apply -auto-approve
 ```
 
-## Change provider version
+## ⚡️ Change provider version
 
 Modify the provider version.  
 
@@ -34,7 +41,7 @@ terraform plan
 ```
 
 ```sh
-# upgrade the provider
+# upgrade the provider and create a new lock.hcl file.  
 terraform init -upgrade
 
 # now plan and apply will work
@@ -42,7 +49,7 @@ terraform plan
 terraform apply -auto-approve
 ```
 
-## Resources
+## 👀 Resources
 
 * best-practices-for-provider-versions [here](https://www.terraform.io/language/providers/requirements#best-practices-for-provider-versions)  
 * dependency-lock [here](https://www.terraform.io/language/files/dependency-lock)  
