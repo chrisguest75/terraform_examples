@@ -40,7 +40,6 @@ brew install terraform_landscape
 https://github.com/ContainerSolutions/terraform-examples/tree/main/aws/aws_eks/fargate/spot_and_fargate
 https://github.com/ContainerSolutions/terraform-examples
 * dynamic
-* cdktf - https://learn.hashicorp.com/tutorials/terraform/cdktf-build?in=terraform/cdktf
 * testing
 * terraspace example
 
