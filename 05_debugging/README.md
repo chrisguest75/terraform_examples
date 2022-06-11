@@ -33,20 +33,71 @@ unset TF_LOG_PROVIDER
 terraform apply -auto-approve
 ```
 
-## Graph
+## Graph (graphviz)
+
+From `terraform graph --help`  
+
+Produces a representation of the dependency graph between different objects in the current configuration and state.
+
+The graph is presented in the DOT language. The typical program that can read this format is GraphViz, but many web services are also available to read this format.
+
+NOTE: The output can be rendered at [viz-js.com](http://viz-js.com/)  
 
 ```sh
 # show the graph of the state
 terraform graph
 ```
 
+```sh
+# install graphviz
+brew info graphviz  
+
+# output the svg from the graph using graphviz (use live-server extension to view)
+terraform graph | dot -Tsvg > ./tf.svg 
+```
+
 ## Console
 
+From `terraform console --help`  
+
+Starts an interactive console for experimenting with Terraform interpolations.  
+
+This will open an interactive console that you can use to type interpolations into and inspect their values. This command loads the current state. This lets you explore and test interpolations before using them in future configurations.  
+
+You may access resources in the state (if you have one) just as you would
+from a configuration. For example: "aws_instance.foo.id" would evaluate
+to the ID of "aws_instance.foo" if it exists in your state.  
+
+NOTE: As you open the console you'll see a lock file being created `.terraform.tfstate.lock.info`  
+
 ```sh
+# open console
 terraform console
+# false
+contains(["hello"],"world") 
+# true
+contains(["hello"],"hello") 
+# 12
+max(5, 12, 9)
+# load a json file
+jsondecode(file("./files.json"))
+# show a local variable
+local.json_files
+# does not seem possible to override values (errors)
+local.json_files = jsondecode(file("./files.json"))
+# get an element of an array
+element(local.json_files.files, 0)
+# pull out file name and compare
+substr(element(local.json_files.files, 0).name, 0,5) == "file1"
 ```
 
 ## Providers
+
+From `terraform providers --help`  
+
+Prints out a tree of modules in the referenced configuration annotated with their provider requirements.  
+
+This provides an overview of all of the provider requirements across all referenced modules, as an aid to understanding why particular provider plugins are needed and why particular versions are selected.  
 
 ```sh
 terraform providers
@@ -54,11 +105,30 @@ terraform providers
 
 ## Outputs
 
+From `terraform output --help`  
+
+Reads an output variable from a Terraform state file and prints the value. With no additional arguments, output will display all the outputs for the root module.  If NAME is not specified, all outputs are printed.  
+
 ```sh
-terraform outputs
+terraform output
 ```
 
 ## Show state
+
+From `terraform state list --help`  
+
+List resources in the Terraform state.  
+
+This command lists resource instances in the Terraform state. The address argument can be used to filter the instances by resource or module. If no pattern is given, all resource instances are listed.  
+
+The addresses must either be module addresses or absolute resource   addresses, such as:
+
+* aws_instance.example
+* module.example
+* module.example.module.child
+* module.example.aws_instance.example
+
+An error will be returned if any of the resources or modules given as filter addresses do not exist in the state.
 
 ```sh
 terraform state list
@@ -67,4 +137,8 @@ terraform state list
 ## Resources
 
 * Documentation [environment-variables](https://www.terraform.io/docs/cli/config/environment-variables.html)  
-
+* About Graph Visualization [here](https://graphviz.org/about/)
+* Graphviz Command Line
+ [here](https://graphviz.org/doc/info/command.html)  
+* Visualise graphviz in browser [viz-js.com](http://viz-js.com/)  
+* Terraform inbuilt functions [here](https://www.terraform.io/language/functions)  
