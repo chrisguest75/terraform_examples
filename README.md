@@ -128,6 +128,11 @@ Demonstrate how to import data from a webservice
 Demonstrate how to use SOPS to keep data encrypted  
 [README.md](19_sops/README.md)  
 
+## 20 - CDK
+
+Demonstrate how to use the CDK for Terraform.  
+[README.md](20_cdk/README.md)  
+
 ## Resources
 
 * Github [hashicorp/terraform](https://github.com/hashicorp/terraform)  
