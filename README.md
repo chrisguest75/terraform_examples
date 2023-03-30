@@ -62,6 +62,11 @@ Example of creating an S3 Bucket
 Example of creating an Auto Scaling Group  
 [README.md](02_asg/README.md)  
 
+## 03 - locks and versions
+
+Demonstrate how to use locks and versions.  
+[README.md](03_locks_versions/README.md)  
+
 ## 04 - envvars
 
 Demonstrate how to use different environment variables.  
