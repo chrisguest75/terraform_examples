@@ -5,6 +5,24 @@
 A repo for Terraform examples  
 [Terraform Docs](https://www.terraform.io/)  
 
+A list of things still to try and investigate [TODO.md](./TODO.md)  
+
+## Terraform
+
+Terraform is an open-source infrastructure-as-code (IAC) tool developed by HashiCorp. It enables users to define, provision, and manage cloud infrastructure using declarative configuration files. Terraform supports multiple cloud providers and offers a consistent, versioned approach to infrastructure management. Key features include modularity, collaboration, and extensibility, streamlining infrastructure deployment and minimizing manual errors.  
+
+```mermaid
+graph TD
+A[User] -->|Terraform Configuration| B[Terraform Core]
+B --> C[Terraform Plan]
+C --> D[Terraform Apply]
+B --> E[Terraform Destroy]
+B -->|Terraform State| F[Backend]
+B -->|Provider Plugins| G[Cloud Provider]
+```
+
+---
+
 ## Prereqs
 
 ```sh
@@ -21,31 +39,6 @@ brew install terraform-docs
 brew install terraform_landscape 
 ```
 
-## TODO
-
-* lifecycle {
-    ignore_changes = ["*"]
-  }
-* Keybase
-* GCP
-* AWS
-* S3 bucket - deb repository
-* security checking
-* cost calculation
-* OPA
-* secrets
-* aws provider default tags.
-* drift detection
-* versioned modules
-https://github.com/ContainerSolutions/terraform-examples/tree/main/aws/aws_eks/fargate/spot_and_fargate
-https://github.com/ContainerSolutions/terraform-examples
-* dynamic
-* testing
-* terraspace example
-
-Examples:
-
-* Create a resource using for-each.  Migrate state over to a new reource and remove entry from for-each.
 
 ## 00 - Basic Practices
 

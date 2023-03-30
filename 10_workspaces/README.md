@@ -5,6 +5,7 @@ Demonstrate how to use workspaces
 TOOO:
 
 * Storing state in completely different locations/accounts
+* importing state with using workspaces and selecting a different name
 
 ```sh
 tfenv list     

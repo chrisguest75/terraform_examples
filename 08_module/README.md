@@ -2,6 +2,10 @@
 
 Example of writing and using a module
 
+TODO:
+
+* Reference a module from a commit
+
 ## Create a docker container using a module
 
 ```sh
