@@ -137,6 +137,16 @@ Demonstrate how to use SOPS to keep data encrypted
 Demonstrate how to use the CDK for Terraform.  
 [README.md](20_cdk/README.md)  
 
+## 21 - Importing SSM
+
+Demonstrate how to import data from ssm to data drive terraform.  
+[README.md](21_importing_ssm/README.md)  
+
+## 23 - honeycomb
+
+Demonstrate how to use the honeycomb provider.  
+[README.md](23_honeycomb/README.md)  
+
 ## Resources
 
 * Github [hashicorp/terraform](https://github.com/hashicorp/terraform)  
