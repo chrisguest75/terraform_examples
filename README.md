@@ -142,6 +142,11 @@ Demonstrate how to use the CDK for Terraform.
 Demonstrate how to import data from ssm to data drive terraform.  
 [README.md](21_importing_ssm/README.md)  
 
+## 22 - drift detection
+
+Demonstrate some examples of how to use the `terraform refresh` to detect drift  
+[README.md](22_drift_detection/README.md)  
+
 ## 23 - honeycomb
 
 Demonstrate how to use the honeycomb provider.  
