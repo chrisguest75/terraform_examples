@@ -5,7 +5,9 @@ Demonstrate how to use different environment variables.
 ## Demonstrate overrides
 
 ```sh
+# init
 terraform init
+# plan
 terraform plan
 
 # override output path
