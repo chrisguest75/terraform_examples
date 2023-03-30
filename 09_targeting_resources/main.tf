@@ -42,7 +42,7 @@ resource "docker_container" "container" {
   #   internal = "6379"
   #   external = "6380"
   # }
-  image   = docker_image.nginx.latest
+  image   = docker_image.nginx.image_id
   restart = "no"
 }
 

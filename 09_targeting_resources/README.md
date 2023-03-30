@@ -2,7 +2,17 @@
 
 Demonstrate how to control plan and apply using targets  
 
-## Taint and Target
+NOTES:
+
+* Taint is deprecated since 0.15.x and `terraform apply -replace resource.id` should be used now.  
+
+## Terraform version
+
+```sh
+tfenv use
+```
+
+## Setup environment
 
 ```sh
 # initialise
@@ -20,11 +30,19 @@ curl 0.0.0.0:8081
 curl 0.0.0.0:8082 
 
 # list the state
-terraform state list        
+terraform state list
 
 # nothing to do
 terraform apply -auto-approve
 ```
+
+## Using -replace
+
+```sh
+terraform apply -replace='docker_container.container["nginx2"]'
+```
+
+## Taint and Target
 
 Start targetting and rebuilding containers  
 
@@ -32,6 +50,9 @@ Start targetting and rebuilding containers
 # rebuild nginx2
 terraform taint 'docker_container.container["nginx2"]'
 terraform apply -auto-approve
+
+# start time changes
+docker ps 
 
 # no changes
 terraform taint 'docker_container.container["nginx2"]'
@@ -45,7 +66,11 @@ terraform apply -auto-approve
 
 # show outputs 
 terraform output 
+```
 
+## Cleanup
+
+```sh
 # destroy all
 terraform destroy -auto-approve
 ```
@@ -55,3 +80,4 @@ terraform destroy -auto-approve
 * [kreuzwerker/terraform-provider-docker](https://github.com/kreuzwerker/terraform-provider-docker)  
 * [hashicorp-terraform-0-12-preview-for-and-for-each](https://www.hashicorp.com/blog/hashicorp-terraform-0-12-preview-for-and-for-each)  
 * [/kreuzwerker/docker/latest/docs](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs)  
+* Terraform Taint, Untaint, Replace – How to Use It (Examples) [here](https://spacelift.io/blog/terraform-taint)  
