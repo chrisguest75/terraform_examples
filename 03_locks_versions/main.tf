@@ -13,6 +13,11 @@ terraform {
       # version = "4.60.0"
       version = "4.56.0"
     }    
+  
+    local = {
+      source = "hashicorp/local"
+      version = "~>2"
+    }  
   }
 
   backend "local" {
@@ -25,6 +30,9 @@ provider "aws" {
 }
 
 provider "honeycombio" {
+}
+
+provider "local" {
 }
 
 #################################################
