@@ -6,6 +6,7 @@ NOTES:
 
 * Check you have no unexpected TF_VAR variables set that are overriding values.  
 * If need to upgrade change `.terraform-version` and `required_version = "=1.x.x"`  
+* TIP: If you need to see a value coming from remote state just add it as an output and use plan or use a local-exec provisioner (demo in main.tf).  
 
 ## Logging
 
@@ -31,6 +32,8 @@ terraform plan
 unset TF_LOG_PROVIDER
 
 terraform apply -auto-approve
+# rerun and recreate the output
+terraform apply -replace "null_resource.debugging"
 ```
 
 ## Graph (graphviz)
@@ -89,6 +92,8 @@ local.json_files = jsondecode(file("./files.json"))
 element(local.json_files.files, 0)
 # pull out file name and compare
 substr(element(local.json_files.files, 0).name, 0,5) == "file1"
+# concat a array of strings
+join(",", local.files_list[*].name)
 ```
 
 ## Providers

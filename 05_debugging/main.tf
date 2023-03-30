@@ -42,3 +42,14 @@ resource "local_file" "file" {
 output "records_data" {
   value = local.files_list
 }
+
+#################################################
+## Debugging
+#################################################
+
+resource "null_resource" "debugging" {
+  provisioner "local-exec" {
+    command = "echo ${join(",", local.files_list[*].name)} >> ./newfiles/list.txt"
+  }
+
+}
