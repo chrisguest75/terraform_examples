@@ -67,3 +67,4 @@ terraform destroy -auto-approve
 ## Resources
 
 * Understand ‘terraform plan/apply -refresh-only’ (formerly ‘terraform refresh’) and fixing drift [here](https://medium.com/code-oil/understanding-terraform-plan-apply-refresh-only-the-myths-and-fixing-drift-5963207a1df8)  
+* Terraform Dynamic Blocks [here](https://brendanthompson.com/posts/2022/11/terraform-dynamic-blocks)  

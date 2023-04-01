@@ -18,11 +18,11 @@ https://github.com/zackproser/quake-in-fargate
 https://itnext.io/creating-an-ecs-fargate-service-for-container-applications-using-terraform-and-terragrunt-2af5db3b35c0
 
 https://github.com/ContainerSolutions/terraform-examples
-* dynamic - https://brendanthompson.com/posts/2022/11/terraform-dynamic-blocks
+
 * testing - https://github.com/GoogleCloudPlatform/terraform-python-testing-helper
 * terraspace example
 * semgrep rules https://medium.com/@tysiew/getting-started-scanning-terraform-using-semgrep-408b6722347c
-* Optionsl, precondition, postcondition - https://brendanthompson.com/posts/2022/06/post-terraform-v1-features-i-love
+* Optional, precondition, postcondition - https://brendanthompson.com/posts/2022/06/post-terraform-v1-features-i-love
 
 Examples:
 

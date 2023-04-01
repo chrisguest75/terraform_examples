@@ -2,23 +2,35 @@ locals {
   containers = [
     {
       name : "nginx1"
-      ports : {
+      ports : [{
         internal : "80"
         external : "8080"
+      },{
+        internal : "90"
+        external : "8090"
+      },{
+        internal : "100"
+        external : "8100"
       }
-    }
-    , {
+      ]
+    }, 
+    {
       name : "nginx2"
-      ports : {
+      ports : [{
         internal : "80"
         external : "8081"
-      }
-      }, {
+      }]
+    }, 
+    {
       name : "nginx3"
-      ports : {
+      ports : [{
         internal : "80"
         external : "8082"
-      }
+      }]
+    }, 
+    {
+      name : "nginx4"
+      ports : []
     }
   ]
 }
@@ -33,15 +45,15 @@ resource "docker_container" "container" {
   for_each = { for container in local.containers : container.name => container }
   name     = each.value.name
 
-  ports {
-    internal = each.value.ports.internal
-    external = each.value.ports.external
+  dynamic "ports" {
+    for_each = each.value.ports
+    iterator = port
+    content {
+      internal = port.value.internal
+      external = port.value.external
+    }  
   }
-  # dynamic "ports" {
-  #   for_each = each.value.ports
-  #   internal = "6379"
-  #   external = "6380"
-  # }
+
   image   = docker_image.nginx.image_id
   restart = "no"
 }

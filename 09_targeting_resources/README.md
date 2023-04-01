@@ -81,3 +81,4 @@ terraform destroy -auto-approve
 * [hashicorp-terraform-0-12-preview-for-and-for-each](https://www.hashicorp.com/blog/hashicorp-terraform-0-12-preview-for-and-for-each)  
 * [/kreuzwerker/docker/latest/docs](https://registry.terraform.io/providers/kreuzwerker/docker/latest/docs)  
 * Terraform Taint, Untaint, Replace – How to Use It (Examples) [here](https://spacelift.io/blog/terraform-taint)  
+* Terraform Dynamic Blocks [here](https://brendanthompson.com/posts/2022/11/terraform-dynamic-blocks)  
