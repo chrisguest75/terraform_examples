@@ -2,6 +2,10 @@
 
 Demonstrate how to use the honeycomb provider.  
 
+TODO:
+
+* Can this provider be used to only apply a marker if any resources are created? https://github.com/pseudo-dynamic/terraform-provider-value/blob/main/docs/resources/replaced_when.md or should I use explicit dependencies? Or run two apply second time with -replace if I detect changes in the first.  
+
 ## Reason
 
 Simply add the terraform provider and always specify -replace to create the marker.  
