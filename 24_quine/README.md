@@ -14,7 +14,13 @@ terraform init && terraform apply --var-file=terraform.tfvars --auto-approve && 
 ## Destroy
 
 ```sh
-terraform destroy --var-file=terraform.tfvars --auto-approve
+popd && terraform destroy --var-file=terraform.tfvars --auto-approve
+```
+
+## Troubleshooting
+
+```sh
+terraform console --var-file=terraform.tfvars
 ```
 
 ## Resources

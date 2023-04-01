@@ -2,6 +2,10 @@
 
 Demonstrate how to use different environment variables.  
 
+NOTES:
+
+* If you have a `terraform.tfvars` file in the folder the env overrides do not seem to work.  
+
 ## Demonstrate overrides
 
 ```sh

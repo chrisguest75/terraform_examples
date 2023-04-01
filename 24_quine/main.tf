@@ -14,10 +14,10 @@ variable "output_path" {
   type = string
   default = "./output"
 
-  # validation {
-  #   condition = fileexists(var.output_path)
-  #   error_message = "Output path does not exist."
-  # }
+  validation {
+    condition = startswith(var.output_path, "./") && (length(var.output_path) > 2)
+    error_message = "PAth has to start with './' and be longer than 2 characters."
+  }
 }
 
 #################################################
@@ -25,7 +25,7 @@ variable "output_path" {
 #################################################
 
 locals {
-  contents = toset(["./main.tf", "./.terraform-version", "./terraform.tfvars", "./README.md", "./.gitignore"])
+  contents = fileset(".", "*.{tf,tfvars,md,gitignore,.terraform-version}")
 }
 
 #################################################
