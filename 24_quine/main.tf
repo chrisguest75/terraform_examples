@@ -25,38 +25,15 @@ variable "output_path" {
 #################################################
 
 locals {
-  main_file = file("./main.tf")
-  version_file = file("./.terraform-version")
-  tfvars_file = file("./terraform.tfvars")
-  readme_file = file("./README.md")
-  ignore_file = file("./.gitignore")
+  contents = toset(["./main.tf", "./.terraform-version", "./terraform.tfvars", "./README.md", "./.gitignore"])
 }
 
 #################################################
 ## Resources
 #################################################
 
-resource "local_file" "mainfile" {
-  content  = local.main_file
-  filename = "${var.output_path}/main.tf"
-}
-
-resource "local_file" "versionfile" {
-  content  = local.version_file
-  filename = "${var.output_path}/.terraform-version"
-}
-
-resource "local_file" "tfvarsfile" {
-  content  = local.tfvars_file
-  filename = "${var.output_path}/terraform.tfvars"
-}
-
-resource "local_file" "readmefile" {
-  content  = local.tfvars_file
-  filename = "${var.output_path}/README.md"
-}
-
-resource "local_file" "ignorefile" {
-  content  = local.tfvars_file
-  filename = "${var.output_path}/.gitignore"
+resource "local_file" "files" {
+  for_each = local.contents
+  content  = file(each.value)
+  filename = join("/", [var.output_path, basename(each.value)])
 }
