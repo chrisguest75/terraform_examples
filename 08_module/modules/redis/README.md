@@ -25,6 +25,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_image"></a> [image](#input\_image) | The image:tag to use for the container. | `string` | `"redis:6.2.4-alpine"` | no |
+| <a name="input_name"></a> [name](#input\_name) | The name of the container | `string` | n/a | yes |
 
 ## Outputs
 

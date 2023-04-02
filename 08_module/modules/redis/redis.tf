@@ -13,7 +13,7 @@ terraform {
 }
 
 resource "docker_container" "container" {
-  name    = "redis"
+  name    = var.name
   image   = var.image
   restart = "always"
 }
