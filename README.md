@@ -82,7 +82,7 @@ Example of using remote state
 
 ## 08 - modules
 
-Example of writing and using a module  
+Demonstrates a very basic module in Terraform.  
 [README.md](08_module/README.md)  
 
 ## 09 - targeting resources  

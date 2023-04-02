@@ -1,10 +1,8 @@
 # README
 
-Example of writing and using a module
+Demonstrates a very basic module in Terraform.  
 
-TODO:
-
-* Reference a module from a commit
+REF: [03_locks_versions/README.md](../03_locks_versions/README.md)  
 
 ## Create a docker container using a module
 
