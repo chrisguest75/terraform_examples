@@ -16,7 +16,7 @@ variable "output_path" {
 
   validation {
     condition = startswith(var.output_path, "./") && (length(var.output_path) > 2)
-    error_message = "Path has to start with './' and be longer than 2 characters."
+    error_message = "PAth has to start with './' and be longer than 2 characters."
   }
 }
 
@@ -25,7 +25,8 @@ variable "output_path" {
 #################################################
 
 locals {
-  contents = fileset(".", "*.{tf,tfvars,md,gitignore,.terraform-version}")
+  source_files_path = "./source_files"
+  contents = fileset(local.source_files_path, "*.txt")
 }
 
 #################################################
@@ -34,6 +35,17 @@ locals {
 
 resource "local_file" "files" {
   for_each = local.contents
-  content  = file(each.value)
+  content  = file(join("/", [local.source_files_path, basename(each.value)]))
   filename = join("/", [var.output_path, basename(each.value)])
 }
+
+# moved {
+#   from = local_file.files
+#   to   = local_file.new_files
+# }
+# resource "local_file" "new_files" {
+#   for_each = local.contents
+#   content  = file(join("/", [local.source_files_path, basename(each.value)]))
+#   filename = join("/", [var.output_path, basename(each.value)])
+# }
+

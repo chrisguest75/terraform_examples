@@ -6,6 +6,9 @@ Demonstrate some examples of how to use the `terraform refresh` to detect drift
 
 The infrastructure state can differ to the stored state file.  If we only want to reconcile this difference and ignore the changes in terraform then we use -refresh.  
 
+NOTES:
+
+* We still have to specify an empty ports array even if no ports are required.  
 
 ## Terraform version
 

@@ -12,7 +12,6 @@
 * cost calculation
 * OPA
 * secrets
-* versioned modules
 https://github.com/ContainerSolutions/terraform-examples/tree/main/aws/aws_eks/fargate/spot_and_fargate
 https://github.com/zackproser/quake-in-fargate
 https://itnext.io/creating-an-ecs-fargate-service-for-container-applications-using-terraform-and-terragrunt-2af5db3b35c0
@@ -29,5 +28,3 @@ Examples:
 * Create a resource using for-each.  Migrate state over to a new reource and remove entry from for-each.
 
 https://github.com/awslabs/terraform-iam-policy-validator
-
-* use multiple modules.
