@@ -150,6 +150,11 @@ Demonstrate how to use the honeycomb provider.
 A bit of fun to create a quine in Terraform.  
 [README.md](24_quine/README.md)  
 
+## 25 - moved block
+
+Demonstrates how to use moved block.  
+[README.md](25_moved/README.md)  
+
 ## 26 - github based modules
 
 Demonstrates using a module in a subdirectory from a commitid  
