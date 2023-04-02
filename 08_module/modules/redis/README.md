@@ -32,3 +32,4 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_id"></a> [id](#output\_id) | id of the running container |
+| <a name="output_name"></a> [name](#output\_name) | name of the running container |
