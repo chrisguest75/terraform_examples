@@ -145,6 +145,16 @@ Demonstrate some examples of how to use the `terraform refresh` to detect drift
 Demonstrate how to use the honeycomb provider.  
 [README.md](23_honeycomb/README.md)  
 
+## 24 - quine
+
+A bit of fun to create a quine in Terraform.  
+[README.md](24_quine/README.md)  
+
+## 26 - github based modules
+
+Demonstrates using a module in a subdirectory from a commitid  
+[README.md](26_github_modules/README.md)  
+
 ## Resources
 
 * Github [hashicorp/terraform](https://github.com/hashicorp/terraform)  
