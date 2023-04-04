@@ -1,6 +1,5 @@
 # TODO
 
-* movedto - https://brendanthompson.com/posts/2022/12/terraform-moved-block
 * lifecycle {
     ignore_changes = ["*"]
   }

@@ -1,4 +1,5 @@
 # README
+
 Demonstrate how to import data from a webservice
 
 ## Create the weather site
@@ -18,5 +19,6 @@ curl http://0.0.0.0:8080
 open http://0.0.0.0:8080      
 ```
 
-# Resources 
+## Resources
+
 * [dynamic-blocks](https://www.terraform.io/docs/language/expressions/dynamic-blocks.html)  
