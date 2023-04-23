@@ -2,9 +2,12 @@
 
 Demonstrate how to use the terraform aiven provider.  
 
-TODO:
+NOTES:
 
-* Exporting certs
+* Aiven provider is quite easy to use.
+* Use the `avn` cli tool to find out possible options for parameters.  
+
+## Prepare terraform environment
 
 ```sh
 tfenv list     
