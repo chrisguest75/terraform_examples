@@ -6,6 +6,8 @@ NOTES:
 
 * Aiven provider is quite easy to use.
 * Use the `avn` cli tool to find out possible options for parameters.  
+* Kafka can be configured to auto-create topics.  
+* The way tokens can be set to auto extend is nice.  
 
 ## Prepare terraform environment
 
