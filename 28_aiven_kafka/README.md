@@ -34,7 +34,11 @@ terraform apply --var-file=terraform.tfvars --auto-approve
 
 terraform show -json | jq .
 
-terraform destroy --var-file=terraform.tfvars
+mkdir -p ./secrets/user
+terraform output -raw sample_topic_name
+terraform output -raw kafka_access_cert > ./secrets/user/service.cert
+terraform output -raw kafka_access_key > ./secrets/user/service.key
+terraform output -raw kafka_service_uri 
 ```
 
 ## Parameters
@@ -56,6 +60,12 @@ avn service versions
 
 ```sh
 terraform console --var-file=terraform.tfvars
+```
+
+## Cleanup
+
+```sh
+terraform destroy --var-file=terraform.tfvars
 ```
 
 ## Resources

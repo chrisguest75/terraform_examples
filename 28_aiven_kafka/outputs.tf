@@ -71,27 +71,21 @@ output "kafka_rest_port" {
   description = "The Kafka REST port."
 }
 
-/*# Topic for Kafka
+# Topic for Kafka
 output "sample_topic_id" {
   value       = aiven_kafka_topic.sample_topic.id
   description = "Resource's Terraform identifier."
+}
+
+output "sample_topic_name" {
+  value       = aiven_kafka_topic.sample_topic.topic_name
+  description = "sample_topic name."
 }
 
 # User for Kafka
 output "kafka_a_id" {
   value       = aiven_kafka_user.kafka_a.id
   description = "Resource's Terraform identifier."
-}
-
-output "kafka_a_username" {
-  value       = aiven_kafka_user.kafka_a.username
-  description = "The actual name of the Kafka User."
-}
-
-output "kafka_a_password" {
-  value       = aiven_kafka_user.kafka_a.password
-  description = "The actual name of the Kafka User."
-  sensitive   = true
 }
 
 output "kafka_a_access_key" {
@@ -105,9 +99,3 @@ output "kafka_a_access_cert" {
   description = "Access certificate for the user."
   sensitive   = true
 }
-
-# ACL for Kafka
-output "sample_acl_id" {
-  value       = aiven_kafka_acl.sample_acl.id
-  description = "Resource's Terraform identifier."
-}*/
