@@ -35,10 +35,18 @@ terraform apply --var-file=terraform.tfvars --auto-approve
 terraform show -json | jq .
 
 mkdir -p ./secrets/user
+mkdir -p ./secrets/admin
+terraform output -raw kafka_access_cert > ./secrets/admin/service.cert
+terraform output -raw kafka_access_key > ./secrets/admin/service.key
+
 terraform output -raw sample_topic_name
-terraform output -raw kafka_access_cert > ./secrets/user/service.cert
-terraform output -raw kafka_access_key > ./secrets/user/service.key
+terraform output -raw kafka_a_access_cert > ./secrets/user/service.cert
+terraform output -raw kafka_a_access_key > ./secrets/user/service.key
 terraform output -raw kafka_service_uri 
+
+# get the project ca-pem
+avn project ca-get --target-filepath ./secrets/admin/ca.pem
+
 ```
 
 ## Parameters

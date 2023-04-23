@@ -10,7 +10,7 @@ resource "aiven_kafka_acl" "sample_acl" {
   project      = var.aiven_project_name
   service_name = aiven_kafka.kafka.service_name
   username     = var.kafka_user_name
-  permission   = "read"
-  topic        = "*"
+  permission   = "readwrite"
+  topic        = var.kafka_topic_name
 }
 

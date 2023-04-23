@@ -15,7 +15,12 @@ variable "service_name" {
   type = string
 }
 
+variable "kafka_topic_name" {
+  type = string
+}
+
 variable "kafka_user_name" {
-  description = "Kafka User"
+  type = string
+  description = "The kafka user name."
   default     = "kafka_a"
 }
