@@ -1,0 +1,80 @@
+name: CI
+
+on:
+  push:
+    branches: 
+      - '*'
+      # - '!master'   # excludes main
+    paths:
+      - '**'
+      - '.github/workflows/ci.yaml'
+
+  pull_request:
+    branches:  
+      - '*'
+      # - '!master'   # excludes main
+    paths:
+      - '**'
+      - '.github/workflows/ci.yaml'
+
+jobs:
+  build-test:
+    name: "Build, test"  
+    runs-on: ubuntu-latest
+    env:
+      GIT_COMMIT_MSG: '${{ github.event.head_commit.message }}'
+
+    steps:
+    # - name: Dump GitHub context
+    #   id: github_context_step
+    #   run: echo '${{ toJSON(github) }}'
+    - name: Dump job context
+      run: echo '${{ toJSON(job) }}'
+    - name: Dump steps context
+      run: echo '${{ toJSON(steps) }}'
+    - name: Dump runner context
+      run: echo '${{ toJSON(runner) }}'
+    - name: Dump strategy context
+      run: echo '${{ toJSON(strategy) }}'
+    - name: Dump matrix context
+      run: echo '${{ toJSON(matrix) }}'
+    - name: Dump docker info
+      run: docker info
+    - name: Terraform Version
+      run: terraform version
+
+    - name: Save starttime
+      run: |
+        echo $(date +%s) > ../build-start
+        echo "${{ github.sha }}-$GITHUB_RUN_ID" > ../build-tag
+        echo "Commit msg: '$GIT_COMMIT_MSG'"
+
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+        # persist-credentials: false
+        # clean: false
+        # submodules: false
+
+    - name: semgrep-action
+      uses: returntocorp/semgrep-action@v1
+      with:
+        config: >- # more at semgrep.dev/explore
+          r/generic.dockerfile
+          r/bash
+          p/terraform
+          p/typescript
+          p/github-actions
+          r/html.best-practice.robots-denied.robots-denied
+          r/html.security.missing-noopener.missing-noopener
+          r/html.security.missing-noreferrer.missing-noreferrer
+
+    - name: Terraform Plan
+      run: |
+        cd ./01-terraform
+        terraform init
+        terraform fmt
+        terraform plan
+
+
