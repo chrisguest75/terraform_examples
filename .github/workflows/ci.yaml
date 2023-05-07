@@ -49,32 +49,32 @@ jobs:
       fail-fast: false
       matrix:
         projects: [
-          { project: "01_s3_bucket", tfvars: "01_s3_bucket/terraform.tfvars" },
-          { project: "02_asg", tfvars: "02_asg/terraform.tfvars" },
-          { project: "03_locks_versions", tfvars: "" },
-          { project: "04_envvars", tfvars: "" },
-          { project: "05_debugging", tfvars: "" },
-          { project: "06_processing_plan_files", tfvars: "06_processing_plan_files/terraform.tfvars" },
-          { project: "07_remote_state/create_template_file", tfvars: "" },
-          { project: "07_remote_state/render_template_file", tfvars: "" },
-          { project: "08_module", tfvars: "" },
-          { project: "09_targeting_resources", tfvars: "" },
-          { project: "10_workspaces", tfvars: "" },
-          { project: "11_importing_state", tfvars: "" },
-          { project: "12_upgrading_providers", tfvars: "" },
-          { project: "12_upgrading_terraform", tfvars: "" }, 
-          { project: "13_importing_data", tfvars: "" },      
-          { project: "15_importing_webservice", tfvars: "" },
-          { project: "18_terraformer", tfvars: "" },    
-          { project: "19_sops", tfvars: "" },
-          { project: "20_cdk", tfvars: "" },
-          { project: "21_importing_ssm", tfvars: "" },
-          { project: "22_drift_detection", tfvars: "" },
-          { project: "23_honeycomb", tfvars: "" },
-          { project: "24_quine", tfvars: "24_quine/terraform.tfvars" },
-          { project: "25_moved", tfvars: "25_moved/terraform.tfvars" },
-          { project: "26_github_modules", tfvars: "" },
-          { project: "28_aiven_kafka", tfvars: "28_aiven_kafka/terraform.tfvars" },
+          { plan: true, project: "01_s3_bucket", tfvars: "01_s3_bucket/terraform.tfvars" },
+          { plan: true, project: "02_asg", tfvars: "02_asg/terraform.tfvars" },
+          { plan: true, project: "03_locks_versions", tfvars: "" },
+          { plan: true, project: "04_envvars", tfvars: "" },
+          { plan: true, project: "05_debugging", tfvars: "" },
+          { plan: true, project: "06_processing_plan_files", tfvars: "06_processing_plan_files/terraform.tfvars" },
+          { plan: true, project: "07_remote_state/create_template_file", tfvars: "" },
+          { plan: false, project: "07_remote_state/render_template_file", tfvars: "" },
+          { plan: true, project: "08_module", tfvars: "" },
+          { plan: true, project: "09_targeting_resources", tfvars: "" },
+          { plan: true, project: "10_workspaces", tfvars: "" },
+          { plan: true, project: "11_importing_state", tfvars: "" },
+          { plan: true, project: "12_upgrading_providers", tfvars: "" },
+          { plan: true, project: "12_upgrading_terraform", tfvars: "" }, 
+          { plan: true, project: "13_importing_data", tfvars: "" },      
+          { plan: true, project: "15_importing_webservice", tfvars: "" },
+          { plan: true, project: "18_terraformer", tfvars: "" },    
+          { plan: true, project: "19_sops", tfvars: "" },
+          { plan: true, project: "20_cdk", tfvars: "" },
+          { plan: true, project: "21_importing_ssm", tfvars: "" },
+          { plan: true, project: "22_drift_detection", tfvars: "" },
+          { plan: true, project: "23_honeycomb", tfvars: "" },
+          { plan: true, project: "24_quine", tfvars: "24_quine/terraform.tfvars" },
+          { plan: true, project: "25_moved", tfvars: "25_moved/terraform.tfvars" },
+          { plan: true, project: "26_github_modules", tfvars: "" },
+          { plan: true, project: "28_aiven_kafka", tfvars: "28_aiven_kafka/terraform.tfvars" },
         ]
     steps:
       - name: Checkout
@@ -91,6 +91,7 @@ jobs:
           path: ${{ matrix.projects.project }}
 
       - name: terraform plan ${{ matrix.projects.project }}
+        if: ${{ matrix.projects.plan == true }}
         uses: dflook/terraform-plan@v1
         with:
           path: ${{ matrix.projects.project }}
