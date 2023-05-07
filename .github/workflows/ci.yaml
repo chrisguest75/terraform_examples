@@ -49,31 +49,31 @@ jobs:
       fail-fast: false
       matrix:
         projects: [
-          "01_s3_bucket",
-          "02_asg",
-          "03_locks_versions",
-          "04_envvars",
-          "05_debugging",
-          "06_processing_plan_files",
-          "07_remote_state",
-          "08_module",
-          "09_targeting_resources",
-          "10_workspaces",
-          "11_importing_state",
-          "12_upgrading_providers",
-          "12_upgrading_terraform", 
-          "13_importing_data",      
-          "15_importing_webservice",
-          "18_terraformer",    
-          "19_sops",
-          "20_cdk",
-          "21_importing_ssm",
-          "22_drift_detection",
-          "23_honeycomb",
-          "24_quine",
-          "25_moved",
-          "26_github_modules",
-          "28_aiven_kafka",
+          { project: "01_s3_bucket", tfvars: "" },
+          { project: "02_asg", tfvars: "" },
+          { project: "03_locks_versions", tfvars: "" },
+          { project: "04_envvars", tfvars: "" },
+          { project: "05_debugging", tfvars: "" },
+          { project: "06_processing_plan_files", tfvars: "" },
+          { project: "07_remote_state", tfvars: "" },
+          { project: "08_module", tfvars: "" },
+          { project: "09_targeting_resources", tfvars: "" },
+          { project: "10_workspaces", tfvars: "" },
+          { project: "11_importing_state", tfvars: "" },
+          { project: "12_upgrading_providers", tfvars: "" },
+          { project: "12_upgrading_terraform", tfvars: "" }, 
+          { project: "13_importing_data", tfvars: "" },      
+          { project: "15_importing_webservice", tfvars: "" },
+          { project: "18_terraformer", tfvars: "" },    
+          { project: "19_sops", tfvars: "" },
+          { project: "20_cdk", tfvars: "" },
+          { project: "21_importing_ssm", tfvars: "" },
+          { project: "22_drift_detection", tfvars: "" },
+          { project: "23_honeycomb", tfvars: "" },
+          { project: "24_quine", tfvars: "" },
+          { project: "25_moved", tfvars: "" },
+          { project: "26_github_modules", tfvars: "" },
+          { project: "28_aiven_kafka", tfvars: "" },
         ]
     steps:
       - name: Checkout
@@ -82,17 +82,18 @@ jobs:
       - name: terraform validate
         uses: dflook/terraform-validate@v1
         with:
-          path: ${{ matrix.projects }}
+          path: ${{ matrix.projects.project }}
 
       - name: terraform fmt
         uses: dflook/terraform-fmt-check@v1
         with:
-          path: ${{ matrix.projects }}
+          path: ${{ matrix.projects.project }}
 
       - name: terraform plan
         uses: dflook/terraform-plan@v1
         with:
-          path: ${{ matrix.projects }}
+          path: ${{ matrix.projects.project }}
+          var_file: ${{ matrix.projects.tfvars }}
 
   semgrep:
     runs-on: ubuntu-latest
