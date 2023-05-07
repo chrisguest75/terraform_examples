@@ -99,11 +99,11 @@ locals {
       volumes : [
         {
           container_path : "/etc/nginx/nginx.conf"
-          host_path      : "./nginx/nginx.conf"
+          host_path : "./nginx/nginx.conf"
         },
         {
           container_path : "/usr/share/nginx/html/index.html"
-          host_path      : ".nginx/index.html"
+          host_path : ".nginx/index.html"
         }
       ]
     }
