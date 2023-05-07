@@ -23,19 +23,20 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     name: Validate terraform configuration
-    matrix:
-      projects: [
-        "01_s3_bucket",
-        "02_asg"
-      ]   
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    strategy:
+      matrix:
+        projects: [
+          "01_s3_bucket",
+          "02_asg"
+        ]   
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v3
 
-      - name: terraform validate
-        uses: dflook/terraform-validate@v1
-        with:
-          path: "01_s3_bucket"
+        - name: terraform validate
+          uses: dflook/terraform-validate@v1
+          with:
+            path: "01_s3_bucket"
 
   fmt-check:
     runs-on: ubuntu-latest
