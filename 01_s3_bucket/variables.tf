@@ -1,7 +1,7 @@
 variable "region" {}
 
 variable "tags" {
-  type = "map"
+  type = map(string)
 
   default = {
     "created_by"  = "terraform"

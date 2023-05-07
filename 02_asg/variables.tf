@@ -3,10 +3,10 @@ variable "ssh_public_key" {}
 variable "region" {}
 
 variable "availability_zones" {
-  type = "list"
+  type = list(string)
 }
 variable "tags" {
-  type = "map"
+  type = map(string)
 
   default = {
     "created_by"  = "terraform"
