@@ -20,64 +20,92 @@ on:
 
 
 jobs:
-  github-info:
-    runs-on: ubuntu-latest
-    name: Github execution information
-    steps:
-      # - name: Dump GitHub context
-      #   id: github_context_step
-      #   run: echo '${{ toJSON(github) }}'
-      - name: Dump job context
-        run: echo '${{ toJSON(job) }}'
-      - name: Dump steps context
-        run: echo '${{ toJSON(steps) }}'
-      - name: Dump runner context
-        run: echo '${{ toJSON(runner) }}'
-      - name: Dump strategy context
-        run: echo '${{ toJSON(strategy) }}'
-      - name: Dump matrix context
-        run: echo '${{ toJSON(matrix) }}'
-      - name: Dump docker info
-        run: docker info
-      - name: Terraform Version
-        run: terraform version
-
-
   validate:
     runs-on: ubuntu-latest
     name: Validate terraform configuration
     steps:
-      - matrix:
-          projects: [
-            "01_s3_bucket",
-            "02_asg"
-          ]    
-
       - name: Checkout
         uses: actions/checkout@v3
 
       - name: terraform validate
         uses: dflook/terraform-validate@v1
         with:
-          path: ${{ matrix.projects }}
+          path: "01_s3_bucket"
 
   fmt-check:
     runs-on: ubuntu-latest
     name: Check formatting of terraform files
     steps:
-      - matrix:
-          projects: [
-            "01_s3_bucket",
-            "02_asg"
-          ]    
-
       - name: Checkout
         uses: actions/checkout@v3
 
       - name: terraform fmt
         uses: dflook/terraform-fmt-check@v1
         with:
-          path: ${{ matrix.projects }}
+          path: "01_s3_bucket"
+
+
+
+
+# jobs:
+#   github-info:
+#     runs-on: ubuntu-latest
+#     name: Github execution information
+#     steps:
+#       # - name: Dump GitHub context
+#       #   id: github_context_step
+#       #   run: echo '${{ toJSON(github) }}'
+#       - name: Dump job context
+#         run: echo '${{ toJSON(job) }}'
+#       - name: Dump steps context
+#         run: echo '${{ toJSON(steps) }}'
+#       - name: Dump runner context
+#         run: echo '${{ toJSON(runner) }}'
+#       - name: Dump strategy context
+#         run: echo '${{ toJSON(strategy) }}'
+#       - name: Dump matrix context
+#         run: echo '${{ toJSON(matrix) }}'
+#       - name: Dump docker info
+#         run: docker info
+#       - name: Terraform Version
+#         run: terraform version
+
+
+#   validate:
+#     runs-on: ubuntu-latest
+#     name: Validate terraform configuration
+#     steps:
+#       - matrix:
+#           projects: [
+#             "01_s3_bucket",
+#             "02_asg"
+#           ]    
+
+#       - name: Checkout
+#         uses: actions/checkout@v3
+
+#       - name: terraform validate
+#         uses: dflook/terraform-validate@v1
+#         with:
+#           path: ${{ matrix.projects }}
+
+#   fmt-check:
+#     runs-on: ubuntu-latest
+#     name: Check formatting of terraform files
+#     steps:
+#       - matrix:
+#           projects: [
+#             "01_s3_bucket",
+#             "02_asg"
+#           ]    
+
+#       - name: Checkout
+#         uses: actions/checkout@v3
+
+#       - name: terraform fmt
+#         uses: dflook/terraform-fmt-check@v1
+#         with:
+#           path: ${{ matrix.projects }}
 
 
 
