@@ -23,13 +23,12 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     name: Validate terraform configuration
+    matrix:
+      projects: [
+        "01_s3_bucket",
+        "02_asg"
+      ]   
     steps:
-      - matrix:
-          projects: [
-            "01_s3_bucket",
-            "02_asg"
-          ]        
-
       - name: Checkout
         uses: actions/checkout@v3
 
