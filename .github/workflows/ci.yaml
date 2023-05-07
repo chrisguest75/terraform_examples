@@ -73,23 +73,23 @@ jobs:
           { project: "24_quine", tfvars: "" },
           { project: "25_moved", tfvars: "" },
           { project: "26_github_modules", tfvars: "" },
-          { project: "28_aiven_kafka", tfvars: "" },
+          { project: "28_aiven_kafka", tfvars: "terraform.tfvars" },
         ]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: terraform validate
+      - name: terraform validate ${{ matrix.projects.project }}
         uses: dflook/terraform-validate@v1
         with:
           path: ${{ matrix.projects.project }}
 
-      - name: terraform fmt
+      - name: terraform fmt ${{ matrix.projects.project }}
         uses: dflook/terraform-fmt-check@v1
         with:
           path: ${{ matrix.projects.project }}
 
-      - name: terraform plan
+      - name: terraform plan ${{ matrix.projects.project }}
         uses: dflook/terraform-plan@v1
         with:
           path: ${{ matrix.projects.project }}
