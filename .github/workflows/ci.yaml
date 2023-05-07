@@ -49,12 +49,12 @@ jobs:
       fail-fast: false
       matrix:
         projects: [
-          { project: "01_s3_bucket", tfvars: "terraform.tfvars" },
-          { project: "02_asg", tfvars: "terraform.tfvars" },
+          { project: "01_s3_bucket", tfvars: "01_s3_bucket/terraform.tfvars" },
+          { project: "02_asg", tfvars: "02_asg/terraform.tfvars" },
           { project: "03_locks_versions", tfvars: "" },
           { project: "04_envvars", tfvars: "" },
           { project: "05_debugging", tfvars: "" },
-          { project: "06_processing_plan_files", tfvars: "terraform.tfvars" },
+          { project: "06_processing_plan_files", tfvars: "06_processing_plan_files/terraform.tfvars" },
           { project: "07_remote_state/create_template_file", tfvars: "" },
           { project: "07_remote_state/render_template_file", tfvars: "" },
           { project: "08_module", tfvars: "" },
@@ -71,10 +71,10 @@ jobs:
           { project: "21_importing_ssm", tfvars: "" },
           { project: "22_drift_detection", tfvars: "" },
           { project: "23_honeycomb", tfvars: "" },
-          { project: "24_quine", tfvars: "terraform.tfvars" },
-          { project: "25_moved", tfvars: "terraform.tfvars" },
+          { project: "24_quine", tfvars: "24_quine/terraform.tfvars" },
+          { project: "25_moved", tfvars: "25_moved/terraform.tfvars" },
           { project: "26_github_modules", tfvars: "" },
-          { project: "28_aiven_kafka", tfvars: "terraform.tfvars" },
+          { project: "28_aiven_kafka", tfvars: "28_aiven_kafka/terraform.tfvars" },
         ]
     steps:
       - name: Checkout
