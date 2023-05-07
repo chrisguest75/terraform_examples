@@ -1,3 +1,3 @@
-output filepath {
-    value = local_file.file.filename
+output "filepath" {
+  value = local_file.file.filename
 }

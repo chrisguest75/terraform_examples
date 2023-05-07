@@ -8,7 +8,7 @@ data "terraform_remote_state" "create_template_file" {
 }
 
 resource "local_file" "file" {
-    content     = templatefile(data.terraform_remote_state.create_template_file.outputs.filepath, { template_variable = "replace the variable"})
-    #content     = "test"
-    filename = var.path
+  content = templatefile(data.terraform_remote_state.create_template_file.outputs.filepath, { template_variable = "replace the variable" })
+  #content     = "test"
+  filename = var.path
 }

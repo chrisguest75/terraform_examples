@@ -1,3 +1,3 @@
-variable path {
-    type = string
+variable "path" {
+  type = string
 }

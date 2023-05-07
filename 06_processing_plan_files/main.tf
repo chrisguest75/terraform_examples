@@ -10,7 +10,7 @@ resource "local_file" "file" {
 }
 
 resource "local_file" "conditional_file" {
-  count = var.conditional
+  count    = var.conditional
   content  = format("%s %s", "conditional", var.conditional_file_contents)
   filename = format("%s/%s", var.out_path, "out/conditional.txt")
 }

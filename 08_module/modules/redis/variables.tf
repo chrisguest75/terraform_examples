@@ -1,6 +1,6 @@
 
-variable name {
-  type    = string
+variable "name" {
+  type        = string
   description = "The name of the container"
   validation {
     condition     = length(var.name) > 5
@@ -8,9 +8,9 @@ variable name {
   }
 }
 
-variable image {
-  type    = string
-  default = "redis:6.2.4-alpine"
+variable "image" {
+  type        = string
+  default     = "redis:6.2.4-alpine"
   description = "The image:tag to use for the container."
   validation {
     condition     = substr(var.image, 0, 5) == "redis"

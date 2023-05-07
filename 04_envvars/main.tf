@@ -10,13 +10,13 @@ terraform {
 ## Variables
 #################################################
 
-variable out_path {
-  type = string
+variable "out_path" {
+  type    = string
   default = "./files"
 }
 
-variable out_filename {
-  type = string
+variable "out_filename" {
+  type    = string
   default = "myfile.txt"
 }
 
@@ -33,7 +33,7 @@ locals {
 #################################################
 
 resource "local_file" "file" {
-    content     = "This is a file"
-    filename = local.filepath
+  content  = "This is a file"
+  filename = local.filepath
 }
 

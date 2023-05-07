@@ -1,17 +1,17 @@
 variable "files" {
-    type = list
+  type = list(any)
 }
 
 variable "out_path" {
-    type = string
+  type = string
 }
 
 variable "conditional_file_contents" {
-    type = string
-    default = "more contents"
+  type    = string
+  default = "more contents"
 }
 
 variable "conditional" {
-    type = number
-    default = 0
+  type    = number
+  default = 0
 }

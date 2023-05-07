@@ -3,7 +3,7 @@ terraform {
 
   required_providers {
     sops = {
-      source = "carlpett/sops"
+      source  = "carlpett/sops"
       version = "~> 0.5"
     }
   }
@@ -19,12 +19,12 @@ data "sops_file" "my_secrets" {
 
 output "secret1" {
   sensitive = true
-  value = data.sops_file.my_secrets.data["passwords.secret1"]
+  value     = data.sops_file.my_secrets.data["passwords.secret1"]
 }
 
 output "secret2" {
   sensitive = true
-  value = data.sops_file.my_secrets.data["passwords.secret2"]
+  value     = data.sops_file.my_secrets.data["passwords.secret2"]
 }
 
 output "secret2json" {
