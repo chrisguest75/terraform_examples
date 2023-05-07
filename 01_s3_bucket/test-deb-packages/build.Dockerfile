@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-RUN apt-get update && apt-get install bash build-essential -y \
+RUN apt-get update && apt-get install --no-install-recommends bash build-essential -y \
         && apt-get clean \
         && rm -rf /var/lib/apt/lists/*
 

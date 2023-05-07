@@ -17,64 +17,120 @@ on:
       - '**'
       - '.github/workflows/ci.yaml'
 
+
+
 jobs:
-  build-test:
-    name: "Build, test"  
+  github-info:
     runs-on: ubuntu-latest
-    env:
-      GIT_COMMIT_MSG: '${{ github.event.head_commit.message }}'
-
+    name: Github execution information
     steps:
-    # - name: Dump GitHub context
-    #   id: github_context_step
-    #   run: echo '${{ toJSON(github) }}'
-    - name: Dump job context
-      run: echo '${{ toJSON(job) }}'
-    - name: Dump steps context
-      run: echo '${{ toJSON(steps) }}'
-    - name: Dump runner context
-      run: echo '${{ toJSON(runner) }}'
-    - name: Dump strategy context
-      run: echo '${{ toJSON(strategy) }}'
-    - name: Dump matrix context
-      run: echo '${{ toJSON(matrix) }}'
-    - name: Dump docker info
-      run: docker info
-    - name: Terraform Version
-      run: terraform version
+      # - name: Dump GitHub context
+      #   id: github_context_step
+      #   run: echo '${{ toJSON(github) }}'
+      - name: Dump job context
+        run: echo '${{ toJSON(job) }}'
+      - name: Dump steps context
+        run: echo '${{ toJSON(steps) }}'
+      - name: Dump runner context
+        run: echo '${{ toJSON(runner) }}'
+      - name: Dump strategy context
+        run: echo '${{ toJSON(strategy) }}'
+      - name: Dump matrix context
+        run: echo '${{ toJSON(matrix) }}'
+      - name: Dump docker info
+        run: docker info
+      - name: Terraform Version
+        run: terraform version  
 
-    - name: Save starttime
-      run: |
-        echo $(date +%s) > ../build-start
-        echo "${{ github.sha }}-$GITHUB_RUN_ID" > ../build-tag
-        echo "Commit msg: '$GIT_COMMIT_MSG'"
+#         "00_basic_practices"
+#         /       09_targeting_resources/   19_sops/
+# /             10_workspaces/            20_cdk/
+# 02_asg/                   11_importing_state/       21_importing_ssm/
+# 03_locks_versions/        12_upgrading_providers/   22_drift_detection/
+# 04_envvars/               12_upgrading_terraform/   23_honeycomb/
+# 05_debugging/             13_importing_data/        24_quine/
+# 06_processing_plan_files/ 15_importing_webservice/  25_moved/
+# 07_remote_state/          17_static_site/           26_github_modules/
+# 08_module/                18_terraformer/           28_aiven_kafka/
 
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-        # persist-credentials: false
-        # clean: false
-        # submodules: false
 
-    - name: semgrep-action
-      uses: returntocorp/semgrep-action@v1
-      with:
-        config: >- # more at semgrep.dev/explore
-          r/generic.dockerfile
-          r/bash
-          p/terraform
-          p/typescript
-          p/github-actions
-          r/html.best-practice.robots-denied.robots-denied
-          r/html.security.missing-noopener.missing-noopener
-          r/html.security.missing-noreferrer.missing-noreferrer
+  validate:
+    runs-on: ubuntu-latest
+    name: Validate terraform configuration
+    strategy:
+      fail-fast: false
+      matrix:
+        projects: [
+          "01_s3_bucket",
+          "02_asg",
+          "03_locks_versions",
+          "04_envvars",
+          "05_debugging",
+          "06_processing_plan_files",
+          "07_remote_state",
+          "08_module",
+          "11_importing_state",
+          "12_upgrading_providers",
+          "12_upgrading_terraform", 
+          "13_importing_data",      
+          "15_importing_webservice",
+          "17_static_site",
+          "18_terraformer",    
+          "21_importing_ssm",
+          "22_drift_detection",
+          "23_honeycomb",
+          "24_quine",
+          "25_moved",
+          "26_github_modules",
+          "28_aiven_kafka",
+        ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    - name: Terraform Plan
-      run: |
-        cd ./01-terraform
-        terraform init
-        terraform fmt
-        terraform plan
+      - name: terraform validate
+        uses: dflook/terraform-validate@v1
+        with:
+          path: ${{ matrix.projects }}
+
+      - name: terraform fmt
+        uses: dflook/terraform-fmt-check@v1
+        with:
+          path: ${{ matrix.projects }}
+
+  semgrep:
+    runs-on: ubuntu-latest
+    name: Semgrep
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: semgrep-action
+        uses: returntocorp/semgrep-action@v1
+        with:
+          auditOn: none  
+          config: >- # more at semgrep.dev/explore
+            r/generic.dockerfile
+            r/bash
+            p/terraform
+            p/typescript
+            p/github-actions
+            r/html.best-practice.robots-denied.robots-denied
+            r/html.security.missing-noopener.missing-noopener
+            r/html.security.missing-noreferrer.missing-noreferrer
+          
+
+
+
+
+  #   - name: Terraform Check
+  #     run: |
+  #       cd ${{ matrix.projects }}
+  #       terraform init
+  #       terraform fmt -check
+  #       terraform plan
+
+
+
 
 
