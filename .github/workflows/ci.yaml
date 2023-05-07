@@ -58,6 +58,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Validate terraform configuration
     strategy:
+      fail-fast: false
       matrix:
         projects: [
           "01_s3_bucket",
@@ -107,6 +108,7 @@ jobs:
       - name: semgrep-action
         uses: returntocorp/semgrep-action@v1
         with:
+          auditOn: none  
           config: >- # more at semgrep.dev/explore
             r/generic.dockerfile
             r/bash
@@ -116,7 +118,7 @@ jobs:
             r/html.best-practice.robots-denied.robots-denied
             r/html.security.missing-noopener.missing-noopener
             r/html.security.missing-noreferrer.missing-noreferrer
-          auditOn: none            
+          
 
 
 
