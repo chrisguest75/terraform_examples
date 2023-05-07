@@ -43,6 +43,28 @@ jobs:
     - name: Terraform Version
       run: terraform version
 
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        # persist-credentials: false
+        # clean: false
+        # submodules: false
+
+    - name: semgrep-action
+      uses: returntocorp/semgrep-action@v1
+      with:
+        config: >- # more at semgrep.dev/explore
+          r/generic.dockerfile
+          r/bash
+          p/terraform
+          p/typescript
+          p/github-actions
+          r/html.best-practice.robots-denied.robots-denied
+          r/html.security.missing-noopener.missing-noopener
+          r/html.security.missing-noreferrer.missing-noreferrer
+
+
   # semgrep-validate:
   #   name: "Validate with semgrep"
   #   runs-on: ubuntu-latest
@@ -50,26 +72,6 @@ jobs:
   #     GIT_COMMIT_MSG: '${{ github.event.head_commit.message }}'
 
   #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v2
-  #     with:
-  #       fetch-depth: 0
-  #       # persist-credentials: false
-  #       # clean: false
-  #       # submodules: false
-
-  #   - name: semgrep-action
-  #     uses: returntocorp/semgrep-action@v1
-  #     with:
-  #       config: >- # more at semgrep.dev/explore
-  #         r/generic.dockerfile
-  #         r/bash
-  #         p/terraform
-  #         p/typescript
-  #         p/github-actions
-  #         r/html.best-practice.robots-denied.robots-denied
-  #         r/html.security.missing-noopener.missing-noopener
-  #         r/html.security.missing-noreferrer.missing-noreferrer
 
   # test:
   #   name: "Validate Terraform"
