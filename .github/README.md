@@ -14,4 +14,4 @@ TODO:
 * returntocorp/semgrep-action repo [here](https://github.com/returntocorp/semgrep-action)  
 * Using jobs in a workflow [here](https://docs.github.com/en/actions/using-jobs/using-jobs-in-a-workflow)
 * dflook/terraform-github-actions repo [here](https://github.com/dflook/terraform-github-actions)  
-
+* Getting Started: Scanning Terraform using Semgrep [here](https://medium.com/@tysiew/getting-started-scanning-terraform-using-semgrep-408b6722347c)  

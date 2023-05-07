@@ -1,5 +1,6 @@
 # TODO
 
+* add automatic plans as comments. 
 * lifecycle {
     ignore_changes = ["*"]
   }
@@ -19,7 +20,6 @@ https://github.com/ContainerSolutions/terraform-examples
 
 * testing - https://github.com/GoogleCloudPlatform/terraform-python-testing-helper
 * terraspace example
-* semgrep rules https://medium.com/@tysiew/getting-started-scanning-terraform-using-semgrep-408b6722347c
 * Optional, precondition, postcondition - https://brendanthompson.com/posts/2022/06/post-terraform-v1-features-i-love
 
 Examples:

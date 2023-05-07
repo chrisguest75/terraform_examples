@@ -42,18 +42,6 @@ jobs:
       - name: Terraform Version
         run: terraform version  
 
-#         "00_basic_practices"
-#         /       09_targeting_resources/   19_sops/
-# /             10_workspaces/            20_cdk/
-# 02_asg/                   11_importing_state/       21_importing_ssm/
-# 03_locks_versions/        12_upgrading_providers/   22_drift_detection/
-# 04_envvars/               12_upgrading_terraform/   23_honeycomb/
-# 05_debugging/             13_importing_data/        24_quine/
-# 06_processing_plan_files/ 15_importing_webservice/  25_moved/
-# 07_remote_state/          17_static_site/           26_github_modules/
-# 08_module/                18_terraformer/           28_aiven_kafka/
-
-
   validate:
     runs-on: ubuntu-latest
     name: Validate terraform configuration
@@ -69,6 +57,8 @@ jobs:
           "06_processing_plan_files",
           "07_remote_state",
           "08_module",
+          "09_targeting_resources",
+          "10_workspaces",
           "11_importing_state",
           "12_upgrading_providers",
           "12_upgrading_terraform", 
@@ -99,6 +89,11 @@ jobs:
         with:
           path: ${{ matrix.projects }}
 
+      - name: terraform plan
+        uses: dflook/terraform-plan@v1
+        with:
+          path: ${{ matrix.projects }}
+
   semgrep:
     runs-on: ubuntu-latest
     name: Semgrep
@@ -109,7 +104,6 @@ jobs:
       - name: semgrep-action
         uses: returntocorp/semgrep-action@v1
         with:
-          auditOn: none  
           config: >- # more at semgrep.dev/explore
             r/generic.dockerfile
             r/bash
@@ -120,18 +114,6 @@ jobs:
             r/html.security.missing-noopener.missing-noopener
             r/html.security.missing-noreferrer.missing-noreferrer
           
-
-
-
-
-  #   - name: Terraform Check
-  #     run: |
-  #       cd ${{ matrix.projects }}
-  #       terraform init
-  #       terraform fmt -check
-  #       terraform plan
-
-
 
 
 
