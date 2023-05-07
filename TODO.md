@@ -1,6 +1,7 @@
 # TODO
 
-* add automatic plans as comments. 
+* add automatic plans as comments. https://github.com/dflook/terraform-github-actions/tree/main/terraform-plan
+
 * lifecycle {
     ignore_changes = ["*"]
   }
