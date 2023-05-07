@@ -116,6 +116,7 @@ jobs:
             r/html.best-practice.robots-denied.robots-denied
             r/html.security.missing-noopener.missing-noopener
             r/html.security.missing-noreferrer.missing-noreferrer
+          auditOn: none            
 
 
 
