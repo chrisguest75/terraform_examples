@@ -88,7 +88,5 @@ terraform destroy --var-file=terraform.tfvars
 * https://github.com/aiven/aiven-examples/tree/main/terraform/kafka
 * https://registry.terraform.io/providers/aiven/aiven/latest/docs
 * aiven/terraform-provider-aiven repo [here](https://github.com/aiven/terraform-provider-aiven)  
-
-https://docs.aiven.io/docs/tools/cli/service#avn-service-plan
-
-https://github.com/aiven/terraform-provider-aiven/tree/main/sample_project
+* avn service plans [here](https://docs.aiven.io/docs/tools/cli/service#avn-service-plan)
+* aiven/terraform-provider-aiven/tree/main/sample_project repo [here](https://github.com/aiven/terraform-provider-aiven/tree/main/sample_project)  
