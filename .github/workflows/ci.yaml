@@ -17,59 +17,123 @@ on:
       - '**'
       - '.github/workflows/ci.yaml'
 
+
+
 jobs:
   github-info:
-    name: "Github information"
     runs-on: ubuntu-latest
-    env:
-      GIT_COMMIT_MSG: '${{ github.event.head_commit.message }}'
-
-
+    name: Github execution information
     steps:
-    - matrix:
-        projects: [
-          "01_s3_bucket",
-          "02_asg"
-        ]    
+      # - name: Dump GitHub context
+      #   id: github_context_step
+      #   run: echo '${{ toJSON(github) }}'
+      - name: Dump job context
+        run: echo '${{ toJSON(job) }}'
+      - name: Dump steps context
+        run: echo '${{ toJSON(steps) }}'
+      - name: Dump runner context
+        run: echo '${{ toJSON(runner) }}'
+      - name: Dump strategy context
+        run: echo '${{ toJSON(strategy) }}'
+      - name: Dump matrix context
+        run: echo '${{ toJSON(matrix) }}'
+      - name: Dump docker info
+        run: docker info
+      - name: Terraform Version
+        run: terraform version
 
-    # - name: Dump GitHub context
-    #   id: github_context_step
-    #   run: echo '${{ toJSON(github) }}'
-    - name: Dump job context
-      run: echo '${{ toJSON(job) }}'
-    - name: Dump steps context
-      run: echo '${{ toJSON(steps) }}'
-    - name: Dump runner context
-      run: echo '${{ toJSON(runner) }}'
-    - name: Dump strategy context
-      run: echo '${{ toJSON(strategy) }}'
-    - name: Dump matrix context
-      run: echo '${{ toJSON(matrix) }}'
-    - name: Dump docker info
-      run: docker info
-    - name: Terraform Version
-      run: terraform version
 
-    - name: Checkout
-      uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
-        # persist-credentials: false
-        # clean: false
-        # submodules: false
+  validate:
+    runs-on: ubuntu-latest
+    name: Validate terraform configuration
+    steps:
+      - matrix:
+          projects: [
+            "01_s3_bucket",
+            "02_asg"
+          ]    
 
-    - name: semgrep-action
-      uses: returntocorp/semgrep-action@v1
-      with:
-        config: >- # more at semgrep.dev/explore
-          r/generic.dockerfile
-          r/bash
-          p/terraform
-          p/typescript
-          p/github-actions
-          r/html.best-practice.robots-denied.robots-denied
-          r/html.security.missing-noopener.missing-noopener
-          r/html.security.missing-noreferrer.missing-noreferrer
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: terraform validate
+        uses: dflook/terraform-validate@v1
+        with:
+          path: ${{ matrix.projects }}
+
+  fmt-check:
+    runs-on: ubuntu-latest
+    name: Check formatting of terraform files
+    steps:
+      - matrix:
+          projects: [
+            "01_s3_bucket",
+            "02_asg"
+          ]    
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: terraform fmt
+        uses: dflook/terraform-fmt-check@v1
+        with:
+          path: ${{ matrix.projects }}
+
+
+
+# jobs:
+#   github-info:
+#     name: "Github information"
+#     runs-on: ubuntu-latest
+#     env:
+#       GIT_COMMIT_MSG: '${{ github.event.head_commit.message }}'
+
+
+#     steps:
+#     - matrix:
+#         projects: [
+#           "01_s3_bucket",
+#           "02_asg"
+#         ]    
+
+#     # - name: Dump GitHub context
+#     #   id: github_context_step
+#     #   run: echo '${{ toJSON(github) }}'
+#     - name: Dump job context
+#       run: echo '${{ toJSON(job) }}'
+#     - name: Dump steps context
+#       run: echo '${{ toJSON(steps) }}'
+#     - name: Dump runner context
+#       run: echo '${{ toJSON(runner) }}'
+#     - name: Dump strategy context
+#       run: echo '${{ toJSON(strategy) }}'
+#     - name: Dump matrix context
+#       run: echo '${{ toJSON(matrix) }}'
+#     - name: Dump docker info
+#       run: docker info
+#     - name: Terraform Version
+#       run: terraform version
+
+#     - name: Checkout
+#       uses: actions/checkout@v3
+#       with:
+#         fetch-depth: 0
+#         # persist-credentials: false
+#         # clean: false
+#         # submodules: false
+
+#     - name: semgrep-action
+#       uses: returntocorp/semgrep-action@v1
+#       with:
+#         config: >- # more at semgrep.dev/explore
+#           r/generic.dockerfile
+#           r/bash
+#           p/terraform
+#           p/typescript
+#           p/github-actions
+#           r/html.best-practice.robots-denied.robots-denied
+#           r/html.security.missing-noopener.missing-noopener
+#           r/html.security.missing-noreferrer.missing-noreferrer
 
 
   # semgrep-validate:
