@@ -28,15 +28,15 @@ jobs:
         projects: [
           "01_s3_bucket",
           "02_asg"
-        ]   
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v3
+        ]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
 
-        - name: terraform validate
-          uses: dflook/terraform-validate@v1
-          with:
-            path: "01_s3_bucket"
+      - name: terraform validate
+        uses: dflook/terraform-validate@v1
+        with:
+          path: ${{ matrix.projects }}
 
   fmt-check:
     runs-on: ubuntu-latest
