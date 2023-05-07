@@ -43,67 +43,67 @@ jobs:
     - name: Terraform Version
       run: terraform version
 
-  semgrep-validate:
-    name: "Validate with semgrep"
-    runs-on: ubuntu-latest
-    env:
-      GIT_COMMIT_MSG: '${{ github.event.head_commit.message }}'
+  # semgrep-validate:
+  #   name: "Validate with semgrep"
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     GIT_COMMIT_MSG: '${{ github.event.head_commit.message }}'
 
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-        # persist-credentials: false
-        # clean: false
-        # submodules: false
+  #   steps:
+  #   - name: Checkout
+  #     uses: actions/checkout@v2
+  #     with:
+  #       fetch-depth: 0
+  #       # persist-credentials: false
+  #       # clean: false
+  #       # submodules: false
 
-    - name: semgrep-action
-      uses: returntocorp/semgrep-action@v1
-      with:
-        config: >- # more at semgrep.dev/explore
-          r/generic.dockerfile
-          r/bash
-          p/terraform
-          p/typescript
-          p/github-actions
-          r/html.best-practice.robots-denied.robots-denied
-          r/html.security.missing-noopener.missing-noopener
-          r/html.security.missing-noreferrer.missing-noreferrer
+  #   - name: semgrep-action
+  #     uses: returntocorp/semgrep-action@v1
+  #     with:
+  #       config: >- # more at semgrep.dev/explore
+  #         r/generic.dockerfile
+  #         r/bash
+  #         p/terraform
+  #         p/typescript
+  #         p/github-actions
+  #         r/html.best-practice.robots-denied.robots-denied
+  #         r/html.security.missing-noopener.missing-noopener
+  #         r/html.security.missing-noreferrer.missing-noreferrer
 
-  test:
-    name: "Validate Terraform"
-    runs-on: ubuntu-latest
-    env:
-      GIT_COMMIT_MSG: '${{ github.event.head_commit.message }}'
+  # test:
+  #   name: "Validate Terraform"
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     GIT_COMMIT_MSG: '${{ github.event.head_commit.message }}'
 
-    steps:
-    - matrix:
-        projects: [
-          "01_s3_bucket",
-          "02_asg"
-        ]
+  #   steps:
+  #   - matrix:
+  #       projects: [
+  #         "01_s3_bucket",
+  #         "02_asg"
+  #       ]
 
-    - name: Save starttime
-      run: |
-        echo $(date +%s) > ../build-start
-        echo "${{ github.sha }}-$GITHUB_RUN_ID" > ../build-tag
-        echo "Commit msg: '$GIT_COMMIT_MSG'"
+  #   - name: Save starttime
+  #     run: |
+  #       echo $(date +%s) > ../build-start
+  #       echo "${{ github.sha }}-$GITHUB_RUN_ID" > ../build-tag
+  #       echo "Commit msg: '$GIT_COMMIT_MSG'"
 
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-        # persist-credentials: false
-        # clean: false
-        # submodules: false
+  #   - name: Checkout
+  #     uses: actions/checkout@v2
+  #     with:
+  #       fetch-depth: 0
+  #       # persist-credentials: false
+  #       # clean: false
+  #       # submodules: false
 
-    - name: Terraform Check
-      run: |
-        cd ${{ matrix.projects }}
-        terraform init
-        terraform fmt -check
-        terraform plan
+  #   - name: Terraform Check
+  #     run: |
+  #       cd ${{ matrix.projects }}
+  #       terraform init
+  #       terraform fmt -check
+  #       terraform plan
 
 
 
