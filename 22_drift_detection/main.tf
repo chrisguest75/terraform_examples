@@ -5,29 +5,29 @@ locals {
       ports : [{
         internal : "80"
         external : "8080"
-      },{
+        }, {
         internal : "90"
         external : "8090"
-      },{
+        }, {
         internal : "100"
         external : "8100"
-      }
+        }
       ]
-    }, 
+    },
     {
       name : "nginx2"
       ports : [{
         internal : "80"
         external : "8081"
       }]
-    }, 
+    },
     {
       name : "nginx3"
       ports : [{
         internal : "80"
         external : "8082"
       }]
-    }, 
+    },
     {
       name : "nginx4"
       ports : []
@@ -51,7 +51,7 @@ resource "docker_container" "container" {
     content {
       internal = port.value.internal
       external = port.value.external
-    }  
+    }
   }
 
   image   = docker_image.nginx.image_id
