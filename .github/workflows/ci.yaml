@@ -42,6 +42,18 @@ jobs:
       - name: Terraform Version
         run: terraform version  
 
+#         "00_basic_practices"
+#         /       09_targeting_resources/   19_sops/
+# /             10_workspaces/            20_cdk/
+# 02_asg/                   11_importing_state/       21_importing_ssm/
+# 03_locks_versions/        12_upgrading_providers/   22_drift_detection/
+# 04_envvars/               12_upgrading_terraform/   23_honeycomb/
+# 05_debugging/             13_importing_data/        24_quine/
+# 06_processing_plan_files/ 15_importing_webservice/  25_moved/
+# 07_remote_state/          17_static_site/           26_github_modules/
+# 08_module/                18_terraformer/           28_aiven_kafka/
+
+
   validate:
     runs-on: ubuntu-latest
     name: Validate terraform configuration
@@ -51,6 +63,25 @@ jobs:
           "01_s3_bucket",
           "02_asg",
           "03_locks_versions",
+          "04_envvars",
+          "05_debugging",
+          "06_processing_plan_files",
+          "07_remote_state",
+          "08_module",
+          "11_importing_state",
+          "12_upgrading_providers",
+          "12_upgrading_terraform", 
+          "13_importing_data",      
+          "15_importing_webservice",
+          "17_static_site",
+          "18_terraformer",    
+          "21_importing_ssm",
+          "22_drift_detection",
+          "23_honeycomb",
+          "24_quine",
+          "25_moved",
+          "26_github_modules",
+          "28_aiven_kafka",
         ]
     steps:
       - name: Checkout
@@ -70,6 +101,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Semgrep
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: semgrep-action
         uses: returntocorp/semgrep-action@v1
         with:
@@ -86,24 +120,6 @@ jobs:
 
 
 
-    #       fmt-check:
-    # runs-on: ubuntu-latest
-    # name: Check formatting of terraform files
-    # steps:
-    #   - name: Checkout
-    #     uses: actions/checkout@v3
-
-    #   - name: terraform fmt
-    #     uses: dflook/terraform-fmt-check@v1
-    #     with:
-    #       path: "01_s3_bucket"
-
-
-
-
-
-
-
   #   - name: Terraform Check
   #     run: |
   #       cd ${{ matrix.projects }}
@@ -114,14 +130,4 @@ jobs:
 
 
 
-#         "00_basic_practices"
-#         /       09_targeting_resources/   19_sops/
-# /             10_workspaces/            20_cdk/
-# 02_asg/                   11_importing_state/       21_importing_ssm/
-# 03_locks_versions/        12_upgrading_providers/   22_drift_detection/
-# 04_envvars/               12_upgrading_terraform/   23_honeycomb/
-# 05_debugging/             13_importing_data/        24_quine/
-# 06_processing_plan_files/ 15_importing_webservice/  25_moved/
-# 07_remote_state/          17_static_site/           26_github_modules/
-# 08_module/                18_terraformer/           28_aiven_kafka/
 
