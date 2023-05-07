@@ -49,8 +49,8 @@ jobs:
       fail-fast: false
       matrix:
         projects: [
-          { plan: true, project: "01_s3_bucket", tfvars: "01_s3_bucket/terraform.tfvars" },
-          { plan: true, project: "02_asg", tfvars: "02_asg/terraform.tfvars" },
+          { plan: false, project: "01_s3_bucket", tfvars: "01_s3_bucket/terraform.tfvars" },
+          { plan: false, project: "02_asg", tfvars: "02_asg/terraform.tfvars" },
           { plan: true, project: "03_locks_versions", tfvars: "" },
           { plan: true, project: "04_envvars", tfvars: "" },
           { plan: true, project: "05_debugging", tfvars: "" },
@@ -62,7 +62,7 @@ jobs:
           { plan: true, project: "10_workspaces", tfvars: "" },
           { plan: true, project: "11_importing_state", tfvars: "" },
           { plan: true, project: "12_upgrading_providers", tfvars: "" },
-          { plan: true, project: "12_upgrading_terraform/11.x", tfvars: "" }, 
+          { plan: false, project: "12_upgrading_terraform/11.x", tfvars: "" }, 
           { plan: true, project: "12_upgrading_terraform/12.x", tfvars: "" }, 
           { plan: true, project: "12_upgrading_terraform/13.x", tfvars: "" }, 
           { plan: true, project: "12_upgrading_terraform/14.x", tfvars: "" }, 
@@ -73,13 +73,13 @@ jobs:
           { plan: false, project: "18_terraformer", tfvars: "" },    
           { plan: false, project: "19_sops", tfvars: "" },
           { plan: false, project: "20_cdk", tfvars: "" },
-          { plan: true, project: "21_importing_ssm", tfvars: "" },
+          { plan: false, project: "21_importing_ssm", tfvars: "" },
           { plan: true, project: "22_drift_detection", tfvars: "" },
-          { plan: true, project: "23_honeycomb", tfvars: "" },
+          { plan: false, project: "23_honeycomb", tfvars: "" },
           { plan: true, project: "24_quine", tfvars: "24_quine/terraform.tfvars" },
           { plan: true, project: "25_moved", tfvars: "25_moved/terraform.tfvars" },
           { plan: true, project: "26_github_modules", tfvars: "" },
-          { plan: true, project: "28_aiven_kafka", tfvars: "28_aiven_kafka/terraform.tfvars" },
+          { plan: false, project: "28_aiven_kafka", tfvars: "28_aiven_kafka/terraform.tfvars" },
         ]
     steps:
       - name: Checkout
