@@ -18,8 +18,8 @@ on:
       - '.github/workflows/ci.yaml'
 
 jobs:
-  build-test:
-    name: "Build, test"  
+  github-info:
+    name: "Github information"
     runs-on: ubuntu-latest
     env:
       GIT_COMMIT_MSG: '${{ github.event.head_commit.message }}'
@@ -43,11 +43,11 @@ jobs:
     - name: Terraform Version
       run: terraform version
 
-    - name: Save starttime
-      run: |
-        echo $(date +%s) > ../build-start
-        echo "${{ github.sha }}-$GITHUB_RUN_ID" > ../build-tag
-        echo "Commit msg: '$GIT_COMMIT_MSG'"
+  validate:
+    name: "Validate with semgrep"
+    runs-on: ubuntu-latest
+    env:
+      GIT_COMMIT_MSG: '${{ github.event.head_commit.message }}'
 
     - name: Checkout
       uses: actions/checkout@v2
@@ -70,11 +70,51 @@ jobs:
           r/html.security.missing-noopener.missing-noopener
           r/html.security.missing-noreferrer.missing-noreferrer
 
-    - name: Terraform Plan
+  test:
+    name: "Validate Terraform"
+    runs-on: ubuntu-latest
+    env:
+      GIT_COMMIT_MSG: '${{ github.event.head_commit.message }}'
+
+    steps:
+    - matrix:
+        projects: [
+          "01_s3_bucket",
+          "02_asg"
+        ]
+
+    - name: Save starttime
       run: |
-        cd ./01-terraform
+        echo $(date +%s) > ../build-start
+        echo "${{ github.sha }}-$GITHUB_RUN_ID" > ../build-tag
+        echo "Commit msg: '$GIT_COMMIT_MSG'"
+
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+        # persist-credentials: false
+        # clean: false
+        # submodules: false
+
+    - name: Terraform Check
+      run: |
+        cd ${{ matrix.projects }}
         terraform init
-        terraform fmt
+        terraform fmt -check
         terraform plan
 
+
+
+
+#         "00_basic_practices"
+#         /       09_targeting_resources/   19_sops/
+# /             10_workspaces/            20_cdk/
+# 02_asg/                   11_importing_state/       21_importing_ssm/
+# 03_locks_versions/        12_upgrading_providers/   22_drift_detection/
+# 04_envvars/               12_upgrading_terraform/   23_honeycomb/
+# 05_debugging/             13_importing_data/        24_quine/
+# 06_processing_plan_files/ 15_importing_webservice/  25_moved/
+# 07_remote_state/          17_static_site/           26_github_modules/
+# 08_module/                18_terraformer/           28_aiven_kafka/
 
