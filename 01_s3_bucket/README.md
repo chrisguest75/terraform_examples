@@ -1,6 +1,6 @@
 # README
 
-Example of creating an S3 Bucket
+Example of creating an S3 Bucket  
 
 ## NOTES
 
@@ -11,7 +11,6 @@ Example of creating an S3 Bucket
 * https://github.com/MayaraCloud/apt-transport-s3
 * https://manpages.debian.org/testing/apt-transport-s3/apt-transport-s3.8.en.html
 * https://manpages.debian.org/jessie/apt/sources.list.5.en.html
-* https://s3.eu-west-1.amazonaws.com/test-conde-deb-packages
 * Might need to remove ./ from packages.gz manifest.
 
 ## Prepare
