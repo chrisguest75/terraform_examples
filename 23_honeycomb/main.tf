@@ -3,9 +3,9 @@ terraform {
 
   required_providers {
     honeycombio = {
-      source = "honeycombio/honeycombio"
+      source  = "honeycombio/honeycombio"
       version = "0.13.1"
-    }  
+    }
   }
 
   backend "local" {
@@ -17,20 +17,20 @@ provider "honeycombio" {
 }
 
 variable "dataset" {
-  type = string
-  default = "23_triggers"
+  type        = string
+  default     = "23_triggers"
   description = "The dataset to requires some data to be present"
 }
 
 variable "marker_text" {
-  type = string
-  default = "marker_text"
+  type        = string
+  default     = "marker_text"
   description = "The marker text to use for the marker"
 }
 
 resource "honeycombio_marker_setting" "deploymnt_marker" {
-  type =  "deployment"
-  color = "#DF4661"
+  type    = "deployment"
+  color   = "#DF4661"
   dataset = var.dataset
 }
 
@@ -42,7 +42,7 @@ resource "honeycombio_dataset" "my_dataset" {
 # Create a marker
 resource "honeycombio_marker" "marker" {
   message = var.marker_text
-  type = "deployment"
+  type    = "deployment"
 
   dataset = var.dataset
 }

@@ -1,1 +1,1 @@
-output_path="./output"
+output_path = "./output"

@@ -4,3 +4,4 @@
 *.tfstate
 *.tfplan
 *.tfstate.backup
+.env

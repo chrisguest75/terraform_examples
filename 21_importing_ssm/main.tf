@@ -34,12 +34,12 @@ variable "ssm_encrypted_path" {
 }
 
 data "aws_ssm_parameter" "encrypted" {
-  name = var.ssm_encrypted_path
+  name            = var.ssm_encrypted_path
   with_decryption = true
 }
 
 data "aws_ssm_parameter" "notdecrypted" {
-  name = var.ssm_encrypted_path
+  name            = var.ssm_encrypted_path
   with_decryption = false
 }
 
@@ -56,7 +56,7 @@ locals {
 
 resource "local_file" "file" {
 
-  content  = <<-EOT
+  content = <<-EOT
   SSM Parameter Store Values:
   ${data.aws_ssm_parameter.version.name}
   ${data.aws_ssm_parameter.version.value}
@@ -67,8 +67,8 @@ resource "local_file" "file" {
   ${data.aws_ssm_parameter.notdecrypted.name}
   ${data.aws_ssm_parameter.notdecrypted.value}
   EOT
-  
-  
-  
+
+
+
   filename = "./files/version.txt"
 }

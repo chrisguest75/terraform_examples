@@ -11,11 +11,11 @@ terraform {
 #################################################
 
 variable "output_path" {
-  type = string
+  type    = string
   default = "./output"
 
   validation {
-    condition = startswith(var.output_path, "./") && (length(var.output_path) > 2)
+    condition     = startswith(var.output_path, "./") && (length(var.output_path) > 2)
     error_message = "PAth has to start with './' and be longer than 2 characters."
   }
 }
@@ -26,7 +26,7 @@ variable "output_path" {
 
 locals {
   source_files_path = "./source_files"
-  contents = fileset(local.source_files_path, "*.txt")
+  contents          = fileset(local.source_files_path, "*.txt")
 }
 
 #################################################

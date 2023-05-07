@@ -20,7 +20,7 @@ variable "kafka_topic_name" {
 }
 
 variable "kafka_user_name" {
-  type = string
+  type        = string
   description = "The kafka user name."
   default     = "kafka_a"
 }
