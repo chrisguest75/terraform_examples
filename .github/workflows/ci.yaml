@@ -44,6 +44,11 @@ jobs:
       run: terraform version
 
   semgrep-validate:
+    name: "Validate with semgrep"
+    runs-on: ubuntu-latest
+    env:
+      GIT_COMMIT_MSG: '${{ github.event.head_commit.message }}'
+
     - name: Checkout
       uses: actions/checkout@v2
       with:
