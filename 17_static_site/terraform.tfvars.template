@@ -1,0 +1,9 @@
+profile     = "myprofile"
+zone        = "eu-west-1a"
+region      = "eu-west-1"
+bucket_name = "mybucket"
+
+website_build_folder = "website_v1"
+
+state_bucket_name = "my-state-bucket"
+state_table_name  = "my-state-table"
