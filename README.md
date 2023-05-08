@@ -21,8 +21,6 @@ B -->|Terraform State| F[Backend]
 B -->|Provider Plugins| G[Cloud Provider]
 ```
 
----
-
 ## Prereqs
 
 ```sh
@@ -46,6 +44,10 @@ Actions help [.github/ACTIONS.md](.github/ACTIONS.md)
 ## NX
 
 NX help [00_nx/README.md](./00_nx/ACTIONS.md)  
+
+## Troubleshooting
+
+AWS cli can be used to verifiy and check resources [shell_examples/33_awscli](https://github.com/chrisguest75/shell_examples/tree/master/33_awscli)  
 
 ## 00 - Basic Practices
 
