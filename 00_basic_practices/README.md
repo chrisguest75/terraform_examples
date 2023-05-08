@@ -56,7 +56,7 @@ variable image {
 
 ## Modules to have guards
 
-As demonstrated in [redis.tf](../08_module/modules/redis/redis.tf) we should put requirements on the modules. 
+As demonstrated in [redis.tf](../08_module/modules/redis/redis.tf) we should put requirements on the modules.  
 
 ```hcl
 terraform {

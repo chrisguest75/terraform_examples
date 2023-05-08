@@ -4,9 +4,8 @@ Demonstrate a few monorepo techniques for terraform.
 
 ## NOTES
 
-TODO:
-
-* Handling versions of terraform
+* It handles different versions of terraform. using the `dflook/terraform` actions.  
+* The CI pipeline demonstrates the use of matrix strategy to run individual steps on each folder.  
 
 ## Resources
 

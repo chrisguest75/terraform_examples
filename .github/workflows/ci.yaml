@@ -17,8 +17,6 @@ on:
       - '**'
       - '.github/workflows/ci.yaml'
 
-
-
 jobs:
   github-info:
     runs-on: ubuntu-latest
