@@ -2,13 +2,8 @@
 
 resource "aws_s3_bucket" "static_bucket" {
   bucket = var.bucket_name
-  acl    = "public-read"
 
   tags = var.tags
-
-  website {
-    index_document = "index.html"
-  }
 
   /*cors_rule {
     allowed_headers = ["*"]
@@ -20,7 +15,33 @@ resource "aws_s3_bucket" "static_bucket" {
 
 }
 
-resource "aws_s3_bucket_object" "root" {
+resource "aws_s3_bucket_acl" "static_bucket" {
+  bucket = aws_s3_bucket.static_bucket.id
+  acl    = "public-read"
+}
+
+resource "aws_s3_bucket_website_configuration" "static_bucket" {
+  bucket = aws_s3_bucket.static_bucket.id
+
+  index_document {
+    suffix = "index.html"
+  }
+
+  error_document {
+    key = "error.html"
+  }
+
+  routing_rule {
+    condition {
+      key_prefix_equals = "/view"
+    }
+    redirect {
+      replace_key_prefix_with = "${var.website_build_folder}"
+    }
+  }
+}
+
+resource "aws_s3_object" "root" {
   bucket       = aws_s3_bucket.static_bucket.id
   key          = "index.html"
   source       = "./index.html"
@@ -28,7 +49,7 @@ resource "aws_s3_bucket_object" "root" {
   etag         = filemd5("./index.html")
 }
 
-resource "aws_s3_bucket_object" "website" {
+resource "aws_s3_object" "website" {
   for_each = fileset(var.website_build_folder, "*")
   bucket   = aws_s3_bucket.static_bucket.id
   key      = "${var.website_build_folder}/${each.value}"
@@ -63,6 +84,6 @@ POLICY
 }
 
 output "s3_url" {
-  value       = "http://${aws_s3_bucket.static_bucket.website_endpoint}"
+  value       = "http://${aws_s3_bucket_website_configuration.static_bucket.website_endpoint}"
   description = "The url of the s3 bucket"
 }

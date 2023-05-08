@@ -1,3 +1,5 @@
+variable "profile" {}
+
 variable "region" {}
 
 variable "tags" {

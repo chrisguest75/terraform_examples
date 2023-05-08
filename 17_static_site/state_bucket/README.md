@@ -17,6 +17,13 @@ terraform plan --var-file=terraform.tfvars
 terraform apply -auto-approve --var-file=terraform.tfvars 
 ```
 
+## Outputs
+
+```sh
+terraform output state_bucket_name
+terraform output state_lock_table_name
+```
+
 ## Cleanup
 
 ```sh
