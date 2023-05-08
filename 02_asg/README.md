@@ -1,6 +1,6 @@
 # README
 
-Example of creating an Auto Scaling Group 
+Example of creating an Auto Scaling Group  
 
 ## Prepare
 
@@ -48,3 +48,7 @@ ssh -i ./example_ssh ec2-user@$(aws --region eu-west-1 ec2 describe-instances --
 ```sh
 ssh -i /keybase/team/chris_test_team/aws_ssh_example/example_ssh 
 ```
+
+## Resources
+
+* hashicorp/terraform-provider-aws repo [here](https://github.com/hashicorp/terraform-provider-aws)  

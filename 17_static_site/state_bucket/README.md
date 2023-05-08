@@ -33,4 +33,3 @@ terraform fmt -recursive
 ## Resources
 
 * Examples of creating state bucket with terraform [here](https://stackoverflow.com/questions/47913041/initial-setup-of-terraform-backend-using-terraform)
-

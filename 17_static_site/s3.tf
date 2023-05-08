@@ -30,12 +30,12 @@ resource "aws_s3_bucket_object" "root" {
 
 resource "aws_s3_bucket_object" "website" {
   for_each = fileset(var.website_build_folder, "*")
-  bucket = aws_s3_bucket.static_bucket.id
-  key = "${var.website_build_folder}/${each.value}"
+  bucket   = aws_s3_bucket.static_bucket.id
+  key      = "${var.website_build_folder}/${each.value}"
 
-  source = "${var.website_build_folder}/${each.value}"
+  source       = "${var.website_build_folder}/${each.value}"
   content_type = "text/html"
-  etag = filemd5("${var.website_build_folder}/${each.value}")
+  etag         = filemd5("${var.website_build_folder}/${each.value}")
 
 }
 

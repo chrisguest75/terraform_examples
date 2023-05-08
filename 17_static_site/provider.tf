@@ -2,6 +2,7 @@
 provider "aws" {
   region = var.region
 
+  required_version = "~>4"
   default_tags {
     tags = {
       "created_by"  = "terraform"

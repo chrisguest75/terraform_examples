@@ -89,3 +89,7 @@ docker run -it --entrypoint=/bin/bash usepackages
 
 docker run -it --entrypoint=/bin/bash ubuntu:16.04 
 ```
+
+## Resources
+
+* hashicorp/terraform-provider-aws repo [here](https://github.com/hashicorp/terraform-provider-aws)  
