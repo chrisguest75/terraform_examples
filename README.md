@@ -39,6 +39,13 @@ brew install terraform-docs
 brew install terraform_landscape 
 ```
 
+## Actions
+
+Actions help [.github/ACTIONS.md](.github/ACTIONS.md)  
+
+## NX
+
+NX help [00_nx/README.md](./00_nx/ACTIONS.md)  
 
 ## 00 - Basic Practices
 
