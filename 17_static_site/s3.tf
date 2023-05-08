@@ -36,7 +36,7 @@ resource "aws_s3_bucket_website_configuration" "static_bucket" {
       key_prefix_equals = "/view"
     }
     redirect {
-      replace_key_prefix_with = "${var.website_build_folder}"
+      replace_key_prefix_with = "/${var.website_build_folder}"
     }
   }
 }
