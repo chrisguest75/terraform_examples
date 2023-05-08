@@ -68,6 +68,7 @@ jobs:
           { plan: true, project: "12_upgrading_terraform/1.2.x", tfvars: "" }, 
           { plan: true, project: "13_importing_data", tfvars: "" },      
           { plan: true, project: "15_importing_webservice", tfvars: "" },
+          { plan: false, project: "17_static_site", tfvars: "" },             
           { plan: false, project: "18_terraformer", tfvars: "" },    
           { plan: false, project: "19_sops", tfvars: "" },
           { plan: false, project: "20_cdk", tfvars: "" },
