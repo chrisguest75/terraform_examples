@@ -2,6 +2,12 @@
 
 Example of struturing Terraform for multiple accounts
 
+TODO:
+
+* add a json file to test CORS
+* add cloudfront
+* redirects to other domains
+
 ## NOTES
 
 * Workspaces combine all the state into one file and this can be bad for flexibilty.  
