@@ -71,6 +71,40 @@ terraform {
 }
 ```
 
+## Adding providers
+
+When adding resources that use providers in Terraform you need to make sure that any of the executions using that state have the provider defined.  This becomes important if you are manaually applying outside of a committed branch that a pipeline is using.  If the pipeline code sees reference to a provider in the state file it will fail that is not in the provider block it will fail.  
+
+```mermaid
+sequenceDiagram
+  actor D as Developer
+  participant T as Terraform
+  participant P as Provider
+  participant S as Remote State File
+  participant G as Git
+  participant PL as Pipeline
+  D-->>D: Write provider and resource configuration
+  D->>T: Run terraform init
+  T-->>D: Provider initialized
+  D->>T: Run terraform plan
+  T->>P: Check resource state
+  T-->>D: Show plan
+  D->>T: Run terraform apply
+  T->>P: Create/Update/Delete resources
+  T->>S: Update state file
+  T-->>D: Apply complete
+  G-->>PL: Pull changes
+  PL->>T: Run terraform plan without developer changes
+  T->>S: Read state file
+  T-->>PL: Plan fails due to missing provider
+  D->>G: Developer commits changes
+  G-->>PL: Pull changes
+  PL->>T: Retry terraform plan with developer changes
+  T->>S: Read state file
+  T-->>PL: Plan successful
+```
+
 ## Resources
  
-
+* sequenceDiagram docs [here](https://mermaid.js.org/syntax/sequenceDiagram.html)
+* mermaid online editor [here](https://mermaid.live/)
