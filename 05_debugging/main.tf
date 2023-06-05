@@ -10,6 +10,15 @@ terraform {
 ## Variables
 #################################################
 
+variable "tags" {
+  type = map(string)
+
+  default = {
+    GitRepo      = "terraform-examples"
+    GitRepoPath  = "05_debugging"
+  }
+}
+
 variable "files" {
   type    = string
   default = "./files.json"

@@ -76,24 +76,36 @@ NOTE: As you open the console you'll see a lock file being created `.terraform.t
 ```sh
 # open console
 terraform console
+
 # false
 contains(["hello"],"world") 
+
 # true
 contains(["hello"],"hello") 
+
 # 12
 max(5, 12, 9)
+
 # load a json file
 jsondecode(file("./files.json"))
+
 # show a local variable
 local.json_files
+
 # does not seem possible to override values (errors)
 local.json_files = jsondecode(file("./files.json"))
+
 # get an element of an array
 element(local.json_files.files, 0)
+
 # pull out file name and compare
 substr(element(local.json_files.files, 0).name, 0,5) == "file1"
+
 # concat a array of strings
 join(",", local.files_list[*].name)
+
+# merge two maps
+merge(var.tags, { "key3" = "value3" })
 ```
 
 ## Providers
