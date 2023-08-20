@@ -2,8 +2,26 @@ locals {
   code_zip_path = "../out/archive.zip"
 }
 
+resource "null_resource" "zip_files" {
+  provisioner "local-exec" {
+    working_dir = "./"
+    command     = <<EOT
+    mkdir -p ./zip_source_data
+    cp ../README.md ./zip_source_data
+    cp -R ../../00_basic_practices ./zip_source_data
+    EOT
+  }
+
+  triggers = {
+    always_run = "${timestamp()}"
+  }
+}
+
 data "archive_file" "zip" {
-  source_dir = "../../00_basic_practices"
+  depends_on = [ 
+    null_resource.zip_files
+   ]
+  source_dir = "zip_source_data"
   //source_file = "../README.md"
 
   output_path = local.code_zip_path

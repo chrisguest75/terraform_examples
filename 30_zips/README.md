@@ -14,11 +14,15 @@ Demonstrate `zip` generation techniques for Terraform.
 
 Generates an archive from content, a file, or directory of files.  
 
+As the `archive_file` resource only allows a single source. We arrange files using a provisioner first.  
+
 ```sh
 terraform init
 
+# create resources
 terraform apply 
 
+# display contents of the file
 unzip -l ../out/archive.zip
 ```
 
@@ -31,10 +35,12 @@ Important: Use provisioners as a last resort. There are better alternatives for 
 ```sh
 terraform init
 
+# create resources
 rm -rf ../out
 terraform apply
 terraform apply --target "null_resource.zip_files"
 
+# display contents of the file
 unzip -l ../out/provisioner.zip
 ```
 
