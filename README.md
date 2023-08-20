@@ -165,6 +165,11 @@ Demonstrates how to use moved block.
 Demonstrates using a module in a subdirectory from a commitid  
 [README.md](26_github_modules/README.md)  
 
+## 30 - zips
+
+Demonstrate `zip` generation techniques for Terraform.  
+[README.md](30_zips/README.md)  
+
 ## Resources
 
 * Github [hashicorp/terraform](https://github.com/hashicorp/terraform)  
