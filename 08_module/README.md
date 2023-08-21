@@ -4,6 +4,12 @@ Demonstrates a very basic module in Terraform.
 
 REF: [03_locks_versions/README.md](../03_locks_versions/README.md)  
 
+## Demonstrates
+
+* The value of `path.module` inside a module.
+* Documenting terraform modules using `terraform-docs`
+* Using terraform docker
+
 ## Create a docker container using a module
 
 ```sh
@@ -32,6 +38,12 @@ terraform validate ./modules/redis
 ```sh
 # create module documentation
 terraform-docs markdown ./modules/redis > ./modules/redis/README.md
+```
+
+## Cleanup
+
+```sh
+terraform destroy
 ```
 
 ## Resources
