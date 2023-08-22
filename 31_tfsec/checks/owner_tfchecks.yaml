@@ -1,0 +1,20 @@
+---
+checks:
+- code: TAG_custom
+  description: Check the presence of the tag
+  errorMessage: Tag isn't there or doesn't match rule
+  severity: HIGH
+  requiredTypes:
+  - resource
+  requiredLabels:
+  - aws_instance
+  - aws_s3_bucket
+  matchSpec:
+    action: contains
+    name: tags
+    value:
+      ClusterServer:
+        action: isAny
+        value:
+        - true
+        - false
