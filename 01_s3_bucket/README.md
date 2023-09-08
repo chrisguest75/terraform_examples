@@ -1,6 +1,6 @@
 # README
 
-Example of creating an S3 Bucket  
+Example of creating an S3 Bucket to host a debian package repository  
 
 ## NOTES
 

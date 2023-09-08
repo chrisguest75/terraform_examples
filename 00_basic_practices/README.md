@@ -105,6 +105,6 @@ sequenceDiagram
 ```
 
 ## Resources
- 
+
 * sequenceDiagram docs [here](https://mermaid.js.org/syntax/sequenceDiagram.html)
 * mermaid online editor [here](https://mermaid.live/)

@@ -47,6 +47,7 @@ Modify the version of the AWS provider.
 ```hcl
 # partial upgrade for 4.xx.xx releases
 version = "~>4"
+
 # a specific version
 version = "4.60.0"
 version = "4.56.0"
