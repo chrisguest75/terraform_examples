@@ -25,7 +25,8 @@ resource "aws_s3_bucket_acl" "deb_bucket" {
   depends_on = [aws_s3_bucket_ownership_controls.deb_bucket]
 
   bucket = aws_s3_bucket.deb_bucket.id
-  acl    = "public-read"
+  #tfsec:ignore:aws-s3-no-public-access-with-acl
+  acl = "public-read"
 }
 resource "aws_s3_object" "packages" {
   bucket = aws_s3_bucket.deb_bucket.id

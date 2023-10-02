@@ -1,0 +1,17 @@
+---
+checks:
+  - code: TAG_check_required_tags
+    description: Check the presence of the required tags
+    errorMessage: Required tags ar missing or doesn't match rule
+    severity: HIGH
+    requiredTypes:
+      - resource
+    requiredLabels:
+      - aws_instance
+      - aws_s3_bucket
+    matchSpec:
+      name: tags
+      action: contains
+      values:
+        - created_by
+        - owner
