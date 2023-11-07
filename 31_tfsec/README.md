@@ -40,20 +40,21 @@ tfsec --concise-output
 tfsec ./01_s3_bucket --custom-check-dir ./31_tfsec/checks --tfvars-file ./01_s3_bucket/terraform.tfvars
 ```
 
-## Writing custom rules
+## Writing custom rules (with tests)
+
+`tfsec-checkgen` is a seperate tool.  
 
 ```sh
 # create a template
 tfsec-checkgen generate 
 
-tfsec-checkgen test-check ./checks/required_tags_tfchecks.yaml -p ./tests/aws_s3_bucket_success.tf -f ./tests/aws_s3_bucket_fail.tf
-
 # validate rules
 tfsec-checkgen validate ./checks/required_tags_tfchecks.yaml
 
-# tests?
-tfsec-checkgen test-check ./checks/required_tags_tfchecks.yaml -p ./tests/aws_s3_bucket_fail_notags.tf 
-tfsec-checkgen test-check ./checks/required_tags_tfchecks.yaml -p ./tests/aws_s3_bucket_success.tf -f ./tests/aws_s3_bucket_fail.tf 
+# tests? NOT_WORKING
+tfsec-checkgen test-check ./checks/required_tags_tfchecks.yaml --pass ./tests/aws_s3_bucket_success.tf 
+tfsec-checkgen test-check ./checks/required_tags_tfchecks.yaml --fail ./tests/aws_s3_bucket_fail_notags.tf
+tfsec-checkgen test-check ./checks/required_tags_tfchecks.yaml --fail ./tests/aws_s3_bucket_fail_missingtags.tf
 ```
 
 ## Ignoring rules in code
