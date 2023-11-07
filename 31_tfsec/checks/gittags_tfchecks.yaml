@@ -1,0 +1,24 @@
+---
+checks:
+- code: GITTAGS_001
+  description: Custom check to ensure we have GitRepo and GitRepoPath tags is applied to resources
+  errorMessage: The required Git tags are missing
+  severity: ERROR
+  relatedLinks:
+  - http://internal.acmecorp.com/standards/aws/tagging.html
+  impact: By not having Git tags it makes it hard to track back to the Terraform stacks that created the resources
+  resolution: Add the GitRepo and GitRepoPath tags
+  requiredTypes:
+  - resource
+  requiredLabels:
+  - aws_instance
+  matchSpec:
+    action: and
+    matchSpec:
+      name: tags
+      action: contains
+      value: GitRepo
+    matchSpec:
+      name: tags
+      action: contains
+      value: GitRepoPath
