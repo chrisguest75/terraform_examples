@@ -5,6 +5,7 @@ Demonstrate how to use `tfsec`
 TODO:
 
 * Show how to use a rego policy
+* The tag check example is not working correctly yet
 
 ## Install
 
@@ -60,6 +61,19 @@ tfsec-checkgen test-check ./checks/required_tags_tfchecks.yaml -p ./tests/aws_s3
 ```hcl
 # You can add comments to to ignore rules 
 # tfsec:ignore:aws-s3-no-public-access-with-acl
+```
+
+## Find all terraform in a repo
+
+```sh
+# find all files
+MY_TF_DIRS=$(find "." -name "*.tf" | sed -r 's|/[^/]+$$||' | sort --unique)
+# iterate and scan
+while IFS=, read -r tfpath 
+do
+    echo "FOUND $tfpath"
+    tfsec $tfpath --concise-output | grep "detected"
+done < <(echo $MY_TF_DIRS)
 ```
 
 ## Resources
