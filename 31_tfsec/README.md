@@ -6,6 +6,7 @@ TODO:
 
 * Show how to use a rego policy
 * The tag check example is not working correctly yet
+* Add to the github pipeline
 
 ## Install
 
