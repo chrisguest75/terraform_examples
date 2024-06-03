@@ -1,8 +1,11 @@
 # TODO
 
+* Open tofu
+* Terraform test
+* Practice a state migration between two stacks
+
+
 * Make a manifest of which pipelines to run and include it into the pipeline definition
-
-
 
 * add automatic plans as comments. https://github.com/dflook/terraform-github-actions/tree/main/terraform-plan
 
