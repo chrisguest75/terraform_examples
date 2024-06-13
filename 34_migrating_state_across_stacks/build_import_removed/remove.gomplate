@@ -1,0 +1,10 @@
+{{- $data := (datasource "jsonData") -}}
+{{ range $data }}
+removed {
+    from = {{ .address }}
+
+    lifecycle {
+        destroy = false
+    }
+}
+{{ end }}

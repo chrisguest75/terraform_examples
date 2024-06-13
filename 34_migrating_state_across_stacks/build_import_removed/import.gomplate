@@ -1,0 +1,27 @@
+{{- $data := (datasource "jsonData") -}}
+{{ range $data }}
+{{- $original := .address -}}
+{{- $newaddress := ($original | strings.ReplaceAll (env.Getenv "MODULE_NAME") (env.Getenv "NEW_MODULE_NAME")) -}}
+{{- if or (eq .type "aws_ecr_lifecycle_policy") (or (eq .type "aws_ecr_repository") (or (eq .type "aws_cloudwatch_event_rule") (eq .type "aws_iam_role"))) -}}
+import {
+    to = {{ $newaddress }}
+    id = "{{ .id }}"
+}
+{{- else if (eq .type "aws_iam_role_policy_attachment")  -}}
+import {
+    to = {{ $newaddress }}
+    id = "{{ print .role "/" .policy_arn }}"
+}
+{{- else if .arn -}}
+import {
+    to = {{ $newaddress }}
+    id = "{{ .arn }}"
+}
+{{- else -}}
+# import {
+#     to = {{ $newaddress }}
+#     id = "{{ .arn }}"
+# }
+{{ end }}
+
+{{ end }}
