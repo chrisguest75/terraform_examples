@@ -8,6 +8,8 @@ NOTES:
 * Removed block requires the lifecycle block
 * At the moment the docker container requires a redeploy and does not directly import
 * [build_import_removed/README.md](./build_import_removed/README.md) shows how to migrate whole modules.  
+* You cannot have conditional imports
+* You cannot use indirection in the import id. i.e. If you wanted to use an array of ids to control resource imports for each workspace. It's not possible.
 
 ## Deploy Stack 1
 
