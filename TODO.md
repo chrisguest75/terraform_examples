@@ -1,9 +1,10 @@
 # TODO
 
+
+* New terraform variable validations https://mattias.engineer/blog/2024/terraform-variable-cross-validation/
+
 * Open tofu
 * Terraform test
-* Practice a state migration between two stacks
-
 
 * Make a manifest of which pipelines to run and include it into the pipeline definition
 
