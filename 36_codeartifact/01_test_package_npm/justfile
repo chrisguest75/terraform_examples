@@ -8,6 +8,11 @@ set dotenv-load := true
 default:
   @just -f justfile --list
 
+# check if AWS_PROFILE and AWS_REGION are set
+checks:
+  [ ! -z "${AWS_PROFILE-}" ] || (echo "AWS_PROFILE is not set"; exit 1)
+  [ ! -z "${AWS_REGION-}" ] || (echo "AWS_REGION is not set"; exit 1)
+
 clean:
   npm run clean
 
@@ -17,7 +22,7 @@ build: clean
 test: 
   npm run test
 
-create_npmrc:
+create_npmrc: checks
   #!/usr/bin/env bash
   set -eufo pipefail
   export NPM_CONFIG_USERCONFIG=$(pwd)/.publish_npmrc
@@ -26,7 +31,7 @@ create_npmrc:
   echo "//${CODEARTIFACT_DOMAIN}-${CODEARTIFACT_DOMAIN_OWNER}.d.codeartifact.${AWS_REGION}.amazonaws.com/npm/${CODEARTIFACT_REPOSITORY}/:_authToken=\${CODEARTIFACT_AUTHTOKEN}" >> ${NPM_CONFIG_USERCONFIG}
   cat ${NPM_CONFIG_USERCONFIG}
 
-publish: create_npmrc build 
+publish: checks create_npmrc build 
   #!/usr/bin/env bash
   set -eufo pipefail
 
@@ -40,7 +45,7 @@ publish: create_npmrc build
 
   npm publish
 
-pull_tgz_package: create_npmrc
+pull_tgz_package: checks create_npmrc
   #!/usr/bin/env bash
   set -eufo pipefail
   
