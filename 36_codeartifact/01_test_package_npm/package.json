@@ -1,5 +1,5 @@
 {
-  "name": "01_test_package_npm",
+  "name": "@chrisguest_codeartifact/01_test_package_npm",
   "version": "1.0.4",
   "description": "A test package for codeartifact",
   "module": "./dist/esm/index.js",

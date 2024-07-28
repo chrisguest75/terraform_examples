@@ -52,9 +52,9 @@ pull_tgz_package:
   export NPM_CONFIG_USERCONFIG=$(pwd)/.publish_npmrc
   cat ${NPM_CONFIG_USERCONFIG}
 
-  npm view 01_test_package_npm dist.tarball      
-  npm pack --pack-destination ./out 01_test_package_npm
+  npm view @chrisguest_codeartifact/01_test_package_npm dist.tarball      
+  PACKAGE=$(npm pack --pack-destination ./out @chrisguest_codeartifact/01_test_package_npm)
   cd ./out
-  tar -xvzf ./01_test_package_npm-1.0.4.tgz   
+  tar -xvzf ${PACKAGE}
 
 
