@@ -1,0 +1,60 @@
+#!/usr/bin/env just --justfile
+# ^ A shebang isn't required, but allows a justfile to be executed
+#   like a script, with `./justfile test`, for example.
+
+set dotenv-load := true
+
+# default lists actions
+default:
+  @just -f justfile --list
+
+clean:
+  npm run clean
+
+build: clean
+  npm run build
+
+test: 
+  npm run test
+
+publish: build
+  #!/usr/bin/env bash
+  set -eufo pipefail
+
+  echo "*************************************"
+  echo "** Publish"
+  echo "*************************************"
+
+  export CODEARTIFACT_AUTHTOKEN=$(aws --profile $AWS_PROFILE --region $AWS_REGION codeartifact get-authorization-token --domain $CODEARTIFACT_DOMAIN --domain-owner $CODEARTIFACT_DOMAIN_OWNER --query authorizationToken --output text)
+  echo $CODEARTIFACT_AUTHTOKEN
+
+  echo "registry=https://${CODEARTIFACT_DOMAIN}-${CODEARTIFACT_DOMAIN_OWNER}.d.codeartifact.${AWS_REGION}.amazonaws.com/npm/${CODEARTIFACT_REPOSITORY}/" > $(pwd)/.publish_npmrc
+  echo "//${CODEARTIFACT_DOMAIN}-${CODEARTIFACT_DOMAIN_OWNER}.d.codeartifact.${AWS_REGION}.amazonaws.com/npm/${CODEARTIFACT_REPOSITORY}/:always-auth=true" >> $(pwd)/.publish_npmrc
+  echo "//${CODEARTIFACT_DOMAIN}-${CODEARTIFACT_DOMAIN_OWNER}.d.codeartifact.${AWS_REGION}.amazonaws.com/npm/${CODEARTIFACT_REPOSITORY}/:_authToken=\${CODEARTIFACT_AUTHTOKEN}" >> $(pwd)/.publish_npmrc
+
+  export NPM_CONFIG_USERCONFIG=$(pwd)/.publish_npmrc
+  cat ${NPM_CONFIG_USERCONFIG}
+
+  npm publish
+
+pull_tgz_package:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+  mkdir -p ./out
+
+  export CODEARTIFACT_AUTHTOKEN=$(aws --profile $AWS_PROFILE --region $AWS_REGION codeartifact get-authorization-token --domain $CODEARTIFACT_DOMAIN --domain-owner $CODEARTIFACT_DOMAIN_OWNER --query authorizationToken --output text)
+  echo $CODEARTIFACT_AUTHTOKEN
+
+  echo "registry=https://${CODEARTIFACT_DOMAIN}-${CODEARTIFACT_DOMAIN_OWNER}.d.codeartifact.${AWS_REGION}.amazonaws.com/npm/${CODEARTIFACT_REPOSITORY}/" > $(pwd)/.publish_npmrc
+  echo "//${CODEARTIFACT_DOMAIN}-${CODEARTIFACT_DOMAIN_OWNER}.d.codeartifact.${AWS_REGION}.amazonaws.com/npm/${CODEARTIFACT_REPOSITORY}/:always-auth=true" >> $(pwd)/.publish_npmrc
+  echo "//${CODEARTIFACT_DOMAIN}-${CODEARTIFACT_DOMAIN_OWNER}.d.codeartifact.${AWS_REGION}.amazonaws.com/npm/${CODEARTIFACT_REPOSITORY}/:_authToken=\${CODEARTIFACT_AUTHTOKEN}" >> $(pwd)/.publish_npmrc
+
+  export NPM_CONFIG_USERCONFIG=$(pwd)/.publish_npmrc
+  cat ${NPM_CONFIG_USERCONFIG}
+
+  npm view 01_test_package_npm dist.tarball      
+  npm pack --pack-destination ./out 01_test_package_npm
+  cd ./out
+  tar -xvzf ./01_test_package_npm-1.0.4.tgz   
+
+

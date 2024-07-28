@@ -2,6 +2,11 @@
 
 Example of creating and configuring codeartifact.  
 
+TODO:
+
+* Sign npm package (signed???)
+* Use outputs from terraform with package publish
+
 ## Prepare
 
 ```sh
