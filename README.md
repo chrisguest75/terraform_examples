@@ -178,6 +178,7 @@ Demonstrate `zip` generation techniques for Terraform.
 * Examples [antonbabenko repos](https://github.com/antonbabenko?tab=repositories)  
 * [awesome-terraform](https://github.com/antonbabenko/awesome-terraform)  
 * Offical [tutorials/terraform](https://learn.hashicorp.com/tutorials/terraform)  
+* github.com/orgs/hashicorp-education [here](https://github.com/orgs/hashicorp-education/repositories)
 
 ## Providers
 

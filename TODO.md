@@ -36,3 +36,9 @@ Examples:
 * Create a resource using for-each.  Migrate state over to a new reource and remove entry from for-each.
 
 https://github.com/awslabs/terraform-iam-policy-validator
+
+
+
+
+- https://registry.terraform.io/providers/hashicorp/assert/latest/docs
+- https://registry.terraform.io/providers/hashicorp/external/latest/docs/data-sources/external 
