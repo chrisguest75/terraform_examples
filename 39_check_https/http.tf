@@ -5,7 +5,7 @@ data "http" "endpoint" {
 
   lifecycle {
     postcondition {
-      condition     = self.status_code == 200
+      condition     = provider::assert::http_success(self.status_code) 
       error_message = "${self.url} returned an unhealthy status code"
     }
   }
@@ -17,7 +17,7 @@ check "http_health_check" {
   }
 
   assert {
-    condition     = data.http.check_endpoint.status_code == 200
+    condition     = provider::assert::http_success(data.http.check_endpoint.status_code)
     error_message = "${data.http.check_endpoint.url} returned an unhealthy status code"
   }
 }

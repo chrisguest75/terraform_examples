@@ -1,17 +1,16 @@
 # CHECK HTTPS
 
-Is it possible to use checks for valid certificates?  
+It possible to use checks to validate responses and certificates.  
 
 NOTES:
 
-- It doesn't seem as though you can fail an apply based on a failed check.
+- It doesn't seem as though you can fail an apply based on a failed check. It will only warn.  
 - You can use lifecycle postconditions though.
-- It's not possible to get the latncy of the request.  
+- It's not possible to get the latency of the request.  
 
 TODO:
 
 - Check CORS?
-- The postcondition on the certificate is not working - fail if near expiry. Even when I force the condition. The state file says status unknown.  
 
 ## Checks
 
@@ -41,3 +40,5 @@ terraform state show data.tls_certificate.check_endpoint
 - HTTP Provider [here](https://registry.terraform.io/providers/hashicorp/http/latest/docs)
 - TLS Provider [here](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/data-sources/certificate)
 - Time Provider [here](https://registry.terraform.io/providers/hashicorp/time/latest/docs)
+- Simplifying assertions in Terraform using provider-defined functions [here](https://www.hashicorp.com/blog/simplifying-assertions-in-terraform-using-provider-defined-functions)
+- Assert Provider [here](https://registry.terraform.io/providers/hashicorp/assert/latest/docs?product_intent=terraform)

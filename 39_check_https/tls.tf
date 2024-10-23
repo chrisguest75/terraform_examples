@@ -1,7 +1,6 @@
 
 locals {
-  timestamp_now       = provider::time::rfc3339_parse(timestamp()).unix
-  timestamp_threshold = provider::time::rfc3339_parse(timeadd(timestamp(), "240h")).unix
+  threshold_hours        = 10
 }
 
 data "tls_certificate" "endpoint" {
@@ -9,30 +8,24 @@ data "tls_certificate" "endpoint" {
 
   lifecycle {
     postcondition {
-      condition     = local.timestamp_threshold < provider::time::rfc3339_parse(self.certificates[0].not_after).unix
+      # check validity is within the threshold
+      condition     = !provider::assert::expired(timeadd(self.certificates[0].not_after, "-${local.threshold_hours}h")) 
       error_message = "${self.url} is not valid"
     }
   }
 }
 
-check "certificate_health_check" {
+check "certificate_validity_check" {
   data "tls_certificate" "check_endpoint" {
     url          = var.url
     verify_chain = true
   }
 
   assert {
-    condition     = local.timestamp_threshold < provider::time::rfc3339_parse(data.tls_certificate.check_endpoint.certificates[0].not_after).unix
-    error_message = "${data.tls_certificate.check_endpoint.url} is not valid"
+    # check validity is within the threshold
+    condition     = !provider::assert::expired(timeadd(data.tls_certificate.check_endpoint.certificates[0].not_after, "-${local.threshold_hours}h"))
+    error_message = "Certificate needs to be renewed"
   }
-}
-
-output "timestamp_now_output" {
-  value = local.timestamp_now
-}
-
-output "timestamp_threshold_output" {
-  value = local.timestamp_threshold
 }
 
 output "data_tls_certificate_endpoint_output" {
