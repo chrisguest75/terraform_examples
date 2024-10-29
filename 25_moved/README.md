@@ -4,21 +4,19 @@ Demonstrates how to use moved block.
 
 ## Demonstrates
 
+* Show moving state with a moved block.  
 
-## Use a module from github
+## Create initial state
 
 ```sh
-terraform init
-terraform plan 
+just init
+just plan 
 
 # apply the plan
-terraform apply -auto-approve
-
-# print out the container id
-terraform output
+just apply -auto-approve
 
 # list the objects
-terraform state
+terraform state list
 ```
 
 ## Investigating state
@@ -33,8 +31,8 @@ terraform state list
 EDIT: Go edit the `main.tf` to include the moved block and the renamed resources.  
 
 ```sh
-terraform plan 
-terraform apply
+just plan 
+just apply -auto-approve
 
 # resources will still exist but will be moved
 # also check the state only refers to new_files
