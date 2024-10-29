@@ -13,12 +13,20 @@ docker run -d --rm redis:6.2-alpine
 
 ```sh
 # create
-terraform init
+just init
 
-terraform plan 
+just plan 
+
+docker ps -a --no-trunc
+
+just plan 
 
 rm ./generated.tf  
 terraform plan -generate-config-out=generated.tf   
+
+# cleanup
+just clean
+docker stop $(docker ps -aq)
 ```
 
 ## Resources
