@@ -4,6 +4,7 @@
 provider "registry.terraform.io/hashicorp/local" {
   version = "2.5.2"
   hashes = [
+    "h1:JlMZD6nYqJ8sSrFfEAH0Vk/SL8WLZRmFaMUF9PJK5wM=",
     "h1:p99F1AoV9z51aJ4EdItxz/vLwWIyhx/0Iw7L7sWSH1o=",
     "zh:136299545178ce281c56f36965bf91c35407c11897f7082b3b983d86cb79b511",
     "zh:3b4486858aa9cb8163378722b642c57c529b6c64bfbfc9461d940a84cd66ebea",

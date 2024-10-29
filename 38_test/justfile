@@ -3,6 +3,7 @@
 #   like a script, with `./justfile test`, for example.
 
 set dotenv-load := true
+export terraform_extra_args := ""
 
 # default lists actions
 default:
@@ -12,7 +13,7 @@ init:
   terraform init
 
 test:
-  terraform test
+  terraform test ${terraform_extra_args}
 
 plan:
   terraform plan

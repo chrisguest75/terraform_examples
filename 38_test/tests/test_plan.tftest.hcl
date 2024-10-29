@@ -50,3 +50,13 @@ run "get_http_services" {
     error_message = "Filename should include service kind `http`"
   }
 }
+
+run "fail_udp_services" {
+  variables {
+    service_kind = "udp"
+  }
+ 
+  command = plan
+ 
+  expect_failures = [ var.service_kind ]
+}

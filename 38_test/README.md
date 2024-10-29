@@ -32,6 +32,13 @@ just plan
 just apply
 ```
 
+## Extra
+
+```sh
+# verbose and json output
+just terraform_extra_args="-verbose -json" test | jq .
+```
+
 ## Resources
 
 * Write Terraform Tests [here](https://developer.hashicorp.com/terraform/tutorials/configuration-language/test0

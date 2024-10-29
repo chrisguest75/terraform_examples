@@ -16,6 +16,11 @@ variable "services" {
 variable "service_kind" {
   type        = string
   description = "Service kind to search"
+
+  validation {
+    condition = can(regex("^(tcp|http)$", var.service_kind))
+    error_message = "Service kind must be either 'tcp' or 'udp'"
+  }
 }
 
 locals {
