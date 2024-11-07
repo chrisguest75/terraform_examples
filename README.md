@@ -1,6 +1,6 @@
 # README
 
-[![Repository](https://skillicons.dev/icons?i=aws,docker)](https://skillicons.dev)
+[![Repository](https://skillicons.dev/icons?i=aws,docker,terraform)](https://skillicons.dev)
 
 A repo for Terraform examples  
 [Terraform Docs](https://www.terraform.io/)  

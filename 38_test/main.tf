@@ -19,7 +19,7 @@ variable "service_kind" {
 
   validation {
     condition = can(regex("^(tcp|http)$", var.service_kind))
-    error_message = "Service kind must be either 'tcp' or 'udp'"
+    error_message = "Service kind must be either 'tcp' or 'http'"
   }
 }
 
