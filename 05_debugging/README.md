@@ -42,6 +42,9 @@ unset TF_LOG_PROVIDER
 terraform apply -auto-approve
 # rerun and recreate the output
 terraform apply -replace "null_resource.debugging"
+
+# capture all output in a file
+terraform apply --auto-approve  2> >(awk '{print "stderr:" $0}') > >(awk '{print "stdout:" $0}') &> ./stdout_combined.txt
 ```
 
 ## Graph (graphviz)
