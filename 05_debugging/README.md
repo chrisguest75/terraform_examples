@@ -8,6 +8,14 @@ NOTES:
 * If need to upgrade change `.terraform-version` and `required_version = "=1.x.x"`  
 * TIP: If you need to see a value coming from remote state just add it as an output and use plan or use a local-exec provisioner (demo in main.tf).  
 
+## Locks
+
+If an apply has failed or you have exited early. The lock may still be set.  
+
+```sh
+terraform unlock 5302b8d3-b301-d9cb-72f1-a3b1692c17c3
+```
+
 ## Logging
 
 TF_LOG_CORE and TF_LOG_PROVIDER
