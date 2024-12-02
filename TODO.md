@@ -1,15 +1,14 @@
 # TODO
 
+* Migrate state across workspaces - to remove workspaces...
+  * terraform state pull
+  * terraform init -migrate-state
+* terraform provider cache.  
+
 
 * New terraform variable validations https://mattias.engineer/blog/2024/terraform-variable-cross-validation/
-
-* Open tofu
-* Terraform test
-
 * Make a manifest of which pipelines to run and include it into the pipeline definition
-
 * add automatic plans as comments. https://github.com/dflook/terraform-github-actions/tree/main/terraform-plan
-
 * lifecycle {
     ignore_changes = ["*"]
   }
@@ -36,9 +35,6 @@ Examples:
 * Create a resource using for-each.  Migrate state over to a new reource and remove entry from for-each.
 
 https://github.com/awslabs/terraform-iam-policy-validator
-
-
-
 
 - https://registry.terraform.io/providers/hashicorp/assert/latest/docs
 - https://registry.terraform.io/providers/hashicorp/external/latest/docs/data-sources/external 
