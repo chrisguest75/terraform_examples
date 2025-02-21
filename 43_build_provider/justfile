@@ -1,0 +1,33 @@
+#!/usr/bin/env just --justfile
+# ^ A shebang isn't required, but allows a justfile to be executed
+#   like a script, with `./justfile test`, for example.
+
+set dotenv-load := true
+
+# default lists actions
+default:
+  @just -f justfile --list
+
+init:
+  terraform init
+
+test:
+  terraform test
+
+plan:
+  terraform plan
+
+apply:
+  terraform apply
+
+destroy:
+  terraform destroy
+
+docker-build:
+  docker build --progress=plain -f Dockerfile -t 42_provider .
+
+docker-start: docker-build
+  docker run -it --rm 42_provider -c 
+
+docker-shell: docker-build
+  docker run -it --rm --entrypoint sh 42_provider
