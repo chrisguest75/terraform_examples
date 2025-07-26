@@ -6,3 +6,7 @@ resource "local_file" "file" {
   filename = "${path.module}/hi.txt"
 }
 
+
+output "content" {
+  value = local_file.file.content
+}

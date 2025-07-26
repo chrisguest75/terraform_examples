@@ -1,0 +1,56 @@
+#!/usr/bin/env just --justfile
+# ^ A shebang isn't required, but allows a justfile to be executed
+#   like a script, with `./justfile test`, for example.
+
+set dotenv-load := true
+export terraform_extra_args := ""
+
+# default lists actions
+default:
+  @just -f justfile --list
+
+clean:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+
+  rm -rf example_local_file/.terragrunt-cache
+  rm example_local_file/.terraform.lock.hcl
+
+  rm -rf another_example_local_file/.terragrunt-cache
+  rm another_example_local_file/.terraform.lock.hcl
+
+  rm -rf shared/.terraform
+  rm -rf shared/.terraform.lock.hcl
+
+plan unit="example_local_file":
+  #!/usr/bin/env bash
+  set -eufo pipefail
+  
+  export TG_LOG_FORMAT=bare
+  cd {{ unit }}
+  terragrunt plan 
+
+apply unit="example_local_file":
+  #!/usr/bin/env bash
+  set -eufo pipefail
+
+  export TG_LOG_FORMAT=bare
+  
+  cd {{ unit }}
+  terragrunt apply -auto-approve
+
+destroy unit="example_local_file":
+  #!/usr/bin/env bash
+  set -eufo pipefail
+
+  export TG_LOG_FORMAT=bare
+  cd {{ unit }}
+  terragrunt destroy -auto-approve
+
+apply-all:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+
+  export TG_LOG_FORMAT=bare
+  export TERRAGRUNT_DEBUG=true 
+  terragrunt run --all apply

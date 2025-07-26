@@ -2,6 +2,15 @@
 
 Demonstrate some terrgrunt basics.  
 
+## Notes
+
+* The shared module should not have a `terragrunt.hcl` file.  
+* There is a `--log-format bare`
+
+## Terminology
+
+* Unit
+
 ## Install
 
 ```sh
@@ -28,6 +37,13 @@ terragrunt apply -auto-approve -var content='Hello, Terragrunt!'
 terragrunt destroy -auto-approve -var content='Hello, Terragrunt!'
 ```
 
+## Just
+
+```sh
+just apply-all
+```
+
 ## Resources
 
 * https://terragrunt.gruntwork.io/docs/getting-started/quick-start/
+* https://github.com/gruntwork-io/terragrunt
