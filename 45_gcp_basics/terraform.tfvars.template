@@ -1,0 +1,2 @@
+project_id = "terraform-testing-xxxxx"
+credentials_file = "./terraform-sa.json"

@@ -6,3 +6,4 @@
 *.tfplan
 *.tfstate.backup
 .env
+terraform-sa.json
