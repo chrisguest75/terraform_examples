@@ -9,18 +9,30 @@ export terraform_extra_args := ""
 default:
   @just -f justfile --list
 
-init:
+init stack:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+
+  cd ./stacks/{{ stack }}
   terraform init
 
-test:
-  terraform test ${terraform_extra_args}
+plan stack:
+  #!/usr/bin/env bash
+  set -eufo pipefail
 
-plan:
-  terraform plan --var-file=terraform.tfvars 
+  cd ./stacks/{{ stack }}
+  terraform plan --var-file=../../terraform.tfvars 
 
-apply:
-  terraform apply --var-file=terraform.tfvars 
+apply stack:
+  #!/usr/bin/env bash
+  set -eufo pipefail
 
-destroy:
-  terraform destroy --var-file=terraform.tfvars 
+  cd ./stacks/{{ stack }}
+  terraform apply --var-file=../../terraform.tfvars 
 
+destroy stack:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+
+  cd ./stacks/{{ stack }}
+  terraform destroy --var-file=../../terraform.tfvars 

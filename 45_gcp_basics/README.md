@@ -31,12 +31,14 @@ gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:terr
 
 ## Creation
 
+NOTE: You must create the state bucket first.  
+
 ```sh
-just init
+just init state_bucket  
 
-just plan
+just plan state_bucket
 
-just apply
+just apply state_bucket
 ```
 
 ## Resources
