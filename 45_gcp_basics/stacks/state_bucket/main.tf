@@ -5,4 +5,6 @@ module bucket {
 
     bucket_name = var.state_bucket_name
     location = "EU"
+
+    labels = var.labels
 }
