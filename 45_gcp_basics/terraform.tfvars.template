@@ -1,2 +1,3 @@
 project_id = "terraform-testing-xxxxx"
 credentials_file = "./terraform-sa.json"
+state_bucket_name = "terraform-testing-xxxxx-tf-state"
