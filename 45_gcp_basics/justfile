@@ -38,6 +38,11 @@ apply stack:
   cd ./stacks/{{ stack }}
   terraform apply --var-file=../../terraform.tfvars 
 
+  if [[ -f ./hooks/justfile ]]; then
+    just -f ./hooks/justfile deployed
+  fi
+
+
 destroy stack:
   #!/usr/bin/env bash
   set -eufo pipefail
