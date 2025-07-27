@@ -19,4 +19,4 @@ just apply ephemeral
 ## Resources
 
 * https://developer.hashicorp.com/terraform/language/resources/ephemeral
-https://developer.hashicorp.com/terraform/language/ephemeral
+* https://developer.hashicorp.com/terraform/language/ephemeral
