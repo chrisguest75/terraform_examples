@@ -11,6 +11,10 @@ TODO:
 * Add some policies.
 * Add some secrets.
 
+NOTES:
+
+* The cloud block needs to be set for it to use HCP.  
+
 ## CLI
 
 The login tokens can be set to expire.  
