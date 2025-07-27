@@ -1,0 +1,51 @@
+#!/usr/bin/env just --justfile
+# ^ A shebang isn't required, but allows a justfile to be executed
+#   like a script, with `./justfile test`, for example.
+
+set dotenv-load := true
+export terraform_extra_args := ""
+
+# default lists actions
+default:
+  @just -f justfile --list
+
+clean:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+
+  rm -rf .terraform
+  rm -rf ./stacks/non_ephemeral/.terraform
+  rm -rf ./stacks/ephemeral/.terraform
+
+init stack:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+
+  cd ./stacks/{{ stack }}
+  terraform init -backend-config=../../backend.tfvars -backend-config="prefix=terraform/{{ stack }}" 
+
+plan stack:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+
+  cd ./stacks/{{ stack }}
+  terraform plan --var-file=../../terraform.tfvars 
+
+apply stack:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+
+  cd ./stacks/{{ stack }}
+  terraform apply --var-file=../../terraform.tfvars 
+
+  if [[ -f ./hooks/justfile ]]; then
+    just -f ./hooks/justfile deployed
+  fi
+
+
+destroy stack:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+
+  cd ./stacks/{{ stack }}
+  terraform destroy --var-file=../../terraform.tfvars 
