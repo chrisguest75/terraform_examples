@@ -6,6 +6,8 @@ TODO:
 
 * Set tags on firestore
 * Does API enable require a depends_on
+* Create a resricted user for firestore
+* Add a basic gcp function
 
 ## Basics
 
