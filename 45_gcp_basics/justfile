@@ -9,12 +9,20 @@ export terraform_extra_args := ""
 default:
   @just -f justfile --list
 
+clean:
+  #!/usr/bin/env bash
+  set -eufo pipefail
+
+  rm -rf .terraform
+  rm -rf ./stacks/apis/.terraform
+  rm -rf ./stacks/firestore/.terraform
+
 init stack:
   #!/usr/bin/env bash
   set -eufo pipefail
 
   cd ./stacks/{{ stack }}
-  terraform init
+  terraform init -backend-config=../../backend.tfvars -backend-config="prefix=terraform/{{ stack }}" 
 
 plan stack:
   #!/usr/bin/env bash

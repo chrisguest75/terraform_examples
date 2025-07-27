@@ -1,0 +1,3 @@
+bucket = "terraform-testing-xxxxx-tf-state"
+credentials = "../../terraform-sa.json"
+

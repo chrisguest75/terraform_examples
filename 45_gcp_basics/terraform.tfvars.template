@@ -2,3 +2,4 @@ project_id = "terraform-testing-xxxxx"
 credentials_file = "./terraform-sa.json"
 state_bucket_name = "terraform-testing-xxxxx-tf-state"
 labels = { git_repo = "terraform_examples", git_repo_path = "45_gcp_basics"}
+firestore_location = "eur3"
