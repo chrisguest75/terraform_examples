@@ -18,8 +18,9 @@
     * precondition - check ami is an x86 image
 * Meta arguments
   * for_each - each.key and each.value
-* Importing - import --generate
-* Moved - refactoring
+* Import Block- import --generate
+* Moved Block - refactoring
+* Removed Block - requires lifecycle destroy = false
 * Modules
   * versioning by git commit
   * validation on variables
