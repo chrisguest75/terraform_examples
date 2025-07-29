@@ -4,6 +4,7 @@
 * Backends
   * State files - configured in init
   * Locks - dynamodb is deprecated, use_lockfile
+  * force-unlock
   * Ensure bucket versioning is enabled
 * Providers
   * Multiple providers use aliases.  
@@ -17,7 +18,7 @@
     * replace_triggered_by
     * precondition - check ami is an x86 image
 * Meta arguments
-  * for_each - each.key and each.value
+  * for_each - each.key and each.value - useful for iterating over objects of parameters (count is >=0 same resource)
 * Import Block- import --generate
 * Moved Block - refactoring
 * Removed Block - requires lifecycle destroy = false
@@ -26,13 +27,19 @@
   * validation on variables
 * CLI options
   * Validate Configuration
-  * Refresh
+  * --refresh-only
+  * -backend-config
+  * -var-file
+  * taint
+  * --target
+  * -parallelism=n
 * Drift and Refresh Only
 * Data Sources
   * Can use shared state for global resources that don't change often.
 * Secret Management
   * Vault
   * Use secrets manager as a data source
+  * SOPS provider
 * Builtin Functions and Datatypes
 * Resource Graph
 * HCP
