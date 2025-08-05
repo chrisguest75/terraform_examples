@@ -43,26 +43,9 @@ target "push-cloudrun-image-amd64" {
   output = ["type=docker"]
 }
 
-target "cube-image-multi" {
-  args = {
-    VERSION = "0.0.0+unknown"
-  }  
-  context = "."
-  platforms = ["linux/amd64", "linux/arm64"]
-  dockerfile = "Dockerfile.ubuntu"
-  tags = ["${IMAGE_NAME}:${IMAGE_TAG}"]
-  output = []
-  secret = [
-    # pass by file; src is the secret file location
-    "type=file,id=file_secret,src=./secrets/secret_token.txt",
-    # pass by environment variable
-    "type=env,id=SECRET_TOKEN"
-  ]  
-}
-
 group "default" {
   targets = [
-    "ubuntu-image-arm64",
-    "ubuntu-image-amd64",
+    "cube-image-arm64",
+    "cube-image-amd64",
     ]
 }

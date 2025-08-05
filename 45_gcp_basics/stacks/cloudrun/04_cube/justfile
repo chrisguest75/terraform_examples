@@ -5,6 +5,8 @@
 set dotenv-load := true
 export DOCKER_IMAGE_NAME:="04_cube"
 export DOCKER_IMAGE_TAG:="latest"
+export PROJECT_ID:="set-this-if-pushing"
+
 
 # default lists actions
 default:
@@ -91,7 +93,7 @@ bake-build-push filter="":
   set -xeufo pipefail
   mkdir -p out || true
 
-  export IMAGE_TAG=europe-west2-docker.pkg.dev/terraform-testing-467115/terraform-testing-cube/cube:latest
+  export IMAGE_TAG=europe-west2-docker.pkg.dev/${PROJECT_ID}/terraform-testing-cube/cube:latest
   docker buildx bake --progress=plain -f ./docker-bake.hcl --metadata-file ./out/bake-metadata.json --push push-cloudrun-image-amd64
 
 

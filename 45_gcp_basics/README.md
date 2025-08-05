@@ -61,6 +61,9 @@ gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:terr
 
 # create artifact registries
 gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:terraform@${PROJECT_ID}.iam.gserviceaccount.com" --role="roles/artifactregistry.admin"
+
+# required for the service account to impersonate the cloudrun execution context.
+gcloud iam service-accounts add-iam-policy-binding 187702371956-compute@developer.gserviceaccount.com --member="serviceAccount:terraform@${PROJECT_ID}.iam.gserviceaccount.com" --role='roles/iam.serviceAccountUser' --project="${PROJECT_ID}"
 ```
 
 ## Creation
