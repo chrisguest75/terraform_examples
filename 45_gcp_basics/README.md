@@ -21,6 +21,9 @@ gcloud projects list
 
 ## Get Credentials
 
+The `terraform-sa.json` is loaded into the context of the provider so you can use a service account permissions.  
+When adding roles to the service account it can take time.  
+
 ```sh
 export PROJECT_ID=terraform-testing-xxxxx
 
@@ -43,6 +46,24 @@ gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:terr
 
 # terraform requires resource manager API
 gcloud services enable cloudresourcemanager.googleapis.com  --project=${PROJECT_ID}
+
+# firestore owner
+gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:terraform@${PROJECT_ID}.iam.gserviceaccount.com" --role="roles/datastore.owner"
+
+# cloudfunctions create
+gcloud iam service-accounts add-iam-policy-binding \
+  "${PROJECT_ID}@appspot.gserviceaccount.com" \
+  --member="serviceAccount:terraform@${PROJECT_ID}.iam.gserviceaccount.com" \
+  --role="roles/iam.serviceAccountUser" \
+  --project="${PROJECT_ID}"
+
+gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:terraform@${PROJECT_ID}.iam.gserviceaccount.com" --role="roles/cloudfunctions.developer"
+
+# create artifact registries
+gcloud projects add-iam-policy-binding $PROJECT_ID --member="serviceAccount:terraform@${PROJECT_ID}.iam.gserviceaccount.com" --role="roles/artifactregistry.admin"
+
+# required for the service account to impersonate the cloudrun execution context.
+gcloud iam service-accounts add-iam-policy-binding 187702371956-compute@developer.gserviceaccount.com --member="serviceAccount:terraform@${PROJECT_ID}.iam.gserviceaccount.com" --role='roles/iam.serviceAccountUser' --project="${PROJECT_ID}"
 ```
 
 ## Creation
@@ -57,6 +78,18 @@ just plan state_bucket
 just apply state_bucket
 ```
 
+## Enable APIS
+
+There are a few apis that need to be enabled.  
+
+```sh
+just init apis
+
+just plan apis
+
+just apply apis
+```
+
 ## Firestore
 
 ```sh
@@ -65,6 +98,16 @@ just init firestore
 just plan firestore
 
 just apply firestore
+```
+
+## Functions
+
+```sh
+just init functions  
+
+just plan functions
+
+just apply functions
 ```
 
 ## Resources

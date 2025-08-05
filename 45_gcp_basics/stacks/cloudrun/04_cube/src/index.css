@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .debug-border {
+      @apply border-x-0 border-y-0;
+    }
+    /* .debug-border {
+      @apply border border-sky-950 px-1 border-x-4 border-y-4;
+    } */
+  }
